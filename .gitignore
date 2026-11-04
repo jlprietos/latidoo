@@ -6,3 +6,13 @@ node_modules/
 
 # Local Netlify folder
 .netlify
+
+# Copias de trabajo y despliegues locales (no van al repositorio)
+/_deploy*/
+/_papelera/
+/latidoo-publicar*
+/*.zip
+/index_v*.html
+/zi*
+/WhatsApp*
+/Manual-identidad-Latidoo.pdf
