@@ -1,2191 +1,939 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="js">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Area IA Solutions — Hacemos crecer tu negocio con IA</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&display=swap" rel="stylesheet">
-<style>
-/* ── RESET & BASE ───────────────────────────────────────── */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-size:16px;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latidoo — Experiencias educativas para la infancia</title>
+  <link rel="alternate" hreflang="es" href="https://latidoo.com/" />
+  <link rel="alternate" hreflang="en" href="https://latidoo.com/en/" />
+  <meta name="description" content="Experiencias educativas con base en el neurodesarrollo infantil: campamentos, English Club, talleres, fiestas y formaciones para familias. By Pati." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#FAF3EE; --bg-surface:#FFF8F3; --bg-footer:#3D2010;
+      --text-primary:#3D2010; --text-secondary:#8C5E3C; --text-hint:#A97E55;
+      --border:#E8C9A8; --border-strong:#C9A07A;
+      --primary:#2E9070; --primary-dark:#1F6B52; --primary-light:rgba(46,144,112,0.10);
+      --c-verde:#3DAA8A; --c-vino:#7D2040; --c-naranja:#C96A10; --c-morado:#7B4EC4; --c-marron:#7A5030;
+      --ink:#9d4c22; --ink-soft:#c3784f;
+      --font-display:'Fraunces',Georgia,serif; --font-body:'Nunito',sans-serif;
+      --s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s10:40px;--s12:48px;--s16:64px;--s24:96px;
+      --r-md:12px;--r-lg:20px;--r-pill:100px;
+      --ease-out:cubic-bezier(.2,.8,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;scroll-padding-top:64px;overflow-x:hidden;}
+    body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary);overflow-x:hidden;-webkit-text-size-adjust:100%;line-height:1.6;}
+    img{max-width:100%;height:auto;display:block;}
+    :focus-visible{outline:2.5px solid var(--primary);outline-offset:3px;border-radius:6px;}
+    .skip{position:absolute;left:-999px;top:8px;background:var(--text-primary);color:#fff;padding:8px 14px;border-radius:8px;z-index:300;}
+    .skip:focus{left:8px;}
 
-:root{
-  --bg:       #05080F;
-  --bg1:      #0C1220;
-  --bg2:      #13203A;
-  --bg3:      #162540;
-  --bg4:      #1E3050;
-  --border:   rgba(255,255,255,0.06);
-  --border2:  rgba(255,255,255,0.10);
-  --p:        #0EA5E9;
-  --pl:       #38BDF8;
-  --pll:      #BAE6FD;
-  --k:        #5B5FE0;
-  --kl:       #818CF8;
-  --o:        #F59E0B;
-  --ol:       #FCD34D;
-  --t1:       #F0F6FF;
-  --t2:       #8DA4C4;
-  --t3:       #445570;
-  --t4:       #2A3A52;
-  --grad:     linear-gradient(135deg,#0EA5E9 0%,#5B5FE0 60%,#8B5CF6 100%);
-  --grad2:    linear-gradient(135deg,#5B5FE0 0%,#F59E0B 100%);
-  --font-disp: 'Nunito Sans', 'Avenir Next', 'Avenir', sans-serif;
-  --font-body: 'Nunito Sans', 'Avenir Next', 'Avenir', sans-serif;
-  --font-hero: 'Fraunces', Georgia, serif;
-}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:15px;font-weight:700;padding:12px 28px;border-radius:var(--r-pill);text-decoration:none;min-height:44px;cursor:pointer;border:none;transition:transform 150ms,background 150ms,color 150ms,box-shadow 150ms;letter-spacing:0.2px;}
+    .btn:hover{transform:translateY(-2px);}
+    .btn-primary{background:var(--primary);color:#fff;}
+    .btn-primary:hover{background:var(--primary-dark);box-shadow:0 6px 20px rgba(46,144,112,0.28);}
+    .btn-secondary{background:transparent;color:var(--text-secondary);border:1.5px solid var(--border-strong);}
+    .btn-secondary:hover{border-color:var(--primary);color:var(--primary);}
 
-body{
-  background:var(--bg);
-  color:var(--t1);
-  font-family:var(--font-body);
-  line-height:1.6;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
+    /* NAV */
+    #mainNav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,243,238,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow 200ms;}
+    #mainNav.scrolled{box-shadow:0 2px 16px rgba(61,32,16,0.08);}
+    .nav-inner{max-width:1150px;margin:0 auto;padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{height:32px;width:auto;}
+    .nav-links{list-style:none;display:flex;align-items:center;gap:30px;}
+    .nav-links a{font-size:14px;font-weight:700;color:var(--text-secondary);text-decoration:none;transition:color 150ms;}
+    .nav-links a:hover{color:var(--text-primary);}
+    .nav-links .nav-cta{background:var(--primary);color:#fff !important;padding:8px 20px;border-radius:var(--r-pill);}
+    .nav-links .nav-cta:hover{background:var(--primary-dark);}
+    .nav-links .lang{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--text-hint);}
+    .nav-links .lang .cur{color:var(--text-primary);}
+    .nav-links .lang a{font-size:13px;padding:6px 4px;}
+    @media(max-width:760px){.nav-links .lang{padding:12px 5%;font-size:15px;}.nav-links .lang a{display:inline;padding:0;font-size:15px;}}
+    .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:10px;}
+    .nav-burger span{display:block;width:22px;height:2px;background:var(--text-primary);border-radius:2px;transition:transform 250ms,opacity 250ms;}
+    #mainNav.nav-open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    #mainNav.nav-open .nav-burger span:nth-child(2){opacity:0;}
+    #mainNav.nav-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    @media(max-width:760px){
+      .nav-burger{display:flex;}
+      .nav-links{position:absolute;top:64px;left:0;right:0;background:rgba(250,243,238,0.98);border-bottom:1px solid var(--border);flex-direction:column;align-items:flex-start;gap:0;padding:8px 0 16px;display:none;}
+      .nav-links.open{display:flex;}
+      .nav-links li{width:100%;}
+      .nav-links a{display:block;padding:12px 5%;font-size:16px;}
+      .nav-links .nav-cta{margin:8px 5% 0;text-align:center;padding:12px 20px;}
+    }
 
-/* ── CURSOR ─────────────────────────────────────────────── */
-*{cursor:none!important;}
-#cursor{
-  position:fixed;width:8px;height:8px;
-  background:var(--p);border-radius:50%;
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:transform .1s,background .2s,width .2s,height .2s;
-  mix-blend-mode:normal;
-}
-#cursor-ring{
-  position:fixed;width:32px;height:32px;
-  border:1px solid rgba(14,165,233,0.4);
-  border-radius:50%;pointer-events:none;z-index:9998;
-  transform:translate(-50%,-50%);
-  transition:transform .08s,width .25s,height .25s,border-color .25s;
-}
-body:has(a:hover) #cursor,
-body:has(button:hover) #cursor{width:14px;height:14px;background:var(--k);}
-body:has(a:hover) #cursor-ring,
-body:has(button:hover) #cursor-ring{width:48px;height:48px;border-color:rgba(91,95,224,0.5);}
+    /* Etiquetas de sección: cursiva, no mayúsculas */
+    .t-tag{display:inline-block;font-family:var(--font-display);font-style:italic;font-weight:600;font-size:17px;color:var(--primary);margin-bottom:var(--s2);}
 
-/* ── NOISE OVERLAY ──────────────────────────────────────── */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:100;
-  opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+    /* ───────── HERO ───────── */
+    @keyframes drift1{0%{transform:translate(0,0) scale(1);}100%{transform:translate(40px,30px) scale(1.12);}}
+    @keyframes drift2{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-35px,-25px) scale(1.08);}}
+    .hero-blob{position:absolute;border-radius:50%;pointer-events:none;z-index:0;filter:blur(2px);}
+    .hero-blob-1{width:460px;height:380px;background:rgba(242,196,206,0.32);top:-90px;right:-80px;animation:drift1 16s ease-in-out infinite alternate;}
+    .hero-blob-2{width:340px;height:340px;background:rgba(245,212,160,0.26);bottom:-80px;left:38%;animation:drift2 20s ease-in-out infinite alternate;}
+    #hero{position:relative;overflow:hidden;padding:calc(var(--s16) + 64px) 5% var(--s16);}
+    .hero-grid{position:relative;z-index:1;max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1.02fr;gap:var(--s8);align-items:center;}
+    .hero-eyebrow{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:17px;color:var(--primary);margin-bottom:var(--s4);}
+    .hero-title{font-family:var(--font-display);font-size:clamp(42px,6vw,72px);font-weight:900;color:var(--text-primary);line-height:1.02;letter-spacing:-0.01em;margin-bottom:var(--s5);}
+    .hero-title .line{display:block;}
+    .hero-title .line-2{font-style:italic;font-weight:700;color:var(--primary);}
+    /* titular cinético: palabra a palabra con máscara */
+    .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em;}
+    .w>span{display:inline-block;transform:translateY(105%);animation:wordUp .8s var(--ease-out) forwards;animation-delay:calc(var(--d) * 1ms);}
+    @keyframes wordUp{to{transform:translateY(0);}}
+    .hero-fade{opacity:0;transform:translateY(12px);animation:heroFade .7s var(--ease-out) forwards;animation-delay:calc(var(--d) * 1ms);}
+    @keyframes heroFade{to{opacity:1;transform:none;}}
+    .hero-sub{font-size:clamp(16px,2vw,18px);font-weight:500;color:var(--text-secondary);line-height:1.72;max-width:460px;margin-bottom:var(--s8);}
+    .hero-btns{display:flex;flex-wrap:wrap;gap:var(--s3);}
 
-/* ── NAV ────────────────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:0 48px;height:68px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(5,8,15,0.7);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  transition:background .3s;
-}
-.nav-logo svg{display:block;}
-.nav-links{
-  display:flex;align-items:center;gap:36px;
-  list-style:none;
-}
-.nav-links a{
-  font-family:var(--font-body);font-size:13.5px;font-weight:400;
-  color:var(--t3);text-decoration:none;letter-spacing:.02em;
-  transition:color .2s;
-}
-.nav-links a:hover{color:var(--t1);}
-.nav-cta{
-  font-family:var(--font-body);font-size:13px;font-weight:500;
-  padding:9px 22px;border-radius:8px;
-  background:var(--bg3);border:1px solid var(--border2);
-  color:var(--t1);text-decoration:none;
-  transition:all .2s;letter-spacing:.01em;
-}
-.nav-cta:hover{background:var(--bg4);border-color:rgba(14,165,233,0.3);}
+    /* ───────── HUELLAS → CORAZÓN ───────── */
+    .prints{position:relative;width:100%;max-width:400px;margin:0 auto;}
+    .prints svg{width:100%;height:auto;display:block;overflow:visible;}
+    .print{opacity:0;}
+    .print .shadow{opacity:0;}
+    .print .ridge{fill:none;stroke:var(--ink);stroke-linecap:round;}
+    .print .pad{fill:var(--ink-soft);}
+    .print-art{mix-blend-mode:multiply;}
+    .prints.run .print.a{animation:press .75s var(--ease-out) forwards;animation-delay:.35s;}
+    .prints.run .print.b{animation:press .75s var(--ease-out) forwards;animation-delay:1.85s;}
+    .prints.run .print.a .shadow{animation:finger 1s ease-out forwards;animation-delay:0s;}
+    .prints.run .print.b .shadow{animation:finger 1s ease-out forwards;animation-delay:1.5s;}
+    @keyframes press{0%{opacity:0;transform:scale(1.14);}55%{opacity:1;transform:scale(.97);}100%{opacity:1;transform:scale(1);}}
+    @keyframes finger{0%{opacity:0;transform:scale(1.5);}45%{opacity:.22;transform:scale(1.04);}100%{opacity:0;transform:scale(1);}}
+    .print{transform-box:fill-box;transform-origin:center;}
+    .print .shadow{transform-box:fill-box;transform-origin:center;}
+    .ridge{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);}
+    .prints.run .print.a .ridge{transition:stroke-dashoffset 1.1s var(--ease-out);transition-delay:calc(.45s + var(--rd));}
+    .prints.run .print.b .ridge{transition:stroke-dashoffset 1.1s var(--ease-out);transition-delay:calc(1.95s + var(--rd));}
+    .prints.run .ridge{stroke-dashoffset:0;}
+    .heart-group{transform-box:fill-box;transform-origin:50% 60%;}
+    .prints.run .heart-group{animation:beat 1.3s ease-in-out 2;animation-delay:3.4s;}
+    @keyframes beat{0%,100%{transform:scale(1);}14%{transform:scale(1.06);}28%{transform:scale(.99);}42%{transform:scale(1.04);}70%{transform:scale(1);}}
+    .tag-g{opacity:0;transition:opacity .6s ease, transform .6s var(--ease-out);}
+    .tag-g.l{transform:translateX(-8px);} .tag-g.r{transform:translateX(8px);}
+    .prints.run .tag-g.l{opacity:1;transform:none;transition-delay:1.1s;}
+    .prints.run .tag-g.r{opacity:1;transform:none;transition-delay:2.6s;}
+    .tag-line{fill:none;stroke:var(--text-hint);stroke-width:1.1;stroke-dasharray:2 3;}
+    .tag-title{font-family:var(--font-display);font-style:italic;font-weight:700;font-size:14px;fill:var(--text-primary);}
+    .tag-sub{font-family:var(--font-body);font-weight:600;font-size:9.5px;fill:var(--text-secondary);}
+    .prints-caption{text-align:center;margin-top:var(--s2);opacity:0;transform:translateY(6px);transition:opacity .7s ease,transform .7s var(--ease-out);}
+    .prints.run .prints-caption{opacity:1;transform:none;transition-delay:3.5s;}
+    .prints-caption strong{display:block;font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);font-weight:700;font-style:italic;color:var(--text-primary);line-height:1.2;}
+    .prints-caption span{font-size:14px;font-weight:600;color:var(--text-secondary);}
+    .prints-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:var(--s4);opacity:0;transition:opacity .6s ease;}
+    .prints.run .prints-controls{opacity:1;transition-delay:3.9s;}
+    .swatch{width:40px;height:40px;border:none;background:none;border-radius:50%;cursor:pointer;padding:5px;transition:transform 200ms var(--ease-out),background 200ms;}
+    .swatch img{width:100%;height:100%;object-fit:contain;}
+    .swatch:hover{transform:scale(1.12);}
+    .swatch[aria-pressed="true"]{background:rgba(61,32,16,0.08);}
+    .replay{font-family:var(--font-body);font-size:13px;font-weight:800;color:var(--primary);background:var(--primary-light);border:none;border-radius:var(--r-pill);padding:10px 16px;min-height:40px;cursor:pointer;margin-left:6px;}
+    .replay:hover{background:rgba(46,144,112,0.18);}
 
-/* ── HERO ───────────────────────────────────────────────── */
-.hero{
-  position:relative;min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px 24px 80px;
-  overflow:hidden;
-}
+    /* ───────── ORIGEN (símbolo + base científica) ───────── */
+    #origen{background:var(--bg-surface);padding:var(--s24) 5%;}
+    .origen-inner{max-width:680px;margin:0 auto;}
+    .origen-title{font-family:var(--font-display);font-size:clamp(30px,4vw,44px);font-weight:900;line-height:1.08;margin-bottom:var(--s6);}
+    .origen-inner p{font-size:18px;line-height:1.8;color:var(--text-primary);margin-bottom:var(--s4);}
+    .origen-inner p.soft{color:var(--text-secondary);}
+    .origen-dato{font-family:var(--font-display);font-style:italic;font-weight:700;color:var(--primary-dark);font-size:1.08em;}
+    .origen-close{font-family:var(--font-display);font-style:italic;font-weight:700;font-size:clamp(21px,2.4vw,26px) !important;line-height:1.3 !important;color:var(--primary-dark) !important;border-left:3px solid var(--primary);padding-left:var(--s5);margin:var(--s8) 0 var(--s6) !important;}
+    .origen-src{font-size:13px !important;color:var(--text-hint) !important;margin:0 !important;}
+    .origen-src a{color:var(--text-secondary);}
 
-/* Background orbs */
-.hero-orbs{position:absolute;inset:0;pointer-events:none;}
-.orb{
-  position:absolute;border-radius:50%;
-  filter:blur(120px);opacity:0;
-  animation:orbIn 2s ease forwards;
-}
-.orb-1{
-  width:700px;height:700px;
-  top:-200px;left:50%;transform:translateX(-50%);
-  background:radial-gradient(circle,rgba(14,165,233,.18),transparent 70%);
-  animation-delay:.2s;
-}
-.orb-2{
-  width:500px;height:500px;
-  bottom:-100px;right:-120px;
-  background:radial-gradient(circle,rgba(91,95,224,.14),transparent 70%);
-  animation-delay:.5s;
-}
-.orb-3{
-  width:400px;height:400px;
-  bottom:100px;left:-100px;
-  background:radial-gradient(circle,rgba(14,165,233,.05),transparent 70%);
-  animation-delay:.7s;
-}
-@keyframes orbIn{to{opacity:1;}}
+    /* ───────── TALLER (provisional) ───────── */
+    #taller{background:var(--bg-surface);padding:var(--s16) 5% var(--s8);}
+    .taller-card{max-width:1000px;margin:0 auto;background:#fff;border:1.5px solid var(--border);border-top:4px solid var(--c-naranja);border-radius:var(--r-lg);padding:var(--s8);display:grid;grid-template-columns:minmax(0,440px) 1fr;gap:var(--s10);align-items:center;box-shadow:0 16px 40px rgba(201,106,16,0.10);}
+    .taller-img{display:block;border-radius:var(--r-md);overflow:hidden;transition:transform 300ms cubic-bezier(0.34,1.2,0.64,1),box-shadow 300ms;}
+    .taller-img:hover{transform:translateY(-4px) rotate(-0.6deg);box-shadow:0 14px 30px rgba(61,32,16,0.16);}
+    .taller-img img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;}
+    .taller-info .t-tag{color:#A9560B;}
+    .taller-title{font-family:var(--font-display);font-weight:900;font-size:clamp(28px,3.6vw,40px);line-height:1.08;margin-bottom:var(--s4);}
+    .taller-desc{font-size:17px;line-height:1.7;color:var(--text-secondary);margin-bottom:var(--s6);max-width:42ch;}
+    .taller-meta{list-style:none;display:grid;gap:10px;margin-bottom:var(--s6);}
+    .taller-meta li{display:flex;align-items:center;gap:12px;font-size:16px;font-weight:700;color:var(--text-primary);}
+    .taller-meta svg{flex-shrink:0;color:var(--c-naranja);}
+    .taller-note{font-family:var(--font-display);font-style:italic;font-weight:700;font-size:18px;color:#A9560B;margin-bottom:var(--s5);}
+    .taller-btns{display:flex;flex-wrap:wrap;gap:var(--s3);}
+    .btn-taller{background:#B85F0E;color:#fff;}
+    .btn-taller:hover{background:#94490A;box-shadow:0 6px 20px rgba(201,106,16,0.3);}
+    .taller-img{position:relative;}
+    .taller-img img{filter:saturate(.85);}
+    .soldout{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);background:#B85F0E;color:#fff;font-family:var(--font-display);font-weight:900;font-size:clamp(22px,3.4vw,34px);letter-spacing:.04em;text-transform:uppercase;padding:12px 28px;border-radius:14px;border:3px dashed #FFF1E3;outline:4px solid #B85F0E;box-shadow:0 12px 30px rgba(61,32,16,.35);white-space:nowrap;}
+    .btn-agotado{background:#E9DDD3;color:#7A5A45;cursor:default;pointer-events:none;}
+    @media(max-width:800px){.taller-card{grid-template-columns:1fr;gap:var(--s6);padding:var(--s5);}.taller-btns .btn{width:100%;}}
+    .taller-historico{max-width:1000px;margin:var(--s10) auto 0;}
+    .taller-historico-title{font-family:var(--font-display);font-weight:900;font-size:clamp(24px,3vw,32px);margin-bottom:var(--s6);}
+    .taller-card--pasado{margin-top:0;box-shadow:0 8px 24px rgba(61,32,16,0.06);}
+    @media(max-width:640px){#taller{padding:var(--s10) 5% var(--s4);}}
 
-/* Grid lines bg */
-.hero-grid{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);
-}
+    /* ───────── SERVICIOS ───────── */
+    #servicios{background:var(--bg);padding:var(--s24) 5%;}
+    .section-header{text-align:center;margin-bottom:var(--s12);}
+    .section-title{font-size:clamp(26px,3.4vw,38px);font-family:var(--font-display);font-weight:900;color:var(--text-primary);margin-bottom:var(--s3);line-height:1.15;}
+    .section-sub{font-size:16px;font-weight:500;color:var(--text-secondary);line-height:1.6;max-width:56ch;margin:0 auto;}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5);max-width:960px;margin:0 auto;}
+    .service-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r-lg);padding:var(--s8) var(--s5) var(--s6);text-align:center;cursor:pointer;transition:transform 300ms cubic-bezier(0.34,1.2,0.64,1),box-shadow 300ms ease;display:flex;flex-direction:column;align-items:center;font:inherit;color:inherit;width:100%;}
+    .service-card:hover{transform:translateY(-6px);}
+    .card-verde{border-top:3px solid var(--c-verde);} .card-vino{border-top:3px solid var(--c-vino);} .card-naranja{border-top:3px solid var(--c-naranja);} .card-morado{border-top:3px solid var(--c-morado);} .card-marron{border-top:3px solid var(--c-marron);}
+    .card-verde:hover{box-shadow:0 16px 40px rgba(61,170,138,0.16);} .card-vino:hover{box-shadow:0 16px 40px rgba(125,32,64,0.14);} .card-naranja:hover{box-shadow:0 16px 40px rgba(201,106,16,0.16);} .card-morado:hover{box-shadow:0 16px 40px rgba(123,78,196,0.16);} .card-marron:hover{box-shadow:0 16px 40px rgba(122,80,48,0.14);}
+    .heart-img{width:88px;height:88px;object-fit:contain;margin-bottom:var(--s4);transition:transform 400ms cubic-bezier(0.34,1.6,0.64,1);}
+    .service-card:hover .heart-img{transform:scale(1.14) translateY(-3px);}
+    .service-name{font-size:15px;font-weight:800;color:var(--text-primary);margin-bottom:var(--s2);line-height:1.3;}
+    .service-tagline{font-size:13px;font-weight:500;color:var(--text-secondary);font-style:italic;line-height:1.5;margin-bottom:var(--s4);}
+    .card-more{font-size:12px;font-weight:800;color:var(--primary);background:var(--primary-light);padding:5px 14px;border-radius:var(--r-pill);margin-top:auto;}
+    @media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr);}}
 
-/* Background particles canvas */
-#particles-bg{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  pointer-events:none;z-index:0;
-}
+    /* FORMACIONES */
+    #formaciones{background:var(--bg-surface);padding:var(--s16) 5%;}
 
-/* Central hex canvas */
-.hex-canvas-wrap{
-  position:relative;z-index:2;
-  width:240px;height:240px;
-  margin:0 auto 48px;
-  opacity:0;animation:fadeUp .8s ease .4s forwards;
-}
-#hexCanvas{width:100%;height:100%;}
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(61,32,16,0.45);z-index:200;display:flex;align-items:center;justify-content:center;padding:var(--s6);opacity:0;pointer-events:none;transition:opacity 200ms;}
+    .modal-overlay.open{opacity:1;pointer-events:all;}
+    .modal-box{background:var(--bg-surface);border-radius:var(--r-lg);padding:var(--s10);max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform 200ms;}
+    .modal-overlay.open .modal-box{transform:translateY(0);}
+    .modal-close{position:absolute;top:var(--s3);right:var(--s3);background:none;border:none;cursor:pointer;font-size:22px;color:var(--text-hint);line-height:1;padding:10px;}
+    .modal-close:hover{color:var(--text-primary);}
+    .modal-heart{width:64px;height:64px;object-fit:contain;margin-bottom:var(--s4);}
+    .modal-title{font-family:var(--font-display);font-size:24px;font-weight:900;color:var(--text-primary);margin-bottom:var(--s3);}
+    .modal-desc{font-size:15px;font-weight:500;color:var(--text-secondary);line-height:1.75;margin-bottom:var(--s5);}
+    .modal-meta{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-bottom:var(--s6);}
+    .modal-lista{display:grid;gap:var(--s3);margin-bottom:var(--s5);}
+    .modal-taller{display:flex;align-items:center;gap:var(--s3);background:#FFF1E3;border:1.5px solid #C96A10;border-radius:16px;padding:10px 12px;text-decoration:none;color:var(--text-primary);}
+    .modal-taller img{width:72px;height:72px;object-fit:contain;background:var(--bg-surface);border-radius:10px;flex-shrink:0;}
+    .mt-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+    .mt-tag{font-size:11px;font-weight:800;color:#A4520A;text-transform:uppercase;letter-spacing:.04em;}
+    .mt-t{font-family:var(--font-display);font-weight:900;font-size:16px;line-height:1.15;}
+    .mt-d{font-size:12.5px;color:var(--text-secondary);line-height:1.35;}
+    .mt-cta{background:#C96A10;color:#fff;font-weight:800;font-size:13px;border-radius:100px;padding:8px 12px;white-space:nowrap;}
+    [hidden].modal-lista,[hidden].modal-otra,[hidden].modal-meta,[hidden]#modalCta{display:none !important;}
+    .modal-otra{display:block;text-align:center;font-size:14px;font-weight:700;color:var(--verde);margin-top:var(--s3);text-decoration:none;}
+    .meta-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s3) var(--s4);}
+    .meta-label{font-size:12px;font-weight:800;color:var(--text-hint);margin-bottom:2px;}
+    .meta-value{font-size:14px;font-weight:700;color:var(--text-primary);}
 
-/* Badge */
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:7px 16px 7px 10px;
-  background:rgba(14,165,233,.10);
-  border:1px solid rgba(14,165,233,.25);
-  border-radius:40px;
-  font-size:12px;font-weight:500;
-  color:var(--pll);letter-spacing:.04em;
-  margin-bottom:28px;
-  opacity:0;animation:fadeUp .7s ease .2s forwards;
-}
-.badge-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--p);
-  box-shadow:0 0 8px var(--p);
-  animation:pulse 2s ease infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+    /* TESTIMONIOS */
+    #testimonios{background:var(--bg);padding:var(--s24) 5%;}
+    .testimonios-empty{max-width:560px;margin:0 auto;text-align:center;background:var(--bg-surface);border:1.5px dashed var(--border-strong);border-radius:var(--r-lg);padding:var(--s10) var(--s6);}
+    .testimonios-empty-text{font-size:16px;font-weight:500;color:var(--text-secondary);line-height:1.7;margin-bottom:var(--s6);}
 
-/* Headline */
-.hero-headline{
-  font-family:var(--font-hero);
-  font-size:clamp(52px,7.5vw,96px);
-  font-weight:800;
-  line-height:1.0;
-  letter-spacing:-.035em;
-  margin-bottom:28px;
-  max-width:900px;
-  opacity:0;animation:fadeUp .8s ease .35s forwards;
-}
-.hero-headline .line-1{display:block;color:var(--t1);}
-.hero-headline .grad-word{
-  background:var(--grad);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.hero-headline .line-2{
-  display:block;color:var(--t1);
-  position:relative;
-}
+    /* PATI */
+    #pati{padding:var(--s24) 5%;background:var(--bg-surface);}
+    .pati-layout{max-width:980px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:var(--s16);align-items:start;}
+    .pati-photo-frame{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--border) 0%,#d4a87a 100%);border-radius:var(--r-lg);margin-bottom:var(--s6);overflow:hidden;}
+    .pati-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+    .pati-creds{display:flex;flex-direction:column;gap:var(--s2);}
+    .cred-item{display:flex;align-items:center;gap:var(--s2);font-size:13px;font-weight:700;color:var(--text-secondary);background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s2) var(--s4);}
+    .pati-title{font-size:clamp(28px,3.5vw,40px);font-family:var(--font-display);font-weight:900;color:var(--text-primary);margin-bottom:var(--s2);line-height:1.15;}
+    .pati-lead{font-size:16px;font-weight:600;color:var(--text-secondary);font-style:italic;margin-bottom:var(--s6);}
+    .pati-text p{font-size:16px;font-weight:500;color:var(--text-primary);line-height:1.88;margin-bottom:var(--s5);max-width:62ch;}
+    .pati-text p:last-child{margin-bottom:0;}
+    .pati-text p.pati-intro{font-size:17px;font-weight:700;}
+    .pati-text p.pati-closing{font-style:italic;font-weight:600;color:var(--text-secondary);border-left:3px solid var(--primary);padding-left:var(--s5);}
+    .pati-more{display:none;}
+    @media(max-width:720px){.pati-layout{grid-template-columns:1fr;gap:var(--s10);}.pati-left{max-width:320px;width:100%;margin:0 auto;}.pati-photo-frame{aspect-ratio:4/5;}}
 
-/* Animated underline */
-.hero-headline .underline-word{
-  position:relative;display:inline-block;
-}
-.hero-headline .underline-word::after{
-  content:'';position:absolute;
-  bottom:-4px;left:0;right:0;height:3px;
-  background:var(--grad);border-radius:3px;
-  transform:scaleX(0);transform-origin:left;
-  animation:lineIn .6s ease 1.2s forwards;
-}
-@keyframes lineIn{to{transform:scaleX(1);}}
+    /* CTA */
+    #cta{background:var(--bg);padding:var(--s24) 5%;text-align:center;}
+    .cta-inner{max-width:560px;margin:0 auto;}
+    .cta-hearts{display:flex;justify-content:center;gap:6px;margin-bottom:var(--s6);}
+    .cta-hearts img{width:26px;height:26px;object-fit:contain;}
+    .cta-title{font-family:var(--font-display);font-size:clamp(30px,5vw,48px);font-weight:900;color:var(--text-primary);line-height:1.12;margin-bottom:var(--s4);}
+    .cta-sub{font-size:17px;font-weight:500;color:var(--text-secondary);line-height:1.7;max-width:440px;margin:0 auto var(--s8);}
+    .cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s4);}
 
-/* Subheadline */
-.hero-sub{
-  font-size:clamp(16px,1.6vw,20px);
-  font-weight:300;
-  color:var(--t2);
-  max-width:560px;
-  line-height:1.7;
-  margin-bottom:44px;
-  opacity:0;animation:fadeUp .8s ease .55s forwards;
-}
+    /* CONTACTO */
+    #contacto{background:var(--bg-surface);padding:var(--s24) 5%;}
+    .contacto-inner{max-width:480px;margin:0 auto;}
+    .contacto-header{text-align:center;margin-bottom:var(--s8);}
+    .form-group{margin-bottom:var(--s5);}
+    .form-label{display:block;font-size:13px;font-weight:800;color:var(--text-secondary);margin-bottom:6px;}
+    .form-input,.form-textarea{width:100%;background:#fff;border:1.5px solid var(--border);border-radius:var(--r-md);padding:12px 16px;font-family:var(--font-body);font-size:16px;font-weight:500;color:var(--text-primary);outline:none;-webkit-appearance:none;transition:border-color 150ms,box-shadow 150ms;}
+    .form-input::placeholder,.form-textarea::placeholder{color:#C9A988;}
+    .form-input:focus,.form-textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(46,144,112,0.12);}
+    .form-textarea{min-height:120px;resize:vertical;}
+    .form-submit{width:100%;margin-top:var(--s3);}
+    .form-msg{margin-top:var(--s4);font-size:14px;font-weight:700;text-align:center;padding:12px 16px;border-radius:var(--r-md);display:none;}
+    .form-msg--ok{display:block;background:rgba(46,144,112,0.10);color:var(--primary-dark);}
+    .form-msg--err{display:block;background:rgba(201,106,16,0.10);color:#7A4000;}
 
-/* CTA row */
-.hero-ctas{
-  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-  justify-content:center;
-  margin-bottom:72px;
-  opacity:0;animation:fadeUp .8s ease .7s forwards;
-}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:15px 32px;border-radius:10px;
-  font-family:var(--font-body);font-size:15px;font-weight:500;
-  background:var(--grad);color:#fff;
-  border:none;text-decoration:none;
-  position:relative;overflow:hidden;
-  transition:transform .2s,box-shadow .2s;
-  letter-spacing:.01em;
-}
-.btn-primary::before{
-  content:'';position:absolute;inset:0;
-  background:rgba(255,255,255,0);
-  transition:background .2s;
-}
-.btn-primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 40px rgba(14,165,233,.35);
-}
-.btn-primary:hover::before{background:rgba(255,255,255,.07);}
-.btn-primary .arrow{
-  transition:transform .2s;
-}
-.btn-primary:hover .arrow{transform:translateX(4px);}
+    /* FOOTER */
+    footer{background:var(--bg-footer);padding:var(--s12) 5% var(--s8);}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:var(--s10);max-width:900px;margin:0 auto var(--s10);}
+    .footer-logo{width:min(120px,40vw);margin-bottom:var(--s3);opacity:0.9;filter:brightness(0) invert(1);}
+    .footer-tagline{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;max-width:220px;}
+    .footer-col-title{font-size:13px;font-weight:800;color:rgba(255,255,255,0.5);margin-bottom:var(--s4);}
+    .footer-links{list-style:none;}
+    .footer-links li{margin-bottom:8px;}
+    .footer-links a,.footer-contact-email{font-size:14px;font-weight:600;color:rgba(255,255,255,0.7);text-decoration:none;}
+    .footer-links a:hover,.footer-contact-email:hover{color:#fff;}
+    .footer-contact-email{display:block;margin-bottom:var(--s4);}
+    .footer-social{display:flex;gap:10px;}
+    .footer-social a{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
+    .footer-social a:hover{border-color:rgba(255,255,255,0.6);color:#fff;}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:var(--s5);text-align:center;max-width:900px;margin:0 auto;}
+    .footer-copy{font-size:12px;font-weight:600;color:rgba(255,255,255,0.4);}
+    @media(max-width:660px){.footer-grid{grid-template-columns:1fr;gap:var(--s8);}}
 
-.btn-secondary{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:15px 28px;border-radius:10px;
-  font-family:var(--font-body);font-size:15px;font-weight:400;
-  background:transparent;
-  border:1px solid var(--border2);
-  color:var(--t2);text-decoration:none;
-  transition:all .2s;letter-spacing:.01em;
-}
-.btn-secondary:hover{
-  border-color:rgba(14,165,233,.35);
-  color:var(--t1);background:rgba(14,165,233,.06);
-}
+    .wave{display:block;width:100%;}
 
-/* ── STATS ROW ──────────────────────────────────────────── */
-.hero-stats{
-  display:flex;align-items:stretch;gap:0;
-  border:1px solid rgba(14,165,233,.12);
-  border-radius:14px;
-  background:rgba(12,18,32,.65);
-  backdrop-filter:blur(16px);
-  box-shadow:0 0 48px rgba(14,165,233,.06);
-  overflow:hidden;
-  opacity:0;animation:fadeUp .8s ease .85s forwards;
-  position:relative;z-index:2;
-}
-.stat-item{
-  flex:1;padding:20px 28px;
-  display:flex;flex-direction:column;align-items:center;
-  border-right:1px solid var(--border);
-  transition:background .2s;
-}
-.stat-item:last-child{border-right:none;}
-.stat-item:hover{background:rgba(255,255,255,.03);}
-.stat-num{
-  font-family:var(--font-disp);
-  font-size:32px;font-weight:800;
-  letter-spacing:-.03em;
-  background:var(--grad);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-  line-height:1;margin-bottom:5px;
-}
-.stat-label{
-  font-size:12px;font-weight:400;
-  color:var(--t3);letter-spacing:.03em;
-  text-align:center;line-height:1.4;
-}
+    /* ── MÓVIL ── */
+    @media(max-width:860px){
+      .hero-grid{grid-template-columns:1fr;gap:var(--s6);}
+      .prints{max-width:300px;}
+    }
+    @media(max-width:640px){
+      #hero{padding-top:calc(var(--s8) + 64px);padding-bottom:var(--s10);}
+      .hero-sub{margin-bottom:var(--s6);}
+      .wave{height:28px;}
+      #origen,#servicios,#testimonios,#pati,#contacto{padding:var(--s12) 5%;}
+      .section-header{margin-bottom:var(--s6);}
+      .services-grid{gap:var(--s3);}
+      .service-card{padding:var(--s4) var(--s2) var(--s3);}
+      .service-card:hover{transform:none;}
+      .heart-img{width:52px;height:52px;margin-bottom:var(--s2);}
+      .service-name{font-size:14px;margin-bottom:4px;}
+      .service-tagline{font-size:12px;margin-bottom:var(--s2);}
+      .testimonios-empty{padding:var(--s6) var(--s4);}
+      .pati-text:not(.open) p:not(.pati-intro){display:none;}
+      .pati-more{display:inline-block;margin-top:var(--s3);font-family:var(--font-body);font-size:14px;font-weight:800;color:var(--primary);background:var(--primary-light);border:none;border-radius:var(--r-pill);padding:10px 18px;cursor:pointer;}
+      #cta{display:none;}
+      .modal-box{padding:var(--s8) var(--s5);}
+      .modal-meta{grid-template-columns:1fr;}
+      .tag-title{font-size:15px;} .tag-sub{font-size:10px;}
+    }
 
-/* Scroll indicator */
-.scroll-hint{
-  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  opacity:0;animation:fadeIn 1s ease 1.4s forwards;
-  color:var(--t4);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-}
-.scroll-line{
-  width:1px;height:40px;
-  background:linear-gradient(to bottom,var(--t4),transparent);
-  animation:scrollAnim 2s ease infinite;
-}
-@keyframes scrollAnim{
-  0%{transform:scaleY(0);transform-origin:top;}
-  50%{transform:scaleY(1);transform-origin:top;}
-  51%{transform:scaleY(1);transform-origin:bottom;}
-  100%{transform:scaleY(0);transform-origin:bottom;}
-}
 
-/* ── MARQUEE STRIP ──────────────────────────────────────── */
-.marquee-strip{
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:16px 0;
-  overflow:hidden;
-  background:rgba(255,255,255,.015);
-  position:relative;
-}
-.marquee-strip::before,.marquee-strip::after{
-  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;
-}
-.marquee-strip::before{left:0;background:linear-gradient(to right,var(--bg),transparent);}
-.marquee-strip::after{right:0;background:linear-gradient(to left,var(--bg),transparent);}
-.marquee-track{
-  display:flex;gap:48px;white-space:nowrap;
-  animation:marquee 28s linear infinite;
-}
-.marquee-track:hover{animation-play-state:paused;}
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%)}}
-.marquee-item{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:12.5px;font-weight:500;
-  color:var(--t3);letter-spacing:.06em;text-transform:uppercase;
-  flex-shrink:0;
-}
-.marquee-dot{
-  width:4px;height:4px;border-radius:50%;
-  background:var(--pl);opacity:.6;
-}
+    /* Entradas al hacer scroll (como la v1) */
+    .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out;transition-delay:var(--rv,0ms);}
+    .js .reveal.from-left{transform:translateX(-28px);}
+    .js .reveal.from-right{transform:translateX(28px);}
+    .js .reveal.from-top{transform:translateY(-16px);}
+    .js .reveal.in{opacity:1;transform:none;}
 
-/* ── SERVICES SECTION ───────────────────────────────────── */
-.section{
-  padding:100px 48px;
-  position:relative;
-  opacity:0;transform:translateY(32px);
-  transition:opacity .7s ease,transform .7s ease;
-}
-.section.visible{opacity:1;transform:translateY(0);}
-
-.section-inner{max-width:1160px;margin:0 auto;}
-.section-eyebrow{
-  font-size:10px;font-weight:500;
-  letter-spacing:.35em;text-transform:uppercase;
-  color:var(--pl);
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:20px;
-}
-.section-eyebrow::before{
-  content:'';display:block;width:28px;height:1.5px;
-  background:var(--grad2);
-}
-.section-title{
-  font-family:var(--font-disp);
-  font-size:clamp(32px,4vw,54px);
-  font-weight:800;letter-spacing:-.02em;
-  line-height:1.08;margin-bottom:16px;
-}
-.section-lead{
-  font-size:18px;font-weight:300;
-  color:var(--t2);max-width:520px;line-height:1.72;
-  margin-bottom:56px;
-}
-
-/* Services grid */
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1px;
-  background:var(--border);
-  border:1px solid var(--border);
-  border-radius:16px;overflow:hidden;
-}
-.service-card{
-  background:var(--bg);
-  padding:36px 32px;
-  transition:background .25s;
-  position:relative;overflow:hidden;
-}
-.service-card::before{
-  content:'';position:absolute;
-  inset:0;opacity:0;
-  background:radial-gradient(circle at 30% 30%,rgba(14,165,233,.08),transparent 60%);
-  transition:opacity .3s;
-}
-.service-card:hover{background:var(--bg2);}
-.service-card:hover::before{opacity:1;}
-
-.service-icon{
-  width:44px;height:44px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:20px;
-  font-size:20px;
-  position:relative;z-index:1;
-}
-.service-title{
-  font-family:var(--font-disp);
-  font-size:17px;font-weight:700;
-  margin-bottom:10px;
-  position:relative;z-index:1;
-}
-.service-desc{
-  font-size:14px;font-weight:300;
-  color:var(--t3);line-height:1.7;
-  position:relative;z-index:1;
-}
-.service-arrow{
-  display:inline-flex;align-items:center;gap:6px;
-  margin-top:18px;font-size:13px;font-weight:500;
-  color:var(--pl);text-decoration:none;
-  position:relative;z-index:1;
-  transition:gap .2s;
-}
-.service-card:hover .service-arrow{gap:10px;}
-button.service-arrow{background:none;border:none;cursor:pointer;padding:0;font-family:inherit;}
-.service-expand{
-  max-height:0;overflow:hidden;
-  transition:max-height .3s ease;
-  padding-top:14px;border-top:1px solid var(--border);margin-top:14px;
-  font-size:13px;color:var(--t2);line-height:1.7;font-weight:300;
-  position:relative;z-index:1;
-}
-.service-expand.open{max-height:200px;}
-
-/* ── ABOUT / FOUNDER ────────────────────────────────────── */
-.about-section{
-  padding:100px 48px;
-  background:var(--bg1);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  opacity:0;transform:translateY(32px);
-  transition:opacity .7s ease,transform .7s ease;
-}
-.about-section.visible{opacity:1;transform:translateY(0);}
-.about-inner{
-  max-width:1160px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:80px;align-items:center;
-}
-.about-photo-wrap{
-  position:relative;
-}
-.about-photo-frame{
-  border-radius:20px;overflow:hidden;
-  border:1px solid var(--border2);
-  background:var(--bg2);
-  aspect-ratio:.85;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;
-}
-.about-photo-frame img{
-  width:100%;height:100%;object-fit:cover;
-  display:block;
-}
-.about-photo-glow{
-  position:absolute;inset:0;border-radius:20px;
-  background:linear-gradient(135deg,rgba(14,165,233,.08),rgba(91,95,224,.06));
-  pointer-events:none;
-}
-.about-content .section-eyebrow{margin-bottom:20px;}
-.about-title{
-  font-family:var(--font-disp);
-  font-size:clamp(28px,3.5vw,46px);
-  font-weight:800;letter-spacing:-.02em;
-  line-height:1.1;margin-bottom:24px;
-}
-.about-body p{
-  font-size:16px;font-weight:300;
-  color:var(--t2);line-height:1.8;
-  margin-bottom:18px;
-}
-.about-body strong{color:var(--t1);font-weight:500;}
-
-/* Timeline */
-.timeline{
-  display:flex;flex-direction:column;gap:0;
-  margin-top:36px;
-  border-left:1px solid var(--border2);
-  padding-left:24px;
-}
-.tl-item{position:relative;padding-bottom:20px;}
-.tl-item:last-child{padding-bottom:0;}
-.tl-dot{
-  position:absolute;left:-28.5px;top:3px;
-  width:9px;height:9px;border-radius:50%;
-  background:var(--grad);
-  box-shadow:0 0 8px rgba(14,165,233,.5);
-}
-.tl-year{
-  font-size:10px;font-weight:500;letter-spacing:.1em;
-  color:var(--pl);text-transform:uppercase;margin-bottom:3px;
-}
-.tl-text{font-size:14px;color:var(--t2);font-weight:300;line-height:1.55;}
-
-/* ── SOCIAL PROOF / RESULTS ─────────────────────────────── */
-.results-section{
-  padding:100px 48px;
-  opacity:0;transform:translateY(32px);
-  transition:opacity .7s ease,transform .7s ease;
-}
-.results-section.visible{opacity:1;transform:translateY(0);}
-.results-inner{max-width:1160px;margin:0 auto;}
-.results-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:20px;margin-top:0;
-}
-.result-card{
-  background:var(--bg1);
-  border:1px solid var(--border);
-  border-radius:16px;padding:32px;
-  transition:border-color .25s,transform .25s;
-  position:relative;overflow:hidden;
-}
-.result-card::after{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:2px;
-  opacity:0;transition:opacity .3s;
-}
-.result-card:nth-child(1)::after{background:var(--grad);}
-.result-card:nth-child(2)::after{background:var(--grad2);}
-.result-card:nth-child(3)::after{background:linear-gradient(135deg,var(--k),var(--o));}
-.result-card:hover{border-color:var(--border2);transform:translateY(-4px);}
-.result-card:hover::after{opacity:1;}
-.result-logo{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:20px;
-}
-.result-logo-icon{
-  width:36px;height:36px;border-radius:8px;
-  background:var(--bg3);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;
-}
-.result-logo-name{font-size:14px;font-weight:500;color:var(--t1);}
-.result-logo-loc{font-size:11px;color:var(--t3);}
-.result-metrics{
-  display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;
-}
-.rm{
-  background:rgba(14,165,233,.08);
-  border:1px solid rgba(14,165,233,.15);
-  border-radius:6px;padding:6px 12px;
-}
-.rm-val{
-  font-family:var(--font-disp);
-  font-size:18px;font-weight:800;
-  background:var(--grad);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;line-height:1;
-}
-.rm-label{font-size:10px;color:var(--t3);margin-top:2px;}
-.result-desc{
-  font-size:13.5px;font-weight:300;
-  color:var(--t2);line-height:1.65;
-}
-
-/* ── CTA SECTION ────────────────────────────────────────── */
-.cta-section{
-  padding:100px 48px;
-  border-top:1px solid var(--border);
-  position:relative;overflow:hidden;
-  opacity:0;transform:translateY(32px);
-  transition:opacity .7s ease,transform .7s ease;
-}
-.cta-section.visible{opacity:1;transform:translateY(0);}
-.cta-orb{
-  position:absolute;width:600px;height:600px;
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(14,165,233,.12),transparent 65%);
-  pointer-events:none;
-}
-.cta-inner{
-  max-width:720px;margin:0 auto;
-  text-align:center;position:relative;z-index:2;
-}
-.cta-title{
-  font-family:var(--font-disp);
-  font-size:clamp(36px,5vw,68px);
-  font-weight:800;letter-spacing:-.02em;
-  line-height:1.05;margin-bottom:20px;
-}
-.cta-sub{
-  font-size:18px;font-weight:300;
-  color:var(--t2);line-height:1.7;
-  margin-bottom:40px;
-}
-.cta-form{
-  display:flex;gap:10px;max-width:480px;
-  margin:0 auto 20px;
-}
-.cta-input{
-  flex:1;padding:14px 18px;
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--border2);border-radius:9px;
-  font-family:var(--font-body);font-size:14px;
-  color:var(--t1);outline:none;
-  transition:border-color .2s,background .2s;
-}
-.cta-input:focus{
-  border-color:rgba(14,165,233,.4);
-  background:rgba(14,165,233,.06);
-}
-.cta-input::placeholder{color:var(--t4);}
-.cta-disclaimer{
-  font-size:12px;color:var(--t4);
-  display:flex;align-items:center;justify-content:center;gap:6px;
-}
-.cta-disclaimer::before{
-  content:'';width:14px;height:14px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M8 1a4 4 0 014 4v1h1a1 1 0 011 1v7a1 1 0 01-1 1H3a1 1 0 01-1-1V7a1 1 0 011-1h1V5a4 4 0 014-4zm0 8a1 1 0 100 2 1 1 0 000-2zm0-6a2 2 0 00-2 2v1h4V5a2 2 0 00-2-2z' fill='%234D4570'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-
-/* ── FOOTER ─────────────────────────────────────────────── */
-footer{
-  padding:48px 48px 32px;
-  border-top:1px solid var(--border);
-  background:var(--bg1);
-}
-.footer-inner{
-  max-width:1160px;margin:0 auto;
-}
-.footer-top{
-  display:flex;align-items:flex-start;
-  justify-content:space-between;
-  padding-bottom:40px;
-  border-bottom:1px solid var(--border);
-  gap:48px;flex-wrap:wrap;
-}
-.footer-brand p{
-  font-size:13px;color:var(--t3);
-  max-width:260px;line-height:1.65;
-  margin-top:16px;font-weight:300;
-}
-.footer-links-col h4{
-  font-size:11px;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--t3);margin-bottom:16px;
-}
-.footer-links-col a{
-  display:block;font-size:13.5px;font-weight:300;
-  color:var(--t2);text-decoration:none;
-  margin-bottom:10px;transition:color .2s;
-}
-.footer-links-col a:hover{color:var(--t1);}
-.footer-bottom{
-  display:flex;align-items:center;
-  justify-content:space-between;
-  padding-top:28px;gap:24px;flex-wrap:wrap;
-}
-.footer-copy{font-size:12px;color:var(--t4);font-weight:300;}
-.footer-socials{display:flex;gap:12px;}
-.social-btn{
-  width:34px;height:34px;border-radius:8px;
-  background:var(--bg2);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  text-decoration:none;
-  transition:border-color .2s,background .2s;
-}
-.social-btn:hover{background:var(--bg3);border-color:var(--border2);}
-.social-btn svg{width:15px;height:15px;fill:var(--t3);}
-
-/* ── ANIMATIONS ─────────────────────────────────────────── */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
-}
-@keyframes fadeIn{
-  from{opacity:0;}to{opacity:1;}
-}
-
-/* ── HAMBURGER ──────────────────────────────────────────── */
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:201;}
-.hamburger span{display:block;width:22px;height:2px;background:var(--t1);border-radius:2px;transition:transform .25s,opacity .25s;}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(5,8,15,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border2);padding:24px;z-index:199;flex-direction:column;gap:0;}
-.mobile-menu.open{display:flex;}
-.mobile-menu a{color:var(--t2);font-size:16px;padding:14px 0;border-bottom:1px solid var(--border);text-decoration:none;font-family:var(--font-body);transition:color .2s;}
-.mobile-menu a:hover{color:var(--t1);}
-.mobile-menu a:last-of-type{border-bottom:none;}
-.mob-cta{margin-top:16px;display:block;text-align:center;background:var(--grad);color:#fff !important;padding:14px;border-radius:8px;font-weight:600;font-size:15px;border:none !important;}
-
-/* ── RESPONSIVE ─────────────────────────────────────────── */
-@media(max-width:900px){
-  nav{padding:0 24px;}
-  .nav-links{display:none;}
-  .hamburger{display:flex;}
-  .hero-headline{font-size:clamp(36px,9vw,64px);}
-  .hero-stats{flex-direction:column;}
-  .stat-item{border-right:none;border-bottom:1px solid var(--border);}
-  .stat-item:last-child{border-bottom:none;}
-  .services-grid{grid-template-columns:1fr 1fr;}
-  .about-inner{grid-template-columns:1fr;gap:48px;}
-  .results-grid{grid-template-columns:1fr;}
-  .section,.about-section,.results-section,.cta-section{padding:72px 24px;}
-  footer{padding:48px 24px 28px;}
-  .footer-top{flex-direction:column;gap:32px;}
-  .hex-canvas-wrap{width:180px;height:180px;}
-}
-@media(max-width:600px){
-  .services-grid{grid-template-columns:1fr;}
-  .hero-ctas{flex-direction:column;align-items:stretch;text-align:center;}
-  .cta-form{flex-direction:column;}
-}
-
-/* ════════════════════════════════════════════════════════════
-   PREMIUM LAYER · v2 Obsidian AI
-   Easing tokens, scroll progress, scroll spy, typewriter,
-   organic orbs, service spotlight, float levitation,
-   result stagger, CTA ripple/pulse, brand-colored socials,
-   magnetic cursor, focus-visible & reduced-motion.
-   ════════════════════════════════════════════════════════════ */
-
-:root{
-  --ease-out:cubic-bezier(.22,.61,.36,1);
-  --ease-spring:cubic-bezier(.34,1.56,.64,1);
-  --ease-soft:cubic-bezier(.4,0,.2,1);
-}
-
-/* ── Scroll progress bar ──────────────────────────────────── */
-#scrollProgress{
-  position:fixed;top:0;left:0;height:2px;width:0%;
-  background:var(--grad);
-  box-shadow:0 0 12px rgba(14,165,233,.6),0 0 22px rgba(91,95,224,.35);
-  z-index:201;pointer-events:none;
-  will-change:width;
-  transition:width .08s linear;
-}
-
-/* ── Nav scroll-spy active indicator ──────────────────────── */
-.nav-links li{position:relative;}
-.nav-links a{
-  position:relative;padding:6px 0;
-  transition:color .25s var(--ease-out);
-}
-.nav-links a::after{
-  content:'';position:absolute;left:0;right:0;bottom:-2px;
-  height:2px;border-radius:2px;
-  background:var(--grad);
-  transform:scaleX(0);transform-origin:left;
-  opacity:0;
-  transition:transform .35s var(--ease-out),opacity .25s;
-}
-.nav-links a:hover::after{transform:scaleX(.5);opacity:.6;}
-.nav-links a.is-active{color:var(--t1);}
-.nav-links a.is-active::after{transform:scaleX(1);opacity:1;}
-
-/* ── Magnetic cursor — scale on interactive cards ─────────── */
-body:has(.service-card:hover) #cursor,
-body:has(.result-card:hover) #cursor,
-body:has(.stat-item:hover) #cursor{
-  width:18px;height:18px;background:var(--kl);
-  box-shadow:0 0 18px rgba(129,140,248,.6);
-}
-body:has(.service-card:hover) #cursor-ring,
-body:has(.result-card:hover) #cursor-ring,
-body:has(.stat-item:hover) #cursor-ring{
-  width:64px;height:64px;border-color:rgba(129,140,248,.55);
-}
-body:has(.btn-primary:hover) #cursor{
-  width:22px;height:22px;background:var(--ol);
-  box-shadow:0 0 22px rgba(245,158,11,.55);
-}
-body:has(.btn-primary:hover) #cursor-ring{
-  width:72px;height:72px;border-color:rgba(245,158,11,.6);
-}
-
-/* ── Hero · organic orb drift ─────────────────────────────── */
-@keyframes orbDrift1{
-  0%,100%{transform:translate(-50%,0) scale(1);}
-  33%{transform:translate(-46%,-18px) scale(1.04);}
-  66%{transform:translate(-54%,12px) scale(.97);}
-}
-@keyframes orbDrift2{
-  0%,100%{transform:translate(0,0) scale(1);}
-  50%{transform:translate(-22px,-30px) scale(1.06);}
-}
-@keyframes orbDrift3{
-  0%,100%{transform:translate(0,0) scale(1);}
-  50%{transform:translate(28px,-22px) scale(.95);}
-}
-.orb-1{animation:orbIn 2s ease forwards,orbDrift1 18s var(--ease-soft) 2s infinite;}
-.orb-2{animation:orbIn 2s ease .5s forwards,orbDrift2 22s var(--ease-soft) 2.5s infinite;}
-.orb-3{animation:orbIn 2s ease .7s forwards,orbDrift3 26s var(--ease-soft) 2.7s infinite;}
-
-/* ── Typewriter subheadline ───────────────────────────────── */
-.hero-sub{position:relative;}
-.hero-sub .tw-ghost{visibility:hidden;display:block;}
-.hero-sub .tw-overlay{
-  position:absolute;inset:0;
-  display:block;
-}
-.hero-sub .tw-caret{
-  display:inline-block;width:2px;height:1em;
-  background:var(--pl);
-  vertical-align:-2px;margin-left:3px;
-  animation:caretBlink 1s steps(2) infinite;
-  box-shadow:0 0 8px rgba(56,189,248,.7);
-}
-@keyframes caretBlink{50%{opacity:0;}}
-
-/* ── Service cards · spotlight + glow border ──────────────── */
-.service-card{
-  --mx:50%;--my:50%;
-  cursor:pointer;
-  transition:background .3s var(--ease-out),transform .35s var(--ease-out);
-}
-.service-card::before{
-  background:radial-gradient(
-    420px circle at var(--mx) var(--my),
-    rgba(56,189,248,.12),
-    rgba(91,95,224,.08) 30%,
-    transparent 60%
-  )!important;
-  transition:opacity .35s var(--ease-out)!important;
-}
-.service-card::after{
-  content:'';position:absolute;inset:0;border-radius:inherit;
-  padding:1px;
-  background:radial-gradient(
-    260px circle at var(--mx) var(--my),
-    rgba(56,189,248,.55),
-    rgba(91,95,224,.35) 35%,
-    transparent 65%
-  );
-  -webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
-  -webkit-mask-composite:xor;mask-composite:exclude;
-  opacity:0;pointer-events:none;
-  transition:opacity .3s var(--ease-out);
-}
-.service-card:hover{transform:translateY(-2px);}
-.service-card:hover::after{opacity:1;}
-.service-icon{
-  transition:transform .35s var(--ease-spring),box-shadow .3s;
-}
-.service-card:hover .service-icon{
-  transform:translateY(-2px) scale(1.06);
-}
-
-/* ── Results · stagger entrance + dramatic counter ────────── */
-.result-card{
-  opacity:0;transform:translateY(28px);
-  transition:opacity .7s var(--ease-out),transform .7s var(--ease-out),border-color .25s,box-shadow .3s;
-  cursor:pointer;
-  will-change:transform,opacity;
-}
-.results-section.visible .result-card{
-  opacity:1;transform:translateY(0);
-}
-.results-section.visible .result-card:nth-child(1){transition-delay:.05s;}
-.results-section.visible .result-card:nth-child(2){transition-delay:.18s;}
-.results-section.visible .result-card:nth-child(3){transition-delay:.31s;}
-.result-card:hover{
-  border-color:rgba(56,189,248,.35);
-  transform:translateY(-6px);
-  box-shadow:0 20px 60px rgba(14,165,233,.12);
-}
-.rm{transition:background .25s,border-color .25s,transform .25s var(--ease-spring);}
-.result-card:hover .rm{
-  background:rgba(56,189,248,.14);
-  border-color:rgba(56,189,248,.35);
-}
-.result-card:hover .rm:nth-child(1){transform:translateY(-2px);}
-.result-card:hover .rm:nth-child(2){transform:translateY(-2px);transition-delay:.04s;}
-.result-card:hover .rm:nth-child(3){transform:translateY(-2px);transition-delay:.08s;}
-
-/* ── CTA · pulse background + ripple ──────────────────────── */
-.cta-section{position:relative;}
-.cta-orb{
-  animation:ctaPulse 5.5s var(--ease-soft) infinite;
-  will-change:transform,opacity;
-}
-@keyframes ctaPulse{
-  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1;}
-  50%{transform:translate(-50%,-50%) scale(1.12);opacity:.78;}
-}
-/* secondary outer ring */
-.cta-section::before{
-  content:'';position:absolute;
-  width:900px;height:900px;
-  top:50%;left:50%;
-  border-radius:50%;
-  border:1px solid rgba(56,189,248,.06);
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-  animation:ctaRing 8s var(--ease-soft) infinite;
-}
-@keyframes ctaRing{
-  0%,100%{opacity:.3;transform:translate(-50%,-50%) scale(.92);}
-  50%{opacity:.7;transform:translate(-50%,-50%) scale(1.08);}
-}
-
-/* ripple keyframe (used by .btn-primary on click via JS) */
-.btn-primary{position:relative;isolation:isolate;}
-.ripple{
-  position:absolute;border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle,rgba(255,255,255,.45),rgba(255,255,255,0) 65%);
-  transform:translate(-50%,-50%) scale(0);
-  animation:ripple .65s var(--ease-out) forwards;
-  z-index:0;
-}
-.btn-primary>*{position:relative;z-index:1;}
-@keyframes ripple{
-  to{transform:translate(-50%,-50%) scale(1);opacity:0;}
-}
-
-/* ── Footer · social buttons with brand colors ────────────── */
-.social-btn{
-  position:relative;overflow:hidden;
-  transition:border-color .3s var(--ease-out),background .3s var(--ease-out),transform .25s var(--ease-spring);
-}
-.social-btn svg{
-  transition:fill .3s var(--ease-out),transform .3s var(--ease-spring);
-  position:relative;z-index:1;
-}
-.social-btn:hover{transform:translateY(-2px);}
-.social-btn:hover svg{transform:scale(1.08);}
-.social-btn[aria-label="LinkedIn"]:hover{
-  background:#0A66C2;border-color:#0A66C2;
-  box-shadow:0 8px 22px rgba(10,102,194,.4);
-}
-.social-btn[aria-label="LinkedIn"]:hover svg{fill:#fff;}
-.social-btn[aria-label="Instagram"]:hover{
-  background:linear-gradient(45deg,#F58529 0%,#DD2A7B 50%,#8134AF 100%);
-  border-color:transparent;
-  box-shadow:0 8px 22px rgba(221,42,123,.4);
-}
-.social-btn[aria-label="Instagram"]:hover svg{fill:#fff;}
-.social-btn[aria-label="Twitter/X"]:hover{
-  background:#0F0F0F;border-color:#0F0F0F;
-  box-shadow:0 8px 22px rgba(255,255,255,.18);
-}
-.social-btn[aria-label="Twitter/X"]:hover svg{fill:#fff;}
-
-/* ── Global micro-interactions ────────────────────────────── */
-.btn-primary,.btn-secondary,.nav-cta,.service-card,.result-card,
-.stat-item,.social-btn,.timeline .tl-item,
-.marquee-item,.cta-input,.footer-links-col a,.tl-dot{
-  transition-timing-function:var(--ease-out);
-}
-.btn-primary{transition:transform .25s var(--ease-spring),box-shadow .3s var(--ease-out);}
-.btn-secondary{transition:all .25s var(--ease-out);}
-.btn-secondary:hover{transform:translateY(-1px);}
-.nav-cta{transition:all .25s var(--ease-out);}
-.nav-cta:hover{transform:translateY(-1px);}
-.stat-item{transition:background .25s var(--ease-out),transform .3s var(--ease-spring);}
-.stat-item:hover{transform:translateY(-2px);}
-.tl-dot{transition:transform .3s var(--ease-spring),box-shadow .3s;}
-.tl-item:hover .tl-dot{transform:scale(1.4);box-shadow:0 0 14px rgba(56,189,248,.7);}
-.footer-links-col a{transition:color .25s var(--ease-out),transform .25s var(--ease-out);}
-.footer-links-col a:hover{transform:translateX(3px);}
-
-/* ── Focus-visible (a11y) ─────────────────────────────────── */
-a:focus-visible,button:focus-visible,input:focus-visible{
-  outline:2px solid rgba(56,189,248,.7);
-  outline-offset:3px;border-radius:6px;
-}
-
-/* ── prefers-reduced-motion ───────────────────────────────── */
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.001ms!important;
-    animation-iteration-count:1!important;
-    transition-duration:.001ms!important;
-    scroll-behavior:auto!important;
-  }
-  .orb-1,.orb-2,.orb-3,.cta-orb,.cta-section::before,
-  .badge-dot,.scroll-line{animation:none!important;}
-  .hero-sub .tw-caret{display:none;}
-  #particles-bg{display:none;}
-}
+    /* Movimiento reducido: estado final directo */
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation:none !important;transition:none !important;}
+      .w>span,.hero-fade{transform:none;opacity:1;}
+      .print,.tag-g,.prints-caption,.prints-controls{opacity:1 !important;transform:none !important;}
+      .print .shadow{opacity:0 !important;}
+      .ridge{stroke-dashoffset:0 !important;}
+      .hero-blob{display:none;}
+      .js .reveal{opacity:1 !important;transform:none !important;}
+    }
+  
+    /* Reseñas de Google: carrusel horizontal */
+    .resenas{max-width:1100px;margin:0 auto;min-width:0;}
+    .resenas-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 16px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;min-width:0;}
+    .resena-card{flex:0 0 calc((100% - 36px)/3);min-width:0;scroll-snap-align:start;background:var(--bg-surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:22px 22px 18px;display:flex;flex-direction:column;gap:12px;}
+    @media(max-width:900px){.resena-card{flex-basis:calc((100% - 18px)/2);}}
+    @media(max-width:600px){.resena-card{flex-basis:82%;}}
+    .resena-stars{color:#E9A23B;letter-spacing:2px;font-size:16px;}
+    .resena-texto{margin:0;font-size:15px;line-height:1.65;color:var(--text-primary);overflow-wrap:anywhere;white-space:pre-line;}
+    .resena-texto.corto{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;}
+    .resena-mas{align-self:flex-start;background:none;border:0;padding:0;color:var(--primary-dark);font:700 14px var(--font-body);cursor:pointer;text-decoration:underline;}
+    .resena-autor{margin-top:auto;font-size:13px;color:var(--text-secondary);border-top:1px solid var(--border);padding-top:10px;}
+    .resena-autor strong{color:var(--text-primary);}
+    .resenas-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px;flex-wrap:wrap;}
+    .resenas-dots{display:flex;gap:8px;}
+    .resenas-dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:var(--border);cursor:pointer;}
+    .resenas-dots button[aria-current="true"]{background:var(--primary);}
+    .resenas-nav{display:flex;gap:8px;}
+    .resenas-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg-surface);color:var(--text-primary);font-size:20px;cursor:pointer;}
+    .resenas-btn:focus-visible,.resenas-dots button:focus-visible,.resena-mas:focus-visible,.resenas-google:focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+    .resenas-links{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:22px;}
+    .resenas-google{color:var(--primary-dark);font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;}
+    @media (prefers-reduced-motion:reduce){.resenas-track{scroll-behavior:auto;}}
 </style>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png">
 </head>
 <body>
+<a href="#main" class="skip">Saltar al contenido</a>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-<div id="scrollProgress" aria-hidden="true"></div>
-
-<!-- ── NAV ── -->
-<nav id="mainNav">
-  <a href="#" class="nav-logo">
-    <svg width="200" height="57" viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="bG" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#0EA5E9"/>
-          <stop offset="50%" stop-color="#5B5FE0"/>
-          <stop offset="100%" stop-color="#8B5CF6"/>
-        </linearGradient>
-        <linearGradient id="iG" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#5B5FE0"/>
-          <stop offset="100%" stop-color="#5B5FE0"/>
-        </linearGradient>
-      </defs>
-      <g transform="translate(28,40)">
-        <polygon points="0,-22 19,-11 19,11 0,22 -19,11 -19,-11" fill="none" stroke="url(#bG)" stroke-width="1.5"/>
-        <polygon points="0,-14 12,-7 12,7 0,14 -12,7 -12,-7" fill="#5B5FE0" opacity="0.12" stroke="url(#iG)" stroke-width="0.8"/>
-        <circle cx="0" cy="0" r="3" fill="url(#bG)"/>
-        <line x1="0" y1="-3" x2="0" y2="-14" stroke="#0EA5E9" stroke-width="1" opacity="0.8"/>
-        <line x1="2" y1="1" x2="12" y2="7" stroke="#5B5FE0" stroke-width="1" opacity="0.8"/>
-        <line x1="-2" y1="1" x2="-12" y2="7" stroke="#5B5FE0" stroke-width="1" opacity="0.8"/>
-        <circle cx="0" cy="-14" r="2" fill="#0EA5E9"/>
-        <circle cx="12" cy="7" r="2" fill="#5B5FE0"/>
-        <circle cx="-12" cy="7" r="2" fill="#5B5FE0"/>
-      </g>
-      <text x="54" y="36" font-family="'Syne','Avenir Next LT Pro','Avenir Next',sans-serif" font-size="22" font-weight="700" letter-spacing="5" fill="#F0F6FF">AREA</text>
-      <text x="54" y="56" font-family="'Syne','Avenir Next LT Pro','Avenir Next',sans-serif" font-size="10" font-weight="500" letter-spacing="5" fill="#9CA3AF">IA SOLUTIONS</text>
-    </svg>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="metodo.html">El Método</a></li>
-    <li><a href="diagnostico.html">Diagnóstico &amp; Precios</a></li>
-    <li><a href="#resultados">Resultados</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-  <a href="#contacto" class="nav-cta">Empezar ahora →</a>
-  <button class="hamburger" id="hamburger" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
+<nav id="mainNav" aria-label="Principal">
+  <div class="nav-inner">
+    <a href="#hero" style="display:flex;align-items:center;" aria-label="Latidoo, inicio">
+      <img src="Latidoo_transparent.png" alt="Latidoo" class="nav-logo" width="120" height="32" />
+    </a>
+    <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#taller">Próximo taller</a></li>
+      <li><a href="#origen">El corazón</a></li>
+      <li><a href="#servicios">Experiencias</a></li>
+      <li><a href="#formaciones">Formaciones</a></li>
+      <li><a href="#pati">Quién es Pati</a></li>
+      <li class="lang"><span class="cur" aria-current="true">ES</span><span aria-hidden="true">·</span><a href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a></li>
+      <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+    </ul>
+  </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#servicios">Servicios</a>
-  <a href="#nosotros">Nosotros</a>
-  <a href="metodo.html">El Método</a>
-  <a href="diagnostico.html">Diagnóstico &amp; Precios</a>
-  <a href="#resultados">Resultados</a>
-  <a href="#contacto">Contacto</a>
-  <a href="#contacto" class="mob-cta">Empezar ahora →</a>
-</div>
 
-<!-- ── HERO ── -->
-<section class="hero" id="hero">
-  <canvas id="particles-bg"></canvas>
-  <div class="hero-orbs">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
-  <div class="hero-grid"></div>
-
-  <!-- Animated hex logo -->
-  <div class="hex-canvas-wrap">
-    <canvas id="hexCanvas" width="480" height="480"></canvas>
-  </div>
-
-  <div class="hero-badge">
-    <span class="badge-dot"></span>
-    Agencia de IA & Marketing Digital · Málaga, España
-  </div>
-
-  <h1 class="hero-headline">
-    <span class="line-1">Tu negocio crece</span>
-    <span class="line-2">con <span class="grad-word">inteligencia</span> <span class="underline-word">real</span></span>
-  </h1>
-
-  <p class="hero-sub" id="heroSub" data-typewriter="Combinamos 20 años de experiencia empresarial con las mejores herramientas de IA para multiplicar tu captación de clientes, automatizar tu marketing y escalar lo que ya funciona.">
-    <span class="tw-ghost" aria-hidden="true">Combinamos 20 años de experiencia empresarial con las mejores herramientas de IA para multiplicar tu captación de clientes, automatizar tu marketing y escalar lo que ya funciona.</span>
-    <span class="tw-overlay"><span class="tw-text"></span><span class="tw-caret" aria-hidden="true"></span></span>
-  </p>
-
-  <div class="hero-ctas">
-    <a href="#contacto" class="btn-primary">
-      Quiero resultados
-      <span class="arrow">→</span>
-    </a>
-    <a href="#servicios" class="btn-secondary">
-      Ver servicios
-    </a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num" data-count="2" data-prefix="×">×2</div>
-      <div class="stat-label">Inversión multiplicada<br>en proyectos propios</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" style="display:flex;align-items:center;gap:4px;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="url(#starGrad)"><defs><linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38BDF8"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span data-count="4.9" data-decimals="1">4.9</span></div>
-      <div class="stat-label">Valoración media<br>en proyectos gestionados</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="20" data-suffix="+">20+</div>
-      <div class="stat-label">Años de experiencia<br>empresarial real</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="90" data-suffix="%">90%</div>
-      <div class="stat-label">Tasa de ocupación<br>sostenida en 6 años</div>
-    </div>
-  </div>
-
-  <div class="scroll-hint">
-    <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--t4);">Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- ── MARQUEE ── -->
-<div class="marquee-strip">
-  <div class="marquee-track" id="marquee">
-    <span class="marquee-item"><span class="marquee-dot"></span>Google Ads</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>SEO & Posicionamiento</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Automatización con IA</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Social Media Marketing</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Email Marketing</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Landing Pages</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Analítica & Datos</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>AEO para IA</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Google Ads</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>SEO & Posicionamiento</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Automatización con IA</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Social Media Marketing</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Email Marketing</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Landing Pages</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Analítica & Datos</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>AEO para IA</span>
-  </div>
-</div>
-
-<!-- ── SERVICES ── -->
-<section class="section" id="servicios">
-  <div class="section-inner">
-    <div class="section-eyebrow">02 — Servicios</div>
-    <h2 class="section-title">Todo lo que necesitas para crecer,<br><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">en un solo lugar</span></h2>
-    <p class="section-lead">Desde la estrategia hasta la ejecución diaria. Cada servicio está diseñado para generar resultados medibles, no métricas de vanidad.</p>
-
-    <div class="services-grid">
-      <div class="service-card" id="google-ads">
-        <div class="service-icon" style="background:rgba(14,165,233,.12);color:var(--p);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></div>
-        <div class="service-title">Google Ads</div>
-        <div class="service-desc">Campañas de búsqueda, display y shopping optimizadas con IA para maximizar tu ROI en cada euro invertido.</div>
-        <button class="service-arrow">Ver más →</button>
-        <div class="service-expand">Creamos y gestionamos campañas de búsqueda, display y shopping optimizadas con IA. Cada euro invertido tiene un destino claro: generar leads o ventas medibles. Revisamos las pujas semanalmente y ajustamos en tiempo real para que tu coste por adquisición baje mes a mes.</div>
-      </div>
-      <div class="service-card" id="social-media">
-        <div class="service-icon" style="background:rgba(91,95,224,.12);color:var(--k);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="18" r="1" fill="currentColor"/></svg></div>
-        <div class="service-title">Social Media & Meta Ads</div>
-        <div class="service-desc">Gestión de contenido y campañas de pago que conectan con tu audiencia exacta y convierten seguidores en clientes.</div>
-        <button class="service-arrow">Ver más →</button>
-        <div class="service-expand">Gestionamos tu presencia en Instagram, Facebook y LinkedIn con contenido que conecta y campañas de pago que convierten. No publicamos por publicar — cada post tiene un objetivo y cada campaña un ROAS objetivo claro.</div>
-      </div>
-      <div class="service-card" id="seo">
-        <div class="service-icon" style="background:rgba(245,158,11,.12);color:var(--o);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="service-title">SEO & AEO</div>
-        <div class="service-desc">Posicionamiento en Google y en los nuevos buscadores de IA (ChatGPT, Perplexity, Gemini). Tu negocio donde buscan tus clientes.</div>
-        <button class="service-arrow">Ver más →</button>
-        <div class="service-expand">Posicionamos tu negocio en Google con SEO técnico y de contenido. Pero en 2026 no basta con Google — también te posicionamos en ChatGPT, Perplexity y Gemini para que cuando alguien le pregunte a una IA por servicios en tu sector, aparezcas tú.</div>
-      </div>
-      <div class="service-card" id="automatizacion">
-        <div class="service-icon" style="background:rgba(14,165,233,.10);color:var(--pl);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L4.5 13.5H12L11 22l8.5-11.5H12.5L13 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        <div class="service-title">Automatización con IA</div>
-        <div class="service-desc">Flujos automáticos de captación, nurturing y conversión. Tu embudo de ventas trabajando 24/7 sin intervención manual.</div>
-        <button class="service-arrow">Ver más →</button>
-        <div class="service-expand">Conectamos tus herramientas de marketing para que trabajen solas. Captación automática de leads, nurturing por email, notificaciones, reportes — todo sin intervención manual. Tu negocio captando clientes mientras duermes.</div>
-      </div>
-      <div class="service-card" id="email-marketing">
-        <div class="service-icon" style="background:rgba(91,95,224,.10);color:var(--kl);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.5"/></svg></div>
-        <div class="service-title">Email Marketing</div>
-        <div class="service-desc">Secuencias automatizadas que convierten leads fríos en clientes leales. Cada email con un propósito medible.</div>
-        <button class="service-arrow">Ver más →</button>
-        <div class="service-expand">Diseñamos secuencias de email que convierten suscriptores en clientes. Bienvenida, seguimiento, reactivación — cada email con un propósito y un CTA claro. Automatizado desde el primer día.</div>
-      </div>
-      <div class="service-card" id="analitica">
-        <div class="service-icon" style="background:rgba(245,158,11,.10);color:var(--ol);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 16V10M12 16V6M17 16v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <div class="service-title">Analítica & Reportes</div>
-        <div class="service-desc">Dashboard en tiempo real con las métricas que importan. Decisiones basadas en datos, no en intuiciones.</div>
-        <button class="service-arrow">Ver más →</button>
-        <div class="service-expand">Instalamos GA4, configuramos eventos clave y construimos un dashboard en Looker Studio con las métricas que importan a tu negocio. Cada mes un reporte claro: qué funcionó, qué no y qué hacemos el próximo mes.</div>
-      </div>
-    </div>
-    <div style="display:flex;gap:16px;margin-top:48px;flex-wrap:wrap;">
-      <a href="metodo.html" class="btn-primary">Ver el Método ARIA <span class="arrow">→</span></a>
-      <a href="diagnostico.html" class="btn-secondary">Diagnóstico gratuito &amp; Precios</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── ABOUT ── -->
-<section class="about-section" id="nosotros">
-  <div class="about-inner">
-    <div class="about-photo-wrap">
-      <div class="about-photo-frame">
-        <img src="https://areaiasolutions.com/foto_jl.png"
-             alt="José Leonardo Prieto — Fundador de Area IA Solutions"
-             onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;\'><svg width=\'120\' height=\'120\' viewBox=\'0 0 24 24\' fill=\'none\'><circle cx=\'12\' cy=\'8\' r=\'4\' stroke=\'rgba(167,139,250,0.4)\' stroke-width=\'1.5\'/><path d=\'M4 20c0-4 3.58-7 8-7s8 3 8 7\' stroke=\'rgba(167,139,250,0.4)\' stroke-width=\'1.5\' stroke-linecap=\'round\'/></svg></div>'">
-        <div class="about-photo-glow"></div>
+<main id="main">
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-grid">
+    <div class="hero-content">
+      <p class="hero-eyebrow hero-fade" style="--d:0">by Pati, neurodesarrollo infantil</p>
+      <h1 class="hero-title" aria-label="Aprendizaje que late.">
+        <span class="line" aria-hidden="true"><span class="w"><span style="--d:120">Aprendizaje</span></span></span>
+        <span class="line line-2" aria-hidden="true"><span class="w"><span style="--d:300">que</span></span> <span class="w"><span style="--d:380">late.</span></span></span>
+      </h1>
+      <p class="hero-sub hero-fade" style="--d:800">Experiencias diseñadas con base en el neurodesarrollo infantil, para que cada niño crezca feliz, seguro y lleno de curiosidad.</p>
+      <div class="hero-btns hero-fade" style="--d:950">
+        <a href="#servicios" class="btn btn-primary">Descubre las experiencias</a>
+        <a href="#formaciones" class="btn btn-secondary">Formaciones para familias</a>
       </div>
     </div>
 
-    <div class="about-content">
-      <div class="section-eyebrow">03 — El fundador</div>
-      <h2 class="about-title">No soy un<br><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">marketero teórico.</span><br>Soy emprendedor.</h2>
-      <div class="about-body">
-        <p>Emprendí a los 18 años y desde entonces no he parado. Cada proyecto ha sido diferente, cada mercado un reto nuevo, cada crisis una lección que ningún máster enseña.</p>
-        <p><strong>Venezuela, España, distintos sectores, distintas realidades</strong> — pero siempre la misma pregunta: ¿cómo consigo más clientes con lo que tengo? Hoy esa pregunta tiene la mejor respuesta de la historia: la inteligencia artificial.</p>
-      </div>
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">Caracas · 18 años</div>
-          <div class="tl-text">PixelPoint — Centro de impresión y gigantografía. 10 años de operación continua fundado desde cero.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">Málaga · España</div>
-          <div class="tl-text">Area Cowork — Espacio de coworking que duplicó la inversión inicial con 90% de ocupación sostenida.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">Málaga · Airbnb</div>
-          <div class="tl-text">Area Properties — 8 años consecutivos como Superhost, +200 valoraciones y puntuación de 4.9★.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">Ahora · 2026</div>
-          <div class="tl-text">Area IA Solutions — toda esa experiencia, ahora con las mejores herramientas de IA del mercado.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── RESULTS ── -->
-<section class="results-section" id="resultados">
-  <div class="results-inner">
-    <div class="section-eyebrow">04 — Casos reales</div>
-    <h2 class="section-title" style="margin-bottom:16px;">Proyectos reales,<br><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">resultados reales.</span></h2>
-    <p class="section-lead">Negocios construidos y escalados a lo largo de 20 años. Cada uno con la misma visión: más clientes, más rentabilidad.</p>
-
-    <div class="results-grid">
-      <div class="result-card">
-        <div class="result-logo">
-          <div class="result-logo-icon"><span style="color:var(--pl);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="17" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M8 4V2M16 4V2M3 9h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
-          <div>
-            <div class="result-logo-name">Area Cowork</div>
-            <div class="result-logo-loc" style="display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>Málaga, España</div>
-          </div>
-        </div>
-        <div class="result-metrics">
-          <div class="rm"><div class="rm-val">×2</div><div class="rm-label">Inversión</div></div>
-          <div class="rm"><div class="rm-val">90%</div><div class="rm-label">Ocupación</div></div>
-          <div class="rm"><div class="rm-val">6 años</div><div class="rm-label">Sostenido</div></div>
-        </div>
-        <div class="result-desc">Espacio de coworking que duplicó la inversión inicial en 6 años con una tasa de ocupación del 90% sostenida desde el primer día de apertura.</div>
-      </div>
-
-      <div class="result-card">
-        <div class="result-logo">
-          <div class="result-logo-icon"><span style="color:var(--pl);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 12L12 3l9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
-          <div>
-            <div class="result-logo-name">Area Properties Spain</div>
-            <div class="result-logo-loc" style="display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>Málaga, España</div>
-          </div>
-        </div>
-        <div class="result-metrics">
-          <div class="rm"><div class="rm-val" style="display:flex;align-items:center;gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>4.9</div><div class="rm-label">Puntuación</div></div>
-          <div class="rm"><div class="rm-val">+200</div><div class="rm-label">Reseñas</div></div>
-          <div class="rm"><div class="rm-val">8 años</div><div class="rm-label">Superhost</div></div>
-        </div>
-        <div class="result-desc">Gestión de apartamentos turísticos con 8 años consecutivos como Superhost en Airbnb y una puntuación de 4.9 estrellas en más de 200 valoraciones.</div>
-      </div>
-
-      <div class="result-card">
-        <div class="result-logo">
-          <div class="result-logo-icon"><span style="color:var(--pl);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9V4h12v5" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="20" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M6 14h12M6 18v2h12v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="13.5" r="1" fill="currentColor"/></svg></span></div>
-          <div>
-            <div class="result-logo-name">PixelPoint</div>
-            <div class="result-logo-loc" style="display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>Caracas, Venezuela</div>
-          </div>
-        </div>
-        <div class="result-metrics">
-          <div class="rm"><div class="rm-val">10 años</div><div class="rm-label">Operación</div></div>
-          <div class="rm"><div class="rm-val">18 años</div><div class="rm-label">Al fundar</div></div>
-        </div>
-        <div class="result-desc">Centro de impresión y gigantografía fundado a los 18 años desde cero. Una década de operación continua construyendo marca referente en el sector.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CTA ── -->
-<section class="cta-section" id="contacto">
-  <div class="cta-orb"></div>
-  <div class="cta-inner">
-    <div class="section-eyebrow" style="justify-content:center;">05 — Hablemos</div>
-    <h2 class="cta-title">¿Listo para <span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">crecer?</span></h2>
-    <p class="cta-sub">Cuéntanos sobre tu negocio y te prepararemos un diagnóstico digital personalizado. Sin costo, sin compromiso.</p>
-    <form class="cta-form" onsubmit="handleSubmit(event)">
-      <input class="cta-input" type="email" placeholder="Tu email de trabajo" required>
-      <button type="submit" class="btn-primary" style="flex-shrink:0;padding:14px 24px;">
-        Empezar <span class="arrow">→</span>
-      </button>
-    </form>
-    <div class="cta-disclaimer">Sin spam. Respuesta en menos de 24 horas.</div>
-  </div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <svg width="160" height="46" viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="fG" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0EA5E9"/>
-              <stop offset="50%" stop-color="#5B5FE0"/>
-              <stop offset="100%" stop-color="#8B5CF6"/>
-            </linearGradient>
-            <linearGradient id="fiG" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#5B5FE0"/>
-              <stop offset="100%" stop-color="#5B5FE0"/>
-            </linearGradient>
-          </defs>
-          <g transform="translate(28,40)">
-            <polygon points="0,-22 19,-11 19,11 0,22 -19,11 -19,-11" fill="none" stroke="url(#fG)" stroke-width="1.5"/>
-            <polygon points="0,-14 12,-7 12,7 0,14 -12,7 -12,-7" fill="#5B5FE0" opacity="0.12" stroke="url(#fiG)" stroke-width="0.8"/>
-            <circle cx="0" cy="0" r="3" fill="url(#fG)"/>
-            <line x1="0" y1="-3" x2="0" y2="-14" stroke="#0EA5E9" stroke-width="1" opacity="0.8"/>
-            <line x1="2" y1="1" x2="12" y2="7" stroke="#5B5FE0" stroke-width="1" opacity="0.8"/>
-            <line x1="-2" y1="1" x2="-12" y2="7" stroke="#5B5FE0" stroke-width="1" opacity="0.8"/>
-            <circle cx="0" cy="-14" r="2" fill="#0EA5E9"/>
-            <circle cx="12" cy="7" r="2" fill="#5B5FE0"/>
-            <circle cx="-12" cy="7" r="2" fill="#5B5FE0"/>
+    <!-- Dos huellas que forman un corazón -->
+    <figure class="prints" id="prints" aria-labelledby="printsCap">
+      <svg viewBox="-100 -90 200 176" role="img" aria-label="Dos huellas de dedo diferentes, inclinadas una hacia la otra hasta formar un corazón.">
+        <defs>
+          <filter id="paint" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="edge" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="3" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="soft"><feGaussianBlur stdDeviation="7"/></filter>
+          <clipPath id="eggClip"><path class="egg"/></clipPath>
+        </defs>
+        <g class="heart-group">
+          <g transform="translate(0,74) rotate(-31) translate(0,-56)">
+            <g class="print a">
+              <path class="shadow egg egg-big" fill="#3D2010" filter="url(#soft)"/>
+              <g class="print-art" filter="url(#edge)">
+                <path class="pad egg" opacity=".22"/>
+                <g clip-path="url(#eggClip)" filter="url(#paint)" id="ridgesA"></g>
+              </g>
+            </g>
           </g>
-          <text x="54" y="36" font-family="'Syne',sans-serif" font-size="22" font-weight="700" letter-spacing="5" fill="#F0F6FF">AREA</text>
-          <text x="54" y="56" font-family="'Syne',sans-serif" font-size="10" font-weight="500" letter-spacing="5" fill="#9CA3AF">IA SOLUTIONS</text>
-        </svg>
-        <p>Agencia de marketing digital e inteligencia artificial. Málaga, España.</p>
+          <g transform="translate(0,74) rotate(31) translate(0,-47) scale(.84)">
+            <g class="print b">
+              <path class="shadow egg egg-big" fill="#3D2010" filter="url(#soft)"/>
+              <g class="print-art" filter="url(#edge)">
+                <path class="pad egg" opacity=".22"/>
+                <g clip-path="url(#eggClip)" filter="url(#paint)" id="ridgesB"></g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <figcaption class="prints-caption" id="printsCap">
+        <strong>Dos huellas, un latido.</strong>
+        <span>Así nace cada corazón de Latidoo.</span>
+      </figcaption>
+      <div class="prints-controls" role="group" aria-label="Elige el color del corazón">
+        <button class="swatch" data-ink="#9d4c22" data-soft="#c3784f" aria-pressed="true" aria-label="Marrón"><img src="corazon_marron_transparent.png" alt="" width="30" height="30"></button>
+        <button class="swatch" data-ink="#308717" data-soft="#79b64a" aria-pressed="false" aria-label="Verde"><img src="corazonverde_transparent.png" alt="" width="30" height="30"></button>
+        <button class="swatch" data-ink="#aa2a78" data-soft="#ce5e9e" aria-pressed="false" aria-label="Vino"><img src="corazon_vino_tinto_transparent.png" alt="" width="30" height="30"></button>
+        <button class="swatch" data-ink="#e04a07" data-soft="#fa8236" aria-pressed="false" aria-label="Naranja"><img src="corazon_naranja_transparent.png" alt="" width="30" height="30"></button>
+        <button class="swatch" data-ink="#5d1eb7" data-soft="#8a4fd0" aria-pressed="false" aria-label="Morado"><img src="corazon_morado_transparent.png" alt="" width="30" height="30"></button>
+        <button class="replay" id="replay">Volver a verlo</button>
       </div>
-      <div class="footer-links-col">
-        <h4>Servicios</h4>
-        <a href="#google-ads">Google Ads</a>
-        <a href="#seo">SEO & AEO</a>
-        <a href="#social-media">Social Media</a>
-        <a href="#automatizacion">Automatización IA</a>
-        <a href="#email-marketing">Email Marketing</a>
-      </div>
-      <div class="footer-links-col">
-        <h4>Empresa</h4>
-        <a href="#">Nosotros</a>
-        <a href="#">Casos de éxito</a>
-        <a href="#">Blog</a>
-        <a href="#">Contacto</a>
-      </div>
-      <div class="footer-links-col">
-        <h4>Contacto</h4>
-        <a href="tel:+34629968373">+34 629 968 373</a>
-        <a href="mailto:jlprietos@gmail.com">jlprietos@gmail.com</a>
-        <a href="#">C/ Juan Cabanilles 11<br>29018 Málaga</a>
+    </figure>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" style="background:#FAF3EE;" aria-hidden="true">
+  <path d="M0,0 Q360,60 720,30 Q1080,0 1440,45 L1440,60 L0,60 Z" fill="#FFF8F3"/>
+</svg>
+
+<!-- ══ PRÓXIMO TALLER: Campamento de Navidad + histórico de talleres ══ -->
+<section id="taller" aria-labelledby="tallerTitle">
+  <div class="taller-card reveal">
+    <div class="taller-img">
+      <img src="/taller-macrame.jpg" alt="Taller de macramé de Latidoo en la Ludoteca La Carmela: colgantes de macramé en arcoíris, plumas y soles sobre un fondo rosa con banderines." width="1122" height="1402" loading="lazy" style="object-fit:contain;aspect-ratio:auto" />
+    </div>
+    <div class="taller-info">
+      <span class="t-tag">Próximo taller</span>
+      <h2 class="taller-title">Taller de macramé</h2>
+      <p class="taller-desc">Crea, anuda y disfruta con el macramé. Una tarde para hacer tu propio colgante y pasarlo en grande.</p>
+      <ul class="taller-meta">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Viernes 27 de noviembre</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>17:00 – 18:00 h</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Ludoteca La Carmela · Torre de Benagalbón</li>
+      </ul>
+      <p class="taller-note">¡Crea, anuda y disfruta!</p>
+      <div class="taller-btns">
+        <a href="/macrame" target="_blank" rel="noopener" class="btn btn-taller">¡Reserva tu plaza!</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2026 Area IA Solutions · by José Leonardo Prieto · Todos los derechos reservados.</div>
-      <div class="footer-socials">
-        <a class="social-btn" href="#" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zM8 19H5v-9h3v9zM6.5 8.25A1.75 1.75 0 114.75 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+  </div>
+
+  <div class="taller-card reveal">
+    <div class="taller-img">
+      <img src="/taller-navidad.jpg" alt="Campamento de Navidad en inglés de Latidoo: niños y niñas de 3 a 12 años pintando y riendo en un entorno de bosque, con gorros de Navidad, en Rincón de la Victoria." width="1000" height="1000" loading="lazy" />
+    </div>
+    <div class="taller-info">
+      <span class="t-tag">Siguiente taller</span>
+      <h2 class="taller-title" id="tallerTitle">Campamento de Navidad en inglés</h2>
+      <p class="taller-desc">Días de campamento en inglés con actividades creativas, al aire libre y muchas sorpresas.</p>
+      <ul class="taller-meta">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>23, 24, 28, 29, 30 y 31 de diciembre</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9:00 – 14:00 h</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.6-4.5 4-4.5s3 1 3 2.5"/></svg>3 a 12 años</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Rincón de la Victoria</li>
+      </ul>
+      <p class="taller-note">¡Muchas sorpresas!</p>
+      <div class="taller-btns">
+        <a href="/navidad" target="_blank" rel="noopener" class="btn btn-taller">¡Reserva tu plaza!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="taller-historico">
+    <h3 class="taller-historico-title">Talleres anteriores</h3>
+    <div class="taller-card taller-card--pasado reveal">
+      <div class="taller-img">
+        <img src="taller-halloween-cookies.jpg" alt="Taller de Halloween Cookies de Latidoo: unas manos decoran con manga pastelera galletas de calabaza, fantasma, gato negro, sombrero de bruja y telaraña." width="1000" height="1000" loading="lazy" />
+        <span class="soldout">¡Agotado!</span>
+      </div>
+      <div class="taller-info">
+        <span class="t-tag">Taller pasado</span>
+        <h3 class="taller-title">Halloween: cookies terroríficas</h3>
+        <p class="taller-desc">Horneamos galletas, las decoramos con glasa y toppings, y jugamos con pintura neón. Una tarde para crear, pringarse y divertirse.</p>
+        <ul class="taller-meta">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Viernes, 30 de octubre</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>17:00 – 18:00 h</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Ludoteca La Carmela</li>
+        </ul>
+        <p class="taller-note">¡Plazas agotadas! Gracias a todas las familias.</p>
+        <div class="taller-btns">
+          <span class="btn btn-agotado" aria-disabled="true">Plazas agotadas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══ FIN PRÓXIMO TALLER ══ -->
+
+<!-- ORIGEN DEL CORAZÓN -->
+<section id="origen">
+  <div class="origen-inner reveal">
+    <span class="t-tag">El origen del corazón</span>
+    <h2 class="origen-title">Nuestro símbolo no está dibujado. Está estampado.</h2>
+    <p>Cada corazón de Latidoo nace de dos huellas sobre una hoja. Dos marcas únicas, diferentes entre sí, que al encontrarse forman algo nuevo: un vínculo.</p>
+    <p>Y los vínculos importan. En los primeros años de vida, el cerebro crea <strong class="origen-dato">más de un millón de conexiones neuronales por segundo</strong>. Lo que vive un niño en ese tiempo, y con quién lo vive, deja huella.</p>
+    <p class="soft">Por eso diseñamos cada experiencia desde el neurodesarrollo: no para marcar un camino, sino para crear las condiciones para que cada niño encuentre el suyo.</p>
+    <p class="origen-close">Dos huellas diferentes. Un mismo latido. Infinitas posibilidades de crecer.</p>
+    <p class="origen-src">Dato: <a href="https://developingchild.harvard.edu/resources/inbrief-science-of-ecd/" target="_blank" rel="noopener">Center on the Developing Child, Universidad de Harvard</a></p>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" style="background:#FFF8F3;" aria-hidden="true">
+  <path d="M0,0 Q360,60 720,30 Q1080,0 1440,45 L1440,60 L0,60 Z" fill="#FAF3EE"/>
+</svg>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-header reveal">
+    <span class="t-tag">Nuestros programas</span>
+    <h2 class="section-title">Experiencias Latidoo</h2>
+    <p class="section-sub">Cada programa pensado con amor, intención y conocimiento. Toca cualquier experiencia para ver los detalles.</p>
+  </div>
+  <div class="services-grid">
+    <button class="service-card card-verde reveal" style="--rv:0ms" onclick="openModal('campamentos')">
+      <img src="corazonverde_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+      <span class="service-name">Campamentos</span>
+      <span class="service-tagline">Las vacaciones que se merecen</span>
+      <span class="card-more">Ver detalles</span>
+    </button>
+    <button class="service-card card-vino reveal" style="--rv:60ms" onclick="openModal('english')">
+      <img src="corazon_vino_tinto_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+      <span class="service-name">English Club</span>
+      <span class="service-tagline">Inglés donde aprender es jugar y crear</span>
+      <span class="card-more">Ver detalles</span>
+    </button>
+    <button class="service-card card-naranja reveal" style="--rv:120ms" onclick="openModal('talleres')">
+      <img src="corazon_naranja_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+      <span class="service-name">Talleres</span>
+      <span class="service-tagline">Experiencias para disfrutar, compartir y crecer</span>
+      <span class="card-more">Ver detalles</span>
+    </button>
+    <button class="service-card card-morado reveal" style="--rv:180ms" onclick="openModal('fiestas')">
+      <img src="corazon_morado_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+      <span class="service-name">Fiestas personalizadas</span>
+      <span class="service-tagline">Única, especial y hecha a medida</span>
+      <span class="card-more">Ver detalles</span>
+    </button>
+  </div>
+</section>
+
+
+
+<!-- FORMACIONES -->
+<section id="formaciones">
+  <div style="max-width:1150px;margin:0 auto;">
+    <div class="section-header reveal" style="margin-bottom:var(--s8);">
+      <span class="t-tag">Para familias y educadores</span>
+      <h2 class="section-title">Formaciones</h2>
+      <p class="section-sub">Formación especializada en neurodesarrollo para quienes acompañan la infancia.</p>
+    </div>
+    <div class="reveal" style="max-width:340px;margin:0 auto;--rv:80ms">
+      <button class="service-card card-marron" onclick="openModal('formaciones')">
+        <img src="corazon_marron_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+        <span class="service-name">Formaciones</span>
+        <span class="service-tagline">Herramientas reales para acompañar mejor</span>
+        <span class="card-more">Ver detalles</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="section-header reveal">
+    <span class="t-tag">Lo que dicen las familias</span>
+    <h2 class="section-title">Voces que laten</h2>
+  </div>
+  <div class="resenas reveal" style="--rv:80ms">
+    <div class="resenas-track" id="resenasTrack" tabindex="0" aria-label="Reseñas de Google, desliza para ver más">
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto corto">Mi hijo ha estado con Pati en talleres y campamentos y la verdad que no puede estar más feliz, siempre quiere ir a sus actividades, son un encanto y la organización es muy buena. Siempre atentos a sus redes para apuntarnos a todo, y siempre los recomendamos a sus amiguitos que salen encantados.
+Gracias Pati, por tu dedicación con los niños y el cariño que aportas a todo!</p>
+        <button type="button" class="resena-mas" aria-expanded="false">Leer más</button>
+        <div class="resena-autor"><strong>Lidia</strong> · Local Guide</div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto corto">Una experiencia absolutamente excepcional! mi hija ido al English Club y también al campamento de verano.
+Adora a Pati, la chica que lo lleva, tiene una luz y conexion especial con los niños, enseña sin que los niños sean conscientes de que aprenden, les habla todo el rato en inglés y ellos lo disfrutan.
+En cuanto al campamento, más de lo mismo, entorno ideal, ambiente relajado, cuentan con piscina en donde siempre hay varias monitoras para el baño (lo que da mucha tranquilidad), ante todo destaco el cariño con los que los tratan, la amabilidad y la cercanía.
+Mi hija todo lo que lleve el acompañamiento de &#x27;esta actividad es con Pati&#x27;, es pura alegría y predisposición.
+Lo recomiendo sin duda.</p>
+        <button type="button" class="resena-mas" aria-expanded="false">Leer más</button>
+        <div class="resena-autor"><strong>Marina S.</strong></div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto">Muy profesionales y atentos . Mucha experiencia con niños . Mi hija encantada cada vez que hace talleres y actividades con ellos</p>
+        <div class="resena-autor"><strong>Yolanda S.</strong></div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto">Hemos hecho varios talleres con Pati y todos nos han encantado! Nuestra peque lo pasa genial. Son talleres divertidos, creativos... y Pati es maravillosa! Deseando de volver!</p>
+        <div class="resena-autor"><strong>María Jesús S.</strong> · Local Guide</div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto">Muy divertido y entretenido para los peques. No es fácil encontrar actividades para bebés y aquí siempre hay algún plan disponible. Deseando repetir 🥰</p>
+        <div class="resena-autor"><strong>Macarena T.</strong></div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto corto">Latidoo y Pati se han convertido en aliadas de nuestro plan educativo para mi hijo: inglés + experiencias educativas conscientes que incluyen juego, experimentos, arte.
+Mi hijo disfruta tanto del English Club como de los campamentos que, además de todo esto, incluyen el contacto con la naturaleza / animales. ¡Le encanta cada una de las propuestas! Y a mí también.
+Recomendaría cualquiera de sus servicios sin pensarlo. ¡Gracias Pati!</p>
+        <button type="button" class="resena-mas" aria-expanded="false">Leer más</button>
+        <div class="resena-autor"><strong>Clara B.</strong></div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <p class="resena-texto">Una gran profesional que entiende perfectamente las necesidades de los niños. Muy formada. Muy recomendable.</p>
+        <div class="resena-autor"><strong>Marta Z.</strong></div>
+      </article>
+    </div>
+    <div class="resenas-controls">
+      <div class="resenas-dots" id="resenasDots"></div>
+      <div class="resenas-nav">
+        <button type="button" class="resenas-btn" data-dir="-1" aria-label="Reseña anterior">‹</button>
+        <button type="button" class="resenas-btn" data-dir="1" aria-label="Reseña siguiente">›</button>
+      </div>
+    </div>
+    <div class="resenas-links">
+      <a class="btn btn-primary" href="opiniones.html">Cuéntanos tu experiencia</a>
+      <a class="resenas-google" href="https://g.page/r/CViZaqfQ88tzEBM/review" target="_blank" rel="noopener">Ver todas las reseñas en Google →</a>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var t=document.getElementById('resenasTrack'); if(!t) return;
+    var cards=[].slice.call(t.children), dots=document.getElementById('resenasDots');
+    cards.forEach(function(c,i){ var b=document.createElement('button'); b.type='button';
+      b.setAttribute('aria-label','Ir a la reseña '+(i+1));
+      b.addEventListener('click',function(){ t.scrollTo({left:c.offsetLeft-cards[0].offsetLeft,behavior:'smooth'}); });
+      dots.appendChild(b); });
+    function step(d){ var w=cards[1]?cards[1].offsetLeft-cards[0].offsetLeft:cards[0].offsetWidth; t.scrollBy({left:d*w,behavior:'smooth'}); }
+    [].forEach.call(document.querySelectorAll('.resenas-btn'),function(b){ b.addEventListener('click',function(){ step(+b.getAttribute('data-dir')); }); });
+    function upd(){ var x=t.scrollLeft,best=0,bd=1e9; cards.forEach(function(c,i){ var d=Math.abs(c.offsetLeft-cards[0].offsetLeft-x); if(d<bd){bd=d;best=i;} });
+      [].forEach.call(dots.children,function(b,i){ b.setAttribute('aria-current', i===best?'true':'false'); }); }
+    t.addEventListener('scroll',upd,{passive:true}); upd();
+    [].forEach.call(document.querySelectorAll('.resena-mas'),function(b){
+      b.addEventListener('click',function(){ var p=b.previousElementSibling; var open=p.classList.toggle('corto')===false;
+        b.setAttribute('aria-expanded',open?'true':'false'); b.textContent=open?'Leer menos':'Leer más'; });
+    });
+  })();
+  </script>
+</section>
+
+<!-- PATI -->
+<section id="pati">
+  <div class="pati-layout">
+    <div class="pati-left reveal from-left">
+      <div class="pati-photo-frame"><img src="pati.png" alt="Pati, fundadora de Latidoo" loading="lazy" /></div>
+      <div class="pati-creds">
+        <div class="cred-item"><span aria-hidden="true">🎓</span>Maestra de Ed. Primaria</div>
+        <div class="cred-item"><span aria-hidden="true">🧠</span>Especialista en Neurodesarrollo</div>
+        <div class="cred-item"><span aria-hidden="true">🇬🇧</span>Inglés y NEE</div>
+      </div>
+    </div>
+    <div class="pati-right reveal from-right" style="--rv:80ms">
+      <span class="t-tag">La persona detrás de Latidoo</span>
+      <h2 class="pati-title">Quién es Pati</h2>
+      <p class="pati-lead">Maestra, guía Montessori, mamá y apasionada del neurodesarrollo infantil.</p>
+      <div class="pati-text">
+        <p class="pati-intro">Soy Pati. Especializada en neurodesarrollo infantil, maestra de primaria, inglés y necesidades educativas especiales.</p>
+        <p>Después de cuatro años viviendo en el extranjero, volví con otra mirada y empecé a trabajar como guía Montessori. Esa etapa me transformó. Me enseñó a observar, a acompañar, a conectar con la infancia de una forma que no había sentido antes.</p>
+        <p>Al terminar el curso, varias familias me pidieron que siguiera cerca de sus hijos. De esa petición nació Latidoo — sin nombre todavía, sin grandes planes, solo con ganas de crear algo bonito.</p>
+        <p>Desde entonces ha crecido, se ha transformado y sigue latiendo. Sigo formándome, sigo trabajando en colegios, y hoy tengo a mi mayor motor en casa.</p>
+        <p class="pati-closing">Porque cuando ves crecer a tu propio hijo, entiendes aún más profundamente por qué importa tanto lo que hacemos — y por qué seguir comprometida con acompañar a la infancia y a sus familias no es una opción, es una vocación.</p>
+      </div>
+      <button class="pati-more" id="patiMore" aria-expanded="false">Leer más</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-hearts reveal from-top" aria-hidden="true">
+      <img src="corazonverde_transparent.png" alt="" width="26" height="26" loading="lazy" />
+      <img src="corazon_vino_tinto_transparent.png" alt="" width="26" height="26" loading="lazy" />
+      <img src="corazon_naranja_transparent.png" alt="" width="26" height="26" loading="lazy" />
+      <img src="corazon_morado_transparent.png" alt="" width="26" height="26" loading="lazy" />
+      <img src="corazon_marron_transparent.png" alt="" width="26" height="26" loading="lazy" />
+    </div>
+    <h2 class="cta-title reveal" style="--rv:80ms">¿Empezamos juntos?</h2>
+    <p class="cta-sub reveal" style="--rv:160ms">Da el primer paso. Cuéntame qué necesita tu peque y te propongo la experiencia perfecta para él o ella.</p>
+    <div class="cta-actions reveal" style="--rv:240ms">
+      <a href="#contacto" class="btn btn-primary">Escríbeme</a>
+      <a href="#servicios" class="btn btn-secondary">Ver experiencias</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-inner">
+    <div class="contacto-header reveal">
+      <span class="t-tag">Hablemos</span>
+      <h2 class="section-title">Escríbeme</h2>
+      <p class="section-sub">Cuéntame qué buscas y te propongo la experiencia perfecta.</p>
+    </div>
+    <form class="reveal" style="--rv:80ms" id="contactForm" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contacto" />
+      <p hidden><label>No rellenar: <input name="bot-field" /></label></p>
+      <div class="form-group"><label class="form-label" for="nombre">Nombre</label><input class="form-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required autocomplete="name" /></div>
+      <div class="form-group"><label class="form-label" for="email">Email</label><input class="form-input" type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email" /></div>
+      <div class="form-group">
+        <label class="form-label" for="servicio">¿Qué experiencia te interesa?</label>
+        <select class="form-input" id="servicio" name="servicio">
+          <option value="">Selecciona una experiencia</option>
+          <option>Campamentos</option><option>English Club</option><option>Talleres</option><option>Fiestas personalizadas</option><option>Formaciones</option><option>No lo sé aún, necesito orientación</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label" for="mensaje">Mensaje</label><textarea class="form-textarea" id="mensaje" name="mensaje" placeholder="Cuéntame qué necesita tu peque..." required></textarea></div>
+      <button type="submit" class="btn btn-primary form-submit">Enviar mensaje</button>
+      <div id="formMsg" class="form-msg" role="status"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+    <img id="modalHeart" src="corazonverde_transparent.png" alt="" class="modal-heart" />
+    <h3 class="modal-title" id="modalTitle"></h3>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-meta" id="modalMeta" hidden></div><!-- detalles ocultos hasta que Pati los confirme -->
+    <div class="modal-lista" id="modalLista" hidden><a class="modal-taller" href="/macrame" target="_blank" rel="noopener"><img src="/taller-macrame.jpg" alt=""><span class="mt-info"><span class="mt-tag">Próximo taller</span><span class="mt-t">Taller de macramé</span><span class="mt-d">Vie 27 nov · 17:00–18:00 · Ludoteca La Carmela</span></span><span class="mt-cta">Reservar</span></a><a class="modal-taller" href="/navidad" target="_blank" rel="noopener"><img src="/taller-navidad.jpg" alt=""><span class="mt-info"><span class="mt-tag">Siguiente taller</span><span class="mt-t">Campamento de Navidad en inglés</span><span class="mt-d">23, 24, 28, 29, 30 y 31 dic · 9:00–14:00 h</span></span><span class="mt-cta">Reservar</span></a></div>
+    <a href="#contacto" class="btn btn-primary" id="modalCta" onclick="closeModal()" style="width:100%;">Consultar disponibilidad</a>
+    <a href="#contacto" class="modal-otra" id="modalOtra" onclick="closeModal()" hidden>¿Otra consulta? Escríbeme</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid reveal">
+    <div>
+      <img src="Latidoo_transparent.png" alt="Latidoo" class="footer-logo" loading="lazy" width="120" height="32" />
+      <p class="footer-tagline">Experiencias educativas para la infancia con base en el neurodesarrollo.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Explorar</p>
+      <ul class="footer-links">
+        <li><a href="#origen">El corazón</a></li>
+        <li><a href="#servicios">Experiencias</a></li>
+        <li><a href="#pati">Quién es Pati</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contacto</p>
+      <a href="mailto:info@latidoo.com" class="footer-contact-email">info@latidoo.com</a>
+      <div class="footer-social">
+        <a href="https://wa.me/34627131251" aria-label="WhatsApp" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.121.554 4.11 1.523 5.835L.057 23.927l6.266-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.72.856.894-3.617-.234-.372A9.818 9.818 0 1112 21.818z"/></svg>
         </a>
-        <a class="social-btn" href="#" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a class="social-btn" href="#" aria-label="Twitter/X">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <a href="https://www.instagram.com/latidoo_bypati?igsh=aWFlOHZzbHUwemE0" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         </a>
       </div>
     </div>
   </div>
+  <div class="footer-bottom reveal" style="--rv:80ms"><p class="footer-copy">© 2026 Latidoo, by Pati</p></div>
 </footer>
 
 <script>
-/* ── CURSOR ── */
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cur.style.left=mx+'px';cur.style.top=my+'px';
-});
-function animRing(){
-  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
-  ring.style.left=rx+'px';ring.style.top=ry+'px';
-  requestAnimationFrame(animRing);
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Huellas procedurales ── */
+  function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  const NS='http://www.w3.org/2000/svg';
+  function buildPrint(target, seed, width){
+    const r=rng(seed), cx=(r()-.5)*6, cy=-10+(r()-.5)*5;
+    const p1=r()*6.28, p2=r()*6.28, p3=r()*6.28;
+    const spacing=2.75, rot=(r()-.5)*.5;
+    let k=0, out=[];
+    for(let i=1; i*spacing<80; i++){
+      const base=i*spacing, pts=[];
+      for(let t=0; t<=Math.PI*2+0.001; t+=0.05){
+        const wob=1+0.07*Math.sin(2*t+p1)+0.035*Math.sin(5*t+p2+i*.15)+0.02*Math.sin(9*t+p3);
+        // núcleo tipo lazo: los anillos interiores se abren por abajo
+        let rr=base*wob;
+        let x=Math.cos(t+rot)*rr*0.8, y=Math.sin(t+rot)*rr*1.05;
+        // aplanar hacia la base (las crestas bajas son más horizontales)
+        if(y>0){ y=y*(1-0.2*Math.min(1,base/50)); x=x*(1-0.1*Math.min(1,base/50)); }
+        pts.push([cx+x, cy+y]);
+      }
+      // cortes aleatorios en la cresta (terminaciones y bifurcaciones)
+      const n=pts.length, cuts=[];
+      const nc = i<3 ? 1 : (r()<.5?1:2);
+      for(let c=0;c<nc;c++){ const s=Math.floor(r()*n); cuts.push([s, s+3+Math.floor(r()*5)]); }
+      let seg=[];
+      for(let j=0;j<n;j++){
+        const cut=cuts.some(([a,b])=> (j>=a && j<=b) || (b>=n && j<=b-n));
+        if(cut){ if(seg.length>2) out.push({pts:seg,i}); seg=[]; } else seg.push(pts[j]);
+      }
+      if(seg.length>2) out.push({pts:seg,i});
+      k++;
+    }
+    target.innerHTML='';
+    out.forEach(o=>{
+      const d='M'+o.pts.map(p=>p[0].toFixed(2)+','+p[1].toFixed(2)).join('L');
+      const el=document.createElementNS(NS,'path');
+      el.setAttribute('d',d); el.setAttribute('class','ridge');
+      el.setAttribute('stroke-width', (width*(0.85+r()*0.35)).toFixed(2));
+      el.setAttribute('opacity',(0.72+r()*0.28).toFixed(2));
+      target.appendChild(el);
+      const len=el.getTotalLength();
+      el.style.setProperty('--len', len.toFixed(1));
+      el.style.setProperty('--rd', (o.i*0.025).toFixed(3)+'s');
+    });
+  }
+  // silueta de yema: más ancha arriba, más estrecha hacia la punta del corazón
+  function egg(rx,ry){ let d=''; for(let t=0;t<=Math.PI*2+0.001;t+=0.08){ const sy=Math.sin(t); const x=rx*Math.cos(t)*(1-0.26*sy); const y=ry*sy; d+=(d?'L':'M')+x.toFixed(2)+','+y.toFixed(2);} return d+'Z'; }
+  document.querySelectorAll('.prints .egg').forEach(el=>el.setAttribute('d', el.classList.contains('egg-big')?egg(44,70):egg(40,66)));
+  buildPrint(document.getElementById('ridgesA'), 11, 1.35);
+  buildPrint(document.getElementById('ridgesB'), 29, 1.55);
+
+  const prints=document.getElementById('prints');
+  function play(){
+    prints.classList.remove('run');
+    void prints.getBoundingClientRect();
+    requestAnimationFrame(()=>requestAnimationFrame(()=>prints.classList.add('run')));
+  }
+  if(reduce){ prints.classList.add('run'); } else { setTimeout(play, 500); }
+  document.getElementById('replay').addEventListener('click', play);
+  document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.swatch').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    prints.style.setProperty('--ink', b.dataset.ink);
+    prints.style.setProperty('--ink-soft', b.dataset.soft);
+    if(!reduce) play();
+  }));
+
+})();
+
+
+/* ── Entradas al hacer scroll ── */
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  const ro=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } }),{rootMargin:'0px 0px -24px 0px',threshold:0});
+  els.forEach(e=>ro.observe(e));
+})();
+
+/* ── Modales ── */
+const LISTA_TALLERES = [{"href": "/macrame", "img": "/taller-macrame.jpg", "tag": "Próximo taller", "t": "Taller de macramé", "d": "Vie 27 nov · 17:00–18:00 · Ludoteca La Carmela", "cta": "Reservar"}, {"href": "/navidad", "img": "/taller-navidad.jpg", "tag": "Siguiente taller", "t": "Campamento de Navidad en inglés", "d": "23, 24, 28, 29, 30 y 31 dic · 9:00–14:00 h", "cta": "Reservar"}];
+const servicios = {
+  campamentos:{ heart:'corazonverde_transparent.png', title:'Campamentos', desc:'Campamentos urbanos diseñados con base en el neurodesarrollo. Un espacio donde los peques aprenden jugando, hacen amigos y viven experiencias que recuerdan para siempre. Actividades al aire libre, creatividad, movimiento y mucho corazón.', meta:[{label:'Edad',value:'3 a 12 años'},{label:'Temporada',value:'Verano, Navidad, Semana Santa'},{label:'Grupos',value:'Reducidos (máx. 10 peques)'},{label:'Horario',value:'9:00 – 14:00 h'}]},
+  english:{ heart:'corazon_vino_tinto_transparent.png', title:'English Club', desc:'Inglés para peques donde aprender es jugar y crear. Un método basado en la inmersión, el movimiento y la repetición natural del lenguaje. Sin libros, sin presión. Solo curiosidad y ganas de comunicarse.', meta:[{label:'Edad',value:'3 a 8 años'},{label:'Formato',value:'Sesiones semanales'},{label:'Grupos',value:'Máximo 6 peques'},{label:'Duración',value:'60 minutos por sesión'}]},
+  talleres:{ heart:'corazon_naranja_transparent.png', title:'Talleres', desc:'Experiencias puntuales para disfrutar en familia o con amigos. Arte, naturaleza, ciencia sensorial, cocina creativa... Cada taller es una aventura diferente diseñada para estimular los sentidos y la curiosidad natural de los niños.', lista:LISTA_TALLERES,meta:[{label:'Edad',value:'2 a 10 años'},{label:'Formato',value:'Sesión única (2-3 horas)'},{label:'Grupos',value:'Abiertos o privados'},{label:'Calendario',value:'Consultar disponibilidad'}]},
+  fiestas:{ heart:'corazon_morado_transparent.png', title:'Fiestas personalizadas', desc:'Una fiesta de cumpleaños diseñada desde cero para tu peque. Teniendo en cuenta su personalidad, sus intereses y lo que le hace brillar. Actividades dirigidas, dinámica de grupo y una experiencia que las familias recordarán.', meta:[{label:'Duración',value:'2 horas'},{label:'Grupo',value:'Hasta 15 niños'},{label:'Incluye',value:'Actividades + monitor + decoración'},{label:'Reserva',value:'Con 2 semanas de antelación'}]},
+  formaciones:{ heart:'corazon_marron_transparent.png', title:'Formaciones', desc:'Talleres y formaciones para familias y educadores que quieren acompañar mejor a los niños desde el neurodesarrollo. Aprende a entender el comportamiento, las necesidades y el potencial de cada niño con herramientas reales y prácticas.', meta:[{label:'Dirigido a',value:'Familias y docentes'},{label:'Formato',value:'Presencial u online'},{label:'Duración',value:'2 a 4 horas'},{label:'Próxima fecha',value:'Consultar disponibilidad'}]}
+};
+let lastFocus=null;
+function openModal(id){
+  const s=servicios[id]; if(!s) return;
+  lastFocus=document.activeElement;
+  document.getElementById('modalHeart').src=s.heart;
+  document.getElementById('modalTitle').textContent=s.title;
+  document.getElementById('modalDesc').textContent=s.desc;
+  document.getElementById('modalMeta').innerHTML=s.meta.map(m=>`<div class="meta-item"><p class="meta-label">${m.label}</p><p class="meta-value">${m.value}</p></div>`).join('');
+  const esLista=!!s.lista;
+  const lista=document.getElementById('modalLista');
+  document.getElementById('modalMeta').hidden=esLista;
+  lista.hidden=!esLista;
+  document.getElementById('modalCta').hidden=esLista;
+  document.getElementById('modalOtra').hidden=!esLista;
+  if(esLista){
+    lista.innerHTML=s.lista.map(i=>`<a class="modal-taller" href="${i.href}" target="_blank" rel="noopener"><img src="${i.img}" alt=""><span class="mt-info"><span class="mt-tag">${i.tag}</span><span class="mt-t">${i.t}</span><span class="mt-d">${i.d}</span></span><span class="mt-cta">${i.cta}</span></a>`).join('');
+  }
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.querySelector('.modal-close').focus();
 }
-animRing();
+function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
+function closeModalOutside(e){ if(e.target===document.getElementById('modal')) closeModal(); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
 
-/* ── NAV SCROLL ── */
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').style.background=
-    window.scrollY>60?'rgba(5,8,15,0.95)':'rgba(5,8,15,0.7)';
-});
-
-/* ── ANIMATED HEX CANVAS ── */
-const canvas=document.getElementById('hexCanvas');
-const ctx=canvas.getContext('2d');
-const W=480,H=480;
-canvas.width=W;canvas.height=H;
-const CX=W/2,CY=H/2;
-
-function hexPts(r,cx=CX,cy=CY){
-  return Array.from({length:6},(_,i)=>{
-    const a=Math.PI/180*(90+i*60);
-    return[cx+r*Math.cos(a),cy-r*Math.sin(a)];
-  });
-}
-
-/* Particles */
-const particles=[];
-for(let i=0;i<60;i++){
-  const angle=Math.random()*Math.PI*2;
-  const r=40+Math.random()*160;
-  particles.push({
-    x:CX+r*Math.cos(angle),y:CY+r*Math.sin(angle),
-    vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,
-    size:Math.random()*1.5+.5,
-    alpha:Math.random()*.4+.1,
-    color:Math.random()<.5?'14,165,233':'91,95,224'
-  });
-}
-
-let t=0;
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  t+=.008;
-
-  /* Outer ring glow */
-  const gOuter=ctx.createRadialGradient(CX,CY,100,CX,CY,220);
-  gOuter.addColorStop(0,'rgba(14,165,233,0.06)');
-  gOuter.addColorStop(1,'rgba(14,165,233,0)');
-  ctx.fillStyle=gOuter;
-  ctx.beginPath();ctx.arc(CX,CY,220,0,Math.PI*2);ctx.fill();
-
-  /* Rotating outer hex */
-  const pts1=hexPts(170);
-  const rotOuter=t*.3;
-  ctx.save();ctx.translate(CX,CY);ctx.rotate(rotOuter);ctx.translate(-CX,-CY);
-  ctx.beginPath();pts1.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();
-  const gs1=ctx.createLinearGradient(0,0,W,H);
-  gs1.addColorStop(0,'rgba(14,165,233,0.35)');
-  gs1.addColorStop(.5,'rgba(91,95,224,0.35)');
-  gs1.addColorStop(1,'rgba(139,92,246,0.35)');
-  ctx.strokeStyle=gs1;ctx.lineWidth=1.5;ctx.stroke();
-  ctx.restore();
-
-  /* Inner hex (counter-rotate) */
-  const pts2=hexPts(108);
-  ctx.save();ctx.translate(CX,CY);ctx.rotate(-t*.2);ctx.translate(-CX,-CY);
-  ctx.beginPath();pts2.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();
-  ctx.fillStyle='rgba(14,165,233,0.06)';ctx.fill();
-  const gs2=ctx.createLinearGradient(0,0,W,H);
-  gs2.addColorStop(0,'rgba(14,165,233,0.5)');
-  gs2.addColorStop(1,'rgba(91,95,224,0.5)');
-  ctx.strokeStyle=gs2;ctx.lineWidth=.8;ctx.stroke();
-  ctx.restore();
-
-  /* Neural nodes */
-  const nodes=[
-    {x:CX,y:CY-108,color:'14,165,233'},
-    {x:CX+108*Math.cos(-Math.PI/6),y:CY-108*Math.sin(-Math.PI/6),color:'91,95,224'},
-    {x:CX+108*Math.cos(Math.PI/6+Math.PI),y:CY-108*Math.sin(Math.PI/6+Math.PI),color:'91,95,224'},
-  ];
-
-  /* Lines center→nodes with pulse */
-  nodes.forEach(n=>{
-    const pulse=(Math.sin(t*3+nodes.indexOf(n))+1)/2;
-    const gLine=ctx.createLinearGradient(CX,CY,n.x,n.y);
-    gLine.addColorStop(0,`rgba(${n.color},${0.5+pulse*.3})`);
-    gLine.addColorStop(1,`rgba(${n.color},0.1)`);
-    ctx.beginPath();ctx.moveTo(CX,CY);ctx.lineTo(n.x,n.y);
-    ctx.strokeStyle=gLine;ctx.lineWidth=1+pulse;ctx.stroke();
-  });
-
-  /* Node dots */
-  nodes.forEach((n,i)=>{
-    const pulse=(Math.sin(t*2.5+i)+1)/2;
-    const gNode=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,12+pulse*6);
-    gNode.addColorStop(0,`rgba(${n.color},.9)`);
-    gNode.addColorStop(1,`rgba(${n.color},0)`);
-    ctx.fillStyle=gNode;
-    ctx.beginPath();ctx.arc(n.x,n.y,12+pulse*6,0,Math.PI*2);ctx.fill();
-    ctx.beginPath();ctx.arc(n.x,n.y,5,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${n.color},1)`;ctx.fill();
-  });
-
-  /* Center node */
-  const cPulse=(Math.sin(t*2)+1)/2;
-  const gCenter=ctx.createRadialGradient(CX,CY,0,CX,CY,28+cPulse*10);
-  gCenter.addColorStop(0,'rgba(14,165,233,1)');
-  gCenter.addColorStop(.4,'rgba(91,95,224,.6)');
-  gCenter.addColorStop(1,'rgba(139,92,246,0)');
-  ctx.fillStyle=gCenter;
-  ctx.beginPath();ctx.arc(CX,CY,28+cPulse*10,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(CX,CY,10,0,Math.PI*2);
-  ctx.fillStyle='rgba(255,255,255,.95)';ctx.fill();
-
-  /* Floating particles */
-  particles.forEach(p=>{
-    p.x+=p.vx;p.y+=p.vy;
-    const dx=p.x-CX,dy=p.y-CY,d=Math.sqrt(dx*dx+dy*dy);
-    if(d>200){p.vx*=-.9;p.vy*=-.9;}
-    if(d<30){p.vx+=(Math.random()-.5)*.5;p.vy+=(Math.random()-.5)*.5;}
-    ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${p.color},${p.alpha})`;ctx.fill();
-  });
-
-  requestAnimationFrame(draw);
-}
-draw();
-
-/* ── SCROLL REVEAL ── */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.12});
-document.querySelectorAll('.section,.about-section,.results-section,.cta-section')
-  .forEach(s=>observer.observe(s));
-
-/* ── CTA FORM ── */
-function handleSubmit(e){
+/* ── Formulario (Netlify Forms) ── */
+const contactForm=document.getElementById('contactForm');
+contactForm.addEventListener('submit', async e=>{
   e.preventDefault();
-  const input=e.target.querySelector('.cta-input');
-  const btn=e.target.querySelector('.btn-primary');
-  btn.textContent='¡Enviado! ✓';
-  btn.style.background='#1D9E75';
-  input.disabled=true;
-  setTimeout(()=>{
-    btn.innerHTML='Empezar <span class="arrow">→</span>';
-    btn.style.background='';
-    input.disabled=false;input.value='';
-  },3500);
-}
-
-// Hamburger menu
-const hamburger=document.getElementById('hamburger');
-const mobileMenu=document.getElementById('mobileMenu');
-hamburger.addEventListener('click',()=>{
-  hamburger.classList.toggle('open');
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-  });
-});
-document.addEventListener('click',e=>{
-  if(!hamburger.contains(e.target)&&!mobileMenu.contains(e.target)){
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-  }
+  const btn=contactForm.querySelector('button[type="submit"]'), msg=document.getElementById('formMsg');
+  btn.disabled=true; btn.textContent='Enviando...'; msg.className='form-msg';
+  try{
+    const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(contactForm)).toString()});
+    if(res.ok){ msg.textContent='Mensaje enviado. Te responderé en menos de 24 h.'; msg.className='form-msg form-msg--ok'; contactForm.reset(); } else throw new Error();
+  }catch{ msg.innerHTML='No se ha podido enviar. Escríbeme por <a href="https://wa.me/34627131251" target="_blank" rel="noopener">WhatsApp</a>.'; msg.className='form-msg form-msg--err'; }
+  btn.disabled=false; btn.textContent='Enviar mensaje';
 });
 
-/* ── BACKGROUND PARTICLES ── */
-(function(){
-  const c=document.getElementById('particles-bg');
-  if(!c)return;
-  const ctx2=c.getContext('2d');
-  let W,H,pts=[];
-  const N=120,CONN=150,MOUSE={x:-999,y:-999,active:false};
-  const MOUSE_RADIUS=160;
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
-  function init(){
-    pts=[];
-    for(let i=0;i<N;i++){
-      pts.push({
-        x:Math.random()*W,y:Math.random()*H,
-        vx:(Math.random()-.5)*.32,vy:(Math.random()-.5)*.32,
-        r:Math.random()*1.6+.5,
-        col:Math.random()<.5?'14,165,233':(Math.random()<.7?'91,95,224':'139,92,246'),
-        a:Math.random()*.32+.1,
-        baseA:0
-      });
-      pts[pts.length-1].baseA=pts[pts.length-1].a;
-    }
-  }
-  function loop(){
-    ctx2.clearRect(0,0,W,H);
-    for(let i=0;i<pts.length;i++){
-      const p=pts[i];
-      p.x+=p.vx;p.y+=p.vy;
-      // damping so particles don't escape forever after mouse push
-      p.vx*=.992;p.vy*=.992;
-      if(p.x<0||p.x>W)p.vx*=-1;
-      if(p.y<0||p.y>H)p.vy*=-1;
-      // mouse repulsion — stronger, smoother
-      const dx=p.x-MOUSE.x,dy=p.y-MOUSE.y,md=Math.sqrt(dx*dx+dy*dy);
-      let glow=0;
-      if(MOUSE.active && md<MOUSE_RADIUS){
-        const f=.85*Math.pow(1-md/MOUSE_RADIUS,2);
-        p.vx+=dx/(md||1)*f;p.vy+=dy/(md||1)*f;
-        glow=(1-md/MOUSE_RADIUS)*.6;
-      }
-      const drawA=Math.min(p.baseA+glow,.95);
-      ctx2.beginPath();ctx2.arc(p.x,p.y,p.r+(glow*1.2),0,Math.PI*2);
-      ctx2.fillStyle=`rgba(${p.col},${drawA})`;ctx2.fill();
-      for(let j=i+1;j<pts.length;j++){
-        const q=pts[j],dx2=p.x-q.x,dy2=p.y-q.y,d=Math.sqrt(dx2*dx2+dy2*dy2);
-        if(d<CONN){
-          // Brighten lines near mouse
-          const midX=(p.x+q.x)/2,midY=(p.y+q.y)/2;
-          const mdx=midX-MOUSE.x,mdy=midY-MOUSE.y;
-          const mdLine=Math.sqrt(mdx*mdx+mdy*mdy);
-          const lineGlow=MOUSE.active && mdLine<MOUSE_RADIUS
-            ? (1-mdLine/MOUSE_RADIUS)*.4 : 0;
-          const alpha=(1-d/CONN)*.22 + lineGlow;
-          ctx2.beginPath();ctx2.moveTo(p.x,p.y);ctx2.lineTo(q.x,q.y);
-          ctx2.strokeStyle=`rgba(${p.col},${alpha})`;
-          ctx2.lineWidth=.5+lineGlow*.8;ctx2.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(loop);
-  }
-  window.addEventListener('resize',()=>{resize();init();});
-  document.addEventListener('mousemove',e=>{
-    const r=c.getBoundingClientRect();
-    MOUSE.x=e.clientX-r.left;MOUSE.y=e.clientY-r.top;MOUSE.active=true;
-  });
-  document.addEventListener('mouseleave',()=>{MOUSE.active=false;});
-  resize();init();loop();
-})();
-
-/* ── COUNTER ANIMATION ── */
-function countUp(el,target,decimals,prefix,suffix,dur){
-  const start=performance.now();
-  (function frame(now){
-    const p=Math.min((now-start)/dur,1);
-    const ease=1-Math.pow(1-p,3);
-    el.textContent=prefix+(target*ease).toFixed(decimals)+suffix;
-    if(p<1)requestAnimationFrame(frame);
-  })(start);
-}
-const statsObs=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(!entry.isIntersecting)return;
-    statsObs.unobserve(entry.target);
-    entry.target.querySelectorAll('[data-count]').forEach(el=>{
-      const t=parseFloat(el.dataset.count);
-      const dec=parseInt(el.dataset.decimals||0);
-      const pre=el.dataset.prefix||'';
-      const suf=el.dataset.suffix||'';
-      countUp(el,t,dec,pre,suf,1400);
-    });
-  });
-},{threshold:0.4});
-const statsEl=document.querySelector('.hero-stats');
-if(statsEl)statsObs.observe(statsEl);
-
-// Service card expand
-document.querySelectorAll('.service-arrow').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const expand=btn.nextElementSibling;
-    const isOpen=expand.classList.contains('open');
-    document.querySelectorAll('.service-expand.open').forEach(el=>{
-      el.classList.remove('open');
-      el.previousElementSibling.textContent='Ver más →';
-    });
-    if(!isOpen){
-      expand.classList.add('open');
-      btn.textContent='Ver menos ↑';
-    }
-  });
-});
-
-/* ════════════════════════════════════════════════════════════
-   PREMIUM JS LAYER · v2 Obsidian AI
-   ════════════════════════════════════════════════════════════ */
-(function(){
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── Scroll progress bar ──────────────────────────────── */
-  const progress = document.getElementById('scrollProgress');
-  function updateProgress(){
-    const h = document.documentElement;
-    const max = h.scrollHeight - h.clientHeight;
-    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
-    progress.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateProgress, {passive:true});
-  window.addEventListener('resize', updateProgress);
-  updateProgress();
-
-  /* ── Scroll spy with active link indicator ────────────── */
-  const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
-  const sections = navLinks
-    .map(a => document.querySelector(a.getAttribute('href')))
-    .filter(Boolean);
-  const linkBySection = new Map();
-  navLinks.forEach((a,i)=>{ if(sections[i]) linkBySection.set(sections[i].id, a); });
-
-  if (sections.length){
-    const spy = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if (entry.isIntersecting){
-          navLinks.forEach(a=>a.classList.remove('is-active'));
-          const link = linkBySection.get(entry.target.id);
-          if (link) link.classList.add('is-active');
-        }
-      });
-    }, { rootMargin:'-40% 0px -55% 0px', threshold:0 });
-    sections.forEach(s=>spy.observe(s));
-  }
-
-  /* ── Typewriter subheadline ───────────────────────────── */
-  const sub = document.getElementById('heroSub');
-  if (sub){
-    const text = sub.dataset.typewriter || '';
-    const target = sub.querySelector('.tw-text');
-    if (reduced){
-      target.textContent = text;
-      const c = sub.querySelector('.tw-caret'); if (c) c.style.display='none';
-    } else {
-      let i = 0;
-      const speed = 22; // ms per char
-      const start = () => {
-        const tick = () => {
-          if (i <= text.length){
-            target.textContent = text.slice(0, i);
-            i++;
-            setTimeout(tick, speed + (Math.random()*18 - 9));
-          } else {
-            // Stop caret blinking forever — fade it out after pause
-            setTimeout(()=>{
-              const c = sub.querySelector('.tw-caret');
-              if (c) c.style.transition='opacity .6s', c.style.opacity='0';
-            }, 1400);
-          }
-        };
-        tick();
-      };
-      // Start once hero badge has settled
-      setTimeout(start, 750);
-    }
-  }
-
-  /* ── Service cards · spotlight tracking ───────────────── */
-  document.querySelectorAll('.service-card').forEach(card=>{
-    card.addEventListener('pointermove', e=>{
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-    card.addEventListener('pointerleave', ()=>{
-      card.style.setProperty('--mx', '50%');
-      card.style.setProperty('--my', '50%');
-    });
-  });
-
-  /* ── CTA primary button · ripple on click ─────────────── */
-  document.querySelectorAll('.btn-primary').forEach(btn=>{
-    btn.addEventListener('click', e=>{
-      if (reduced) return;
-      const r = btn.getBoundingClientRect();
-      const size = Math.max(r.width, r.height) * 2.2;
-      const ripple = document.createElement('span');
-      ripple.className = 'ripple';
-      ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.left = (e.clientX - r.left) + 'px';
-      ripple.style.top = (e.clientY - r.top) + 'px';
-      btn.appendChild(ripple);
-      setTimeout(()=>ripple.remove(), 700);
-    });
-  });
-
-  /* ── Reduced motion: disable hex canvas + bg particles ─ */
-  if (reduced){
-    const bg = document.getElementById('particles-bg');
-    if (bg) bg.style.display='none';
-  }
-})();
-
-/* ── Counter overshoot upgrade (replaces ease-cubic) ───── */
-(function(){
-  // Override countUp to add overshoot for dramatic effect
-  if (typeof countUp !== 'function') return;
-  window.countUp = function(el, target, decimals, prefix, suffix, dur){
-    const start = performance.now();
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced){ el.textContent = prefix + target.toFixed(decimals) + suffix; return; }
-    (function frame(now){
-      const p = Math.min((now - start) / dur, 1);
-      // ease-out-back: overshoots then settles
-      const c1 = 1.70158, c3 = c1 + 1;
-      const ease = 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2);
-      const val = target * ease;
-      el.textContent = prefix + val.toFixed(decimals) + suffix;
-      if (p < 1) requestAnimationFrame(frame);
-      else el.textContent = prefix + target.toFixed(decimals) + suffix;
-    })(start);
-  };
-})();
+/* ── Nav ── */
+const nav=document.getElementById('mainNav'), burger=document.getElementById('navBurger'), links=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>10),{passive:true});
+burger.addEventListener('click',()=>{ const open=nav.classList.toggle('nav-open'); links.classList.toggle('open',open); burger.setAttribute('aria-expanded',open); });
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ nav.classList.remove('nav-open'); links.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }));
+const patiMore=document.getElementById('patiMore');
+patiMore.addEventListener('click',()=>{ const t=document.querySelector('.pati-text'); const open=t.classList.toggle('open'); patiMore.textContent=open?'Leer menos':'Leer más'; patiMore.setAttribute('aria-expanded',open); });
 </script>
-
-<!-- ═══════════════════════════════════════════════════════════
-     ARIA CHAT WIDGET — Area IA Solutions
-     Asistente IA con detección automática de idioma
-═══════════════════════════════════════════════════════════ -->
-<style>
-  #aria-widget {
-    --w-acento:  #4f8ef7;
-    --w-fondo:   #0f1420;
-    --w-panel:   #141927;
-    --w-borde:   #1e2535;
-    --w-texto:   #e2e8f0;
-    --w-suave:   #64748b;
-    --w-verde:   #3ecf8e;
-  }
-
-  #aria-btn {
-    position: fixed;
-    bottom: 24px; right: 24px;
-    width: 58px; height: 58px;
-    background: var(--w-acento);
-    border: none; border-radius: 50%;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 20px rgba(79,142,247,0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-    z-index: 9998;
-    animation: aria-pulso 3s infinite;
-  }
-  #aria-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(79,142,247,0.6); }
-  @keyframes aria-pulso {
-    0%,100% { box-shadow: 0 4px 20px rgba(79,142,247,0.4); }
-    50%     { box-shadow: 0 4px 30px rgba(79,142,247,0.7); }
-  }
-
-  #aria-burbuja {
-    position: fixed;
-    bottom: 90px; right: 24px;
-    background: var(--w-panel);
-    border: 1px solid var(--w-borde);
-    border-radius: 12px 12px 4px 12px;
-    padding: 0.7rem 1rem;
-    font-family: 'DM Sans', 'Inter', sans-serif;
-    font-size: 0.82rem;
-    color: var(--w-texto);
-    max-width: 220px;
-    z-index: 9997;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    cursor: pointer;
-  }
-  #aria-burbuja strong { color: var(--w-acento); display: block; margin-bottom: 0.2rem; font-size: 0.78rem; }
-  .aria-cerrar-burbuja {
-    position: absolute; top: -6px; right: -6px;
-    width: 18px; height: 18px;
-    background: var(--w-borde); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.6rem; color: var(--w-suave); cursor: pointer;
-  }
-
-  #aria-widget {
-    position: fixed;
-    bottom: 90px; right: 24px;
-    width: 360px; height: 520px;
-    background: var(--w-fondo);
-    border: 1px solid var(--w-borde);
-    border-radius: 18px;
-    display: none; flex-direction: column;
-    z-index: 9999; overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-    font-family: 'DM Sans', 'Inter', sans-serif;
-  }
-  #aria-widget.abierto { display: flex; animation: aria-aparecer 0.25s ease-out; }
-  @keyframes aria-aparecer {
-    from { opacity: 0; transform: translateY(12px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  .aria-header {
-    background: var(--w-panel); border-bottom: 1px solid var(--w-borde);
-    padding: 0.9rem 1.1rem; display: flex; align-items: center; gap: 0.7rem; flex-shrink: 0;
-  }
-  .aria-avatar {
-    width: 36px; height: 36px;
-    background: linear-gradient(135deg, #4f8ef7, #3ecf8e);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
-  }
-  .aria-header-info { flex: 1; }
-  .aria-header-info h3 { font-size: 0.85rem; font-weight: 600; color: var(--w-texto); margin: 0; }
-  .aria-header-info p {
-    font-size: 0.68rem; color: var(--w-verde); margin: 0;
-    display: flex; align-items: center; gap: 0.3rem;
-  }
-  .aria-header-info p::before {
-    content: ''; width: 6px; height: 6px;
-    background: var(--w-verde); border-radius: 50%; display: inline-block;
-  }
-  .aria-cerrar-btn {
-    background: none; border: none; color: var(--w-suave);
-    cursor: pointer; font-size: 1.1rem; padding: 0.2rem; transition: color 0.15s;
-  }
-  .aria-cerrar-btn:hover { color: var(--w-texto); }
-
-  .aria-mensajes {
-    flex: 1; overflow-y: auto; padding: 1rem;
-    display: flex; flex-direction: column; gap: 0.8rem; scroll-behavior: smooth;
-  }
-  .aria-mensajes::-webkit-scrollbar { width: 3px; }
-  .aria-mensajes::-webkit-scrollbar-thumb { background: var(--w-borde); border-radius: 2px; }
-
-  .aria-bienvenida-msg {
-    background: var(--w-panel); border: 1px solid var(--w-borde);
-    border-radius: 12px 12px 12px 3px;
-    padding: 0.75rem 0.9rem; font-size: 0.82rem; line-height: 1.6; color: var(--w-texto);
-  }
-
-  .aria-msg { display: flex; flex-direction: column; gap: 0.15rem; max-width: 88%; }
-  .aria-msg.usuario { align-self: flex-end; align-items: flex-end; }
-  .aria-msg.agente  { align-self: flex-start; align-items: flex-start; }
-  .aria-burbuja-msg {
-    padding: 0.65rem 0.85rem; border-radius: 12px;
-    font-size: 0.82rem; line-height: 1.6;
-    white-space: pre-wrap; word-break: break-word;
-  }
-  .aria-msg.usuario .aria-burbuja-msg { background: var(--w-acento); color: #fff; border-bottom-right-radius: 3px; }
-  .aria-msg.agente  .aria-burbuja-msg { background: var(--w-panel); border: 1px solid var(--w-borde); border-bottom-left-radius: 3px; color: var(--w-texto); }
-
-  .aria-escribiendo {
-    display: none; align-self: flex-start;
-    background: var(--w-panel); border: 1px solid var(--w-borde);
-    border-radius: 12px; padding: 0.7rem 0.9rem; gap: 4px;
-  }
-  .aria-escribiendo.visible { display: flex; align-items: center; }
-  .aria-escribiendo span {
-    width: 5px; height: 5px; background: var(--w-acento); border-radius: 50%;
-    animation: aria-pts 1.1s infinite;
-  }
-  .aria-escribiendo span:nth-child(2) { animation-delay: 0.18s; }
-  .aria-escribiendo span:nth-child(3) { animation-delay: 0.36s; }
-  @keyframes aria-pts {
-    0%,60%,100% { transform: scale(1); opacity: 0.3; }
-    30%          { transform: scale(1.35); opacity: 1; }
-  }
-
-  .aria-sugerencias {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-    padding: 0 1rem 0.6rem; flex-shrink: 0;
-  }
-  .aria-sug {
-    background: var(--w-panel); border: 1px solid var(--w-borde);
-    border-radius: 20px; padding: 0.3rem 0.7rem;
-    font-size: 0.72rem; color: var(--w-acento);
-    cursor: pointer; transition: all 0.15s; white-space: nowrap;
-    font-family: inherit;
-  }
-  .aria-sug:hover { background: #1a2235; border-color: var(--w-acento); }
-
-  .aria-entrada {
-    border-top: 1px solid var(--w-borde); padding: 0.7rem 0.9rem;
-    display: flex; gap: 0.5rem; align-items: flex-end;
-    flex-shrink: 0; background: var(--w-panel);
-  }
-  #aria-input {
-    flex: 1; background: var(--w-fondo); border: 1px solid var(--w-borde);
-    border-radius: 8px; padding: 0.6rem 0.8rem; color: var(--w-texto);
-    font-family: inherit; font-size: 0.82rem; resize: none; outline: none;
-    min-height: 38px; max-height: 100px; transition: border-color 0.2s;
-  }
-  #aria-input:focus { border-color: var(--w-acento); }
-  #aria-input::placeholder { color: var(--w-suave); }
-  #aria-enviar {
-    background: var(--w-acento); color: #fff; border: none;
-    border-radius: 8px; width: 38px; height: 38px; cursor: pointer;
-    font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
-    transition: opacity 0.15s; flex-shrink: 0;
-  }
-  #aria-enviar:hover    { opacity: 0.85; }
-  #aria-enviar:disabled { opacity: 0.3; cursor: not-allowed; }
-
-  .aria-footer {
-    text-align: center; font-size: 0.6rem; color: var(--w-suave);
-    padding: 0.35rem; background: var(--w-panel);
-  }
-  .aria-footer a { color: var(--w-acento); text-decoration: none; }
-</style>
-
-<div id="aria-burbuja" onclick="toggleAriaChat()">
-  <div class="aria-cerrar-burbuja" onclick="event.stopPropagation();cerrarAriaBurbuja()">✕</div>
-  <strong id="aria-burbuja-titulo">¡Hola! ¿En qué puedo ayudarte?</strong>
-  <span id="aria-burbuja-sub">Pregúntame sobre nuestros servicios</span>
-</div>
-
-<button id="aria-btn" onclick="toggleAriaChat()">
-  <span id="aria-btn-icono">💬</span>
-</button>
-
-<div id="aria-widget">
-  <div class="aria-header">
-    <div class="aria-avatar">✦</div>
-    <div class="aria-header-info">
-      <h3>ARIA</h3>
-      <p id="aria-estado-p">en línea</p>
-    </div>
-    <button class="aria-cerrar-btn" onclick="toggleAriaChat()">✕</button>
-  </div>
-  <div class="aria-mensajes" id="aria-mensajes">
-    <div class="aria-bienvenida-msg" id="aria-bienvenida-msg"></div>
-    <div class="aria-escribiendo" id="aria-escribiendo">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-  <div class="aria-sugerencias" id="aria-sugs"></div>
-  <div class="aria-entrada">
-    <textarea id="aria-input" rows="1"></textarea>
-    <button id="aria-enviar" onclick="ariaEnviar()">↑</button>
-  </div>
-  <div class="aria-footer">Powered by <a href="https://areaiasolutions.com">Area IA Solutions</a></div>
-</div>
-
-<script>
-(function() {
-  var ARIA_KEY   = localStorage.getItem('aria_api_key') || '';
-  var ARIA_MODEL = 'claude-haiku-4-5-20251001';
-  var ariaHist   = [];
-  var ariaOpen   = false;
-
-  var SYSTEM = 'You are ARIA, the AI assistant for Area IA Solutions (areaiasolutions.com), a digital marketing and AI automation agency based in Málaga, Spain.\n\nIMPORTANT: Always respond in the same language the user writes in.\n\n## About\nFounder: José Leonardo Prieto, 20+ years business experience.\nServices: Google Ads, Social Media & Meta Ads, SEO & AEO (including ChatGPT/Perplexity/Gemini), AI Automation, Email Marketing, Analytics.\n\n## Key info\n- Free digital diagnosis available at areaiasolutions.com/diagnostico\n- Phone/WhatsApp: +34 629 968 373\n- Email: jlprietos@gmail.com\n- Response under 24 hours, no spam\n- Proven results: 2x ROI, 4.9★ Airbnb Superhost, 90% coworking occupancy\n\n## Rules\n- Be warm, professional, concise (2-4 sentences max per reply)\n- Never invent prices — say pricing is personalized after free diagnosis\n- Always suggest the free diagnosis as next step\n- If they want contact: give WhatsApp +34 629 968 373 and email jlprietos@gmail.com';
-
-  var LANG = (navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en';
-
-  var UI = {
-    es: {
-      burbuja: '¡Hola! ¿En qué puedo ayudarte?',
-      burbuja_sub: 'Pregúntame sobre nuestros servicios',
-      bienvenida: '¡Hola! Soy ARIA, la asistente de Area IA Solutions 👋\n\n¿En qué puedo ayudarte? Puedo contarte sobre nuestros servicios, el proceso de trabajo o el diagnóstico gratuito.',
-      placeholder: 'Escribe tu mensaje...',
-      estado: 'en línea',
-      sugs: ['¿Qué servicios ofrecen?', '¿Tienen diagnóstico gratis?', 'Quiero contactar']
-    },
-    en: {
-      burbuja: 'Hi! How can I help you?',
-      burbuja_sub: 'Ask me about our services',
-      bienvenida: 'Hi! I\'m ARIA, the Area IA Solutions assistant 👋\n\nHow can I help you? I can tell you about our services, our process, or the free digital diagnosis.',
-      placeholder: 'Type your message...',
-      estado: 'online',
-      sugs: ['What services do you offer?', 'Free diagnosis?', 'I want to get in touch']
-    }
-  };
-  var T = UI[LANG];
-
-  function init() {
-    document.getElementById('aria-burbuja-titulo').textContent = T.burbuja;
-    document.getElementById('aria-burbuja-sub').textContent    = T.burbuja_sub;
-    document.getElementById('aria-bienvenida-msg').textContent = T.bienvenida;
-    document.getElementById('aria-estado-p').textContent       = T.estado;
-    document.getElementById('aria-input').placeholder          = T.placeholder;
-
-    var sugsDiv = document.getElementById('aria-sugs');
-    T.sugs.forEach(function(s) {
-      var b = document.createElement('button');
-      b.className = 'aria-sug'; b.textContent = s;
-      b.onclick = function() { usarSug(s); };
-      sugsDiv.appendChild(b);
-    });
-
-    var inp = document.getElementById('aria-input');
-    inp.addEventListener('input', function() { inp.style.height='auto'; inp.style.height=inp.scrollHeight+'px'; });
-    inp.addEventListener('keydown', function(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ariaEnviar();} });
-
-    setTimeout(function() { cerrarAriaBurbuja(); }, 7000);
-  }
-
-  window.cerrarAriaBurbuja = function() {
-    var b = document.getElementById('aria-burbuja');
-    b.style.transition='opacity 0.3s'; b.style.opacity='0';
-    setTimeout(function(){ b.style.display='none'; }, 300);
-  };
-
-  window.toggleAriaChat = function() {
-    ariaOpen = !ariaOpen;
-    var w = document.getElementById('aria-widget');
-    var i = document.getElementById('aria-btn-icono');
-    cerrarAriaBurbuja();
-    if (ariaOpen) {
-      w.classList.add('abierto'); i.textContent = '✕';
-      if (!ARIA_KEY) {
-        var k = prompt('API key de Anthropic para activar ARIA:');
-        if (k) { ARIA_KEY = k; localStorage.setItem('aria_api_key', k); }
-      }
-      document.getElementById('aria-input').focus();
-    } else {
-      w.classList.remove('abierto'); i.textContent = '💬';
-    }
-  };
-
-  function usarSug(txt) {
-    document.getElementById('aria-input').value = txt; ariaEnviar();
-  }
-
-  window.ariaEnviar = async function() {
-    var txt = document.getElementById('aria-input').value.trim();
-    if (!txt || !ARIA_KEY) return;
-    document.getElementById('aria-sugs').style.display = 'none';
-    var inp = document.getElementById('aria-input');
-    inp.value = ''; inp.style.height = 'auto';
-    document.getElementById('aria-enviar').disabled = true;
-    ariaHist.push({role:'user', content:txt});
-    ariaMostrar('usuario', txt);
-    ariaEscribiendo(true);
-    try {
-      var r = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type':'application/json',
-          'x-api-key': ARIA_KEY,
-          'anthropic-version':'2023-06-01',
-          'anthropic-dangerous-direct-browser-access':'true'
-        },
-        body: JSON.stringify({model:ARIA_MODEL, max_tokens:512, system:SYSTEM, messages:ariaHist})
-      });
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.error && d.error.message);
-      var resp = d.content[0].text;
-      ariaHist.push({role:'assistant', content:resp});
-      ariaEscribiendo(false);
-      ariaMostrar('agente', resp);
-    } catch(e) {
-      ariaEscribiendo(false);
-      ariaMostrar('agente', '⚠️ Error: ' + e.message);
-    }
-    document.getElementById('aria-enviar').disabled = false;
-    inp.focus();
-  };
-
-  function ariaMostrar(quien, txt) {
-    var md = document.getElementById('aria-mensajes');
-    var es = document.getElementById('aria-escribiendo');
-    var d  = document.createElement('div');
-    d.className = 'aria-msg ' + quien;
-    d.innerHTML = '<div class="aria-burbuja-msg">' + txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>') + '</div>';
-    md.insertBefore(d, es);
-    md.scrollTop = md.scrollHeight;
-  }
-
-  function ariaEscribiendo(v) {
-    var el = document.getElementById('aria-escribiendo');
-    var md = document.getElementById('aria-mensajes');
-    if (v) { md.appendChild(el); el.classList.add('visible'); }
-    else   { el.classList.remove('visible'); }
-    md.scrollTop = md.scrollHeight;
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
-
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "892eff08cc484784b7fed9ac0b7cfa0c"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latidoo — Educational experiences for children</title>
+  <link rel="alternate" hreflang="es" href="https://latidoo.com/" />
+  <link rel="alternate" hreflang="en" href="https://latidoo.com/en/" />
+  <meta name="description" content="Educational experiences grounded in child neurodevelopment: camps, English Club, workshops, parties and training for families. By Pati." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#FAF3EE; --bg-surface:#FFF8F3; --bg-footer:#3D2010;
+      --text-primary:#3D2010; --text-secondary:#8C5E3C; --text-hint:#A97E55;
+      --border:#E8C9A8; --border-strong:#C9A07A;
+      --primary:#2E9070; --primary-dark:#1F6B52; --primary-light:rgba(46,144,112,0.10);
+      --c-verde:#3DAA8A; --c-vino:#7D2040; --c-naranja:#C96A10; --c-morado:#7B4EC4; --c-marron:#7A5030;
+      --ink:#9d4c22; --ink-soft:#c3784f;
+      --font-display:'Fraunces',Georgia,serif; --font-body:'Nunito',sans-serif;
+      --s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s10:40px;--s12:48px;--s16:64px;--s24:96px;
+      --r-md:12px;--r-lg:20px;--r-pill:100px;
+      --ease-out:cubic-bezier(.2,.8,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;scroll-padding-top:64px;overflow-x:hidden;}
+    body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary);overflow-x:hidden;-webkit-text-size-adjust:100%;line-height:1.6;}
+    img{max-width:100%;height:auto;display:block;}
+    :focus-visible{outline:2.5px solid var(--primary);outline-offset:3px;border-radius:6px;}
+    .skip{position:absolute;left:-999px;top:8px;background:var(--text-primary);color:#fff;padding:8px 14px;border-radius:8px;z-index:300;}
+    .skip:focus{left:8px;}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:15px;font-weight:700;padding:12px 28px;border-radius:var(--r-pill);text-decoration:none;min-height:44px;cursor:pointer;border:none;transition:transform 150ms,background 150ms,color 150ms,box-shadow 150ms;letter-spacing:0.2px;}
+    .btn:hover{transform:translateY(-2px);}
+    .btn-primary{background:var(--primary);color:#fff;}
+    .btn-primary:hover{background:var(--primary-dark);box-shadow:0 6px 20px rgba(46,144,112,0.28);}
+    .btn-secondary{background:transparent;color:var(--text-secondary);border:1.5px solid var(--border-strong);}
+    .btn-secondary:hover{border-color:var(--primary);color:var(--primary);}
+
+    /* NAV */
+    #mainNav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,243,238,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow 200ms;}
+    #mainNav.scrolled{box-shadow:0 2px 16px rgba(61,32,16,0.08);}
+    .nav-inner{max-width:1150px;margin:0 auto;padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{height:32px;width:auto;}
+    .nav-links{list-style:none;display:flex;align-items:center;gap:30px;}
+    .nav-links a{font-size:14px;font-weight:700;color:var(--text-secondary);text-decoration:none;transition:color 150ms;}
+    .nav-links a:hover{color:var(--text-primary);}
+    .nav-links .nav-cta{background:var(--primary);color:#fff !important;padding:8px 20px;border-radius:var(--r-pill);}
+    .nav-links .nav-cta:hover{background:var(--primary-dark);}
+    .nav-links .lang{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--text-hint);}
+    .nav-links .lang .cur{color:var(--text-primary);}
+    .nav-links .lang a{font-size:13px;padding:6px 4px;}
+    @media(max-width:760px){.nav-links .lang{padding:12px 5%;font-size:15px;}.nav-links .lang a{display:inline;padding:0;font-size:15px;}}
+    .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:10px;}
+    .nav-burger span{display:block;width:22px;height:2px;background:var(--text-primary);border-radius:2px;transition:transform 250ms,opacity 250ms;}
+    #mainNav.nav-open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    #mainNav.nav-open .nav-burger span:nth-child(2){opacity:0;}
+    #mainNav.nav-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    @media(max-width:760px){
+      .nav-burger{display:flex;}
+      .nav-links{position:absolute;top:64px;left:0;right:0;background:rgba(250,243,238,0.98);border-bottom:1px solid var(--border);flex-direction:column;align-items:flex-start;gap:0;padding:8px 0 16px;display:none;}
+      .nav-links.open{display:flex;}
+      .nav-links li{width:100%;}
+      .nav-links a{display:block;padding:12px 5%;font-size:16px;}
+      .nav-links .nav-cta{margin:8px 5% 0;text-align:center;padding:12px 20px;}
+    }
+
+    /* Etiquetas de sección: cursiva, no mayúsculas */
+    .t-tag{display:inline-block;font-family:var(--font-display);font-style:italic;font-weight:600;font-size:17px;color:var(--primary);margin-bottom:var(--s2);}
+
+    /* ───────── HERO ───────── */
+    @keyframes drift1{0%{transform:translate(0,0) scale(1);}100%{transform:translate(40px,30px) scale(1.12);}}
+    @keyframes drift2{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-35px,-25px) scale(1.08);}}
+    .hero-blob{position:absolute;border-radius:50%;pointer-events:none;z-index:0;filter:blur(2px);}
+    .hero-blob-1{width:460px;height:380px;background:rgba(242,196,206,0.32);top:-90px;right:-80px;animation:drift1 16s ease-in-out infinite alternate;}
+    .hero-blob-2{width:340px;height:340px;background:rgba(245,212,160,0.26);bottom:-80px;left:38%;animation:drift2 20s ease-in-out infinite alternate;}
+    #hero{position:relative;overflow:hidden;padding:calc(var(--s16) + 64px) 5% var(--s16);}
+    .hero-grid{position:relative;z-index:1;max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1.02fr;gap:var(--s8);align-items:center;}
+    .hero-eyebrow{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:17px;color:var(--primary);margin-bottom:var(--s4);}
+    .hero-title{font-family:var(--font-display);font-size:clamp(42px,6vw,72px);font-weight:900;color:var(--text-primary);line-height:1.02;letter-spacing:-0.01em;margin-bottom:var(--s5);}
+    .hero-title .line{display:block;}
+    .hero-title .line-2{font-style:italic;font-weight:700;color:var(--primary);}
+    /* titular cinético: palabra a palabra con máscara */
+    .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em;}
+    .w>span{display:inline-block;transform:translateY(105%);animation:wordUp .8s var(--ease-out) forwards;animation-delay:calc(var(--d) * 1ms);}
+    @keyframes wordUp{to{transform:translateY(0);}}
+    .hero-fade{opacity:0;transform:translateY(12px);animation:heroFade .7s var(--ease-out) forwards;animation-delay:calc(var(--d) * 1ms);}
+    @keyframes heroFade{to{opacity:1;transform:none;}}
+    .hero-sub{font-size:clamp(16px,2vw,18px);font-weight:500;color:var(--text-secondary);line-height:1.72;max-width:460px;margin-bottom:var(--s8);}
+    .hero-btns{display:flex;flex-wrap:wrap;gap:var(--s3);}
+
+    /* ───────── HUELLAS → CORAZÓN ───────── */
+    .prints{position:relative;width:100%;max-width:400px;margin:0 auto;}
+    .prints svg{width:100%;height:auto;display:block;overflow:visible;}
+    .print{opacity:0;}
+    .print .shadow{opacity:0;}
+    .print .ridge{fill:none;stroke:var(--ink);stroke-linecap:round;}
+    .print .pad{fill:var(--ink-soft);}
+    .print-art{mix-blend-mode:multiply;}
+    .prints.run .print.a{animation:press .75s var(--ease-out) forwards;animation-delay:.35s;}
+    .prints.run .print.b{animation:press .75s var(--ease-out) forwards;animation-delay:1.85s;}
+    .prints.run .print.a .shadow{animation:finger 1s ease-out forwards;animation-delay:0s;}
+    .prints.run .print.b .shadow{animation:finger 1s ease-out forwards;animation-delay:1.5s;}
+    @keyframes press{0%{opacity:0;transform:scale(1.14);}55%{opacity:1;transform:scale(.97);}100%{opacity:1;transform:scale(1);}}
+    @keyframes finger{0%{opacity:0;transform:scale(1.5);}45%{opacity:.22;transform:scale(1.04);}100%{opacity:0;transform:scale(1);}}
+    .print{transform-box:fill-box;transform-origin:center;}
+    .print .shadow{transform-box:fill-box;transform-origin:center;}
+    .ridge{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);}
+    .prints.run .print.a .ridge{transition:stroke-dashoffset 1.1s var(--ease-out);transition-delay:calc(.45s + var(--rd));}
+    .prints.run .print.b .ridge{transition:stroke-dashoffset 1.1s var(--ease-out);transition-delay:calc(1.95s + var(--rd));}
+    .prints.run .ridge{stroke-dashoffset:0;}
+    .heart-group{transform-box:fill-box;transform-origin:50% 60%;}
+    .prints.run .heart-group{animation:beat 1.3s ease-in-out 2;animation-delay:3.4s;}
+    @keyframes beat{0%,100%{transform:scale(1);}14%{transform:scale(1.06);}28%{transform:scale(.99);}42%{transform:scale(1.04);}70%{transform:scale(1);}}
+    .tag-g{opacity:0;transition:opacity .6s ease, transform .6s var(--ease-out);}
+    .tag-g.l{transform:translateX(-8px);} .tag-g.r{transform:translateX(8px);}
+    .prints.run .tag-g.l{opacity:1;transform:none;transition-delay:1.1s;}
+    .prints.run .tag-g.r{opacity:1;transform:none;transition-delay:2.6s;}
+    .tag-line{fill:none;stroke:var(--text-hint);stroke-width:1.1;stroke-dasharray:2 3;}
+    .tag-title{font-family:var(--font-display);font-style:italic;font-weight:700;font-size:14px;fill:var(--text-primary);}
+    .tag-sub{font-family:var(--font-body);font-weight:600;font-size:9.5px;fill:var(--text-secondary);}
+    .prints-caption{text-align:center;margin-top:var(--s2);opacity:0;transform:translateY(6px);transition:opacity .7s ease,transform .7s var(--ease-out);}
+    .prints.run .prints-caption{opacity:1;transform:none;transition-delay:3.5s;}
+    .prints-caption strong{display:block;font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);font-weight:700;font-style:italic;color:var(--text-primary);line-height:1.2;}
+    .prints-caption span{font-size:14px;font-weight:600;color:var(--text-secondary);}
+    .prints-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:var(--s4);opacity:0;transition:opacity .6s ease;}
+    .prints.run .prints-controls{opacity:1;transition-delay:3.9s;}
+    .swatch{width:40px;height:40px;border:none;background:none;border-radius:50%;cursor:pointer;padding:5px;transition:transform 200ms var(--ease-out),background 200ms;}
+    .swatch img{width:100%;height:100%;object-fit:contain;}
+    .swatch:hover{transform:scale(1.12);}
+    .swatch[aria-pressed="true"]{background:rgba(61,32,16,0.08);}
+    .replay{font-family:var(--font-body);font-size:13px;font-weight:800;color:var(--primary);background:var(--primary-light);border:none;border-radius:var(--r-pill);padding:10px 16px;min-height:40px;cursor:pointer;margin-left:6px;}
+    .replay:hover{background:rgba(46,144,112,0.18);}
+
+    /* ───────── ORIGEN (símbolo + base científica) ───────── */
+    #origen{background:var(--bg-surface);padding:var(--s24) 5%;}
+    .origen-inner{max-width:680px;margin:0 auto;}
+    .origen-title{font-family:var(--font-display);font-size:clamp(30px,4vw,44px);font-weight:900;line-height:1.08;margin-bottom:var(--s6);}
+    .origen-inner p{font-size:18px;line-height:1.8;color:var(--text-primary);margin-bottom:var(--s4);}
+    .origen-inner p.soft{color:var(--text-secondary);}
+    .origen-dato{font-family:var(--font-display);font-style:italic;font-weight:700;color:var(--primary-dark);font-size:1.08em;}
+    .origen-close{font-family:var(--font-display);font-style:italic;font-weight:700;font-size:clamp(21px,2.4vw,26px) !important;line-height:1.3 !important;color:var(--primary-dark) !important;border-left:3px solid var(--primary);padding-left:var(--s5);margin:var(--s8) 0 var(--s6) !important;}
+    .origen-src{font-size:13px !important;color:var(--text-hint) !important;margin:0 !important;}
+    .origen-src a{color:var(--text-secondary);}
+
+    /* ───────── TALLER (provisional) ───────── */
+    #taller{background:var(--bg-surface);padding:var(--s16) 5% var(--s8);}
+    .taller-card{max-width:1000px;margin:0 auto;background:#fff;border:1.5px solid var(--border);border-top:4px solid var(--c-naranja);border-radius:var(--r-lg);padding:var(--s8);display:grid;grid-template-columns:minmax(0,440px) 1fr;gap:var(--s10);align-items:center;box-shadow:0 16px 40px rgba(201,106,16,0.10);}
+    .taller-img{display:block;border-radius:var(--r-md);overflow:hidden;transition:transform 300ms cubic-bezier(0.34,1.2,0.64,1),box-shadow 300ms;}
+    .taller-img:hover{transform:translateY(-4px) rotate(-0.6deg);box-shadow:0 14px 30px rgba(61,32,16,0.16);}
+    .taller-img img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;}
+    .taller-info .t-tag{color:#A9560B;}
+    .taller-title{font-family:var(--font-display);font-weight:900;font-size:clamp(28px,3.6vw,40px);line-height:1.08;margin-bottom:var(--s4);}
+    .taller-desc{font-size:17px;line-height:1.7;color:var(--text-secondary);margin-bottom:var(--s6);max-width:42ch;}
+    .taller-meta{list-style:none;display:grid;gap:10px;margin-bottom:var(--s6);}
+    .taller-meta li{display:flex;align-items:center;gap:12px;font-size:16px;font-weight:700;color:var(--text-primary);}
+    .taller-meta svg{flex-shrink:0;color:var(--c-naranja);}
+    .taller-note{font-family:var(--font-display);font-style:italic;font-weight:700;font-size:18px;color:#A9560B;margin-bottom:var(--s5);}
+    .taller-lang{font-size:14px;color:var(--text-secondary);margin:-8px 0 var(--s5);}
+    .taller-btns{display:flex;flex-wrap:wrap;gap:var(--s3);}
+    .btn-taller{background:#B85F0E;color:#fff;}
+    .btn-taller:hover{background:#94490A;box-shadow:0 6px 20px rgba(201,106,16,0.3);}
+    .taller-img{position:relative;}
+    .taller-img img{filter:saturate(.85);}
+    .soldout{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);background:#B85F0E;color:#fff;font-family:var(--font-display);font-weight:900;font-size:clamp(22px,3.4vw,34px);letter-spacing:.04em;text-transform:uppercase;padding:12px 28px;border-radius:14px;border:3px dashed #FFF1E3;outline:4px solid #B85F0E;box-shadow:0 12px 30px rgba(61,32,16,.35);white-space:nowrap;}
+    .btn-agotado{background:#E9DDD3;color:#7A5A45;cursor:default;pointer-events:none;}
+    @media(max-width:800px){.taller-card{grid-template-columns:1fr;gap:var(--s6);padding:var(--s5);}.taller-btns .btn{width:100%;}}
+    .taller-historico{max-width:1000px;margin:var(--s10) auto 0;}
+    .taller-historico-title{font-family:var(--font-display);font-weight:900;font-size:clamp(24px,3vw,32px);margin-bottom:var(--s6);}
+    .taller-card--pasado{margin-top:0;box-shadow:0 8px 24px rgba(61,32,16,0.06);}
+    @media(max-width:640px){#taller{padding:var(--s10) 5% var(--s4);}}
+
+    /* ───────── SERVICIOS ───────── */
+    #servicios{background:var(--bg);padding:var(--s24) 5%;}
+    .section-header{text-align:center;margin-bottom:var(--s12);}
+    .section-title{font-size:clamp(26px,3.4vw,38px);font-family:var(--font-display);font-weight:900;color:var(--text-primary);margin-bottom:var(--s3);line-height:1.15;}
+    .section-sub{font-size:16px;font-weight:500;color:var(--text-secondary);line-height:1.6;max-width:56ch;margin:0 auto;}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5);max-width:960px;margin:0 auto;}
+    .service-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r-lg);padding:var(--s8) var(--s5) var(--s6);text-align:center;cursor:pointer;transition:transform 300ms cubic-bezier(0.34,1.2,0.64,1),box-shadow 300ms ease;display:flex;flex-direction:column;align-items:center;font:inherit;color:inherit;width:100%;}
+    .service-card:hover{transform:translateY(-6px);}
+    .card-verde{border-top:3px solid var(--c-verde);} .card-vino{border-top:3px solid var(--c-vino);} .card-naranja{border-top:3px solid var(--c-naranja);} .card-morado{border-top:3px solid var(--c-morado);} .card-marron{border-top:3px solid var(--c-marron);}
+    .card-verde:hover{box-shadow:0 16px 40px rgba(61,170,138,0.16);} .card-vino:hover{box-shadow:0 16px 40px rgba(125,32,64,0.14);} .card-naranja:hover{box-shadow:0 16px 40px rgba(201,106,16,0.16);} .card-morado:hover{box-shadow:0 16px 40px rgba(123,78,196,0.16);} .card-marron:hover{box-shadow:0 16px 40px rgba(122,80,48,0.14);}
+    .heart-img{width:88px;height:88px;object-fit:contain;margin-bottom:var(--s4);transition:transform 400ms cubic-bezier(0.34,1.6,0.64,1);}
+    .service-card:hover .heart-img{transform:scale(1.14) translateY(-3px);}
+    .service-name{font-size:15px;font-weight:800;color:var(--text-primary);margin-bottom:var(--s2);line-height:1.3;}
+    .service-tagline{font-size:13px;font-weight:500;color:var(--text-secondary);font-style:italic;line-height:1.5;margin-bottom:var(--s4);}
+    .card-more{font-size:12px;font-weight:800;color:var(--primary);background:var(--primary-light);padding:5px 14px;border-radius:var(--r-pill);margin-top:auto;}
+    @media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+
+    /* FORMACIONES */
+    #formaciones{background:var(--bg-surface);padding:var(--s16) 5%;}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(61,32,16,0.45);z-index:200;display:flex;align-items:center;justify-content:center;padding:var(--s6);opacity:0;pointer-events:none;transition:opacity 200ms;}
+    .modal-overlay.open{opacity:1;pointer-events:all;}
+    .modal-box{background:var(--bg-surface);border-radius:var(--r-lg);padding:var(--s10);max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform 200ms;}
+    .modal-overlay.open .modal-box{transform:translateY(0);}
+    .modal-close{position:absolute;top:var(--s3);right:var(--s3);background:none;border:none;cursor:pointer;font-size:22px;color:var(--text-hint);line-height:1;padding:10px;}
+    .modal-close:hover{color:var(--text-primary);}
+    .modal-heart{width:64px;height:64px;object-fit:contain;margin-bottom:var(--s4);}
+    .modal-title{font-family:var(--font-display);font-size:24px;font-weight:900;color:var(--text-primary);margin-bottom:var(--s3);}
+    .modal-desc{font-size:15px;font-weight:500;color:var(--text-secondary);line-height:1.75;margin-bottom:var(--s5);}
+    .modal-meta{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-bottom:var(--s6);}
+    .modal-lista{display:grid;gap:var(--s3);margin-bottom:var(--s5);}
+    .modal-taller{display:flex;align-items:center;gap:var(--s3);background:#FFF1E3;border:1.5px solid #C96A10;border-radius:16px;padding:10px 12px;text-decoration:none;color:var(--text-primary);}
+    .modal-taller img{width:72px;height:72px;object-fit:contain;background:var(--bg-surface);border-radius:10px;flex-shrink:0;}
+    .mt-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+    .mt-tag{font-size:11px;font-weight:800;color:#A4520A;text-transform:uppercase;letter-spacing:.04em;}
+    .mt-t{font-family:var(--font-display);font-weight:900;font-size:16px;line-height:1.15;}
+    .mt-d{font-size:12.5px;color:var(--text-secondary);line-height:1.35;}
+    .mt-cta{background:#C96A10;color:#fff;font-weight:800;font-size:13px;border-radius:100px;padding:8px 12px;white-space:nowrap;}
+    [hidden].modal-lista,[hidden].modal-otra,[hidden].modal-meta,[hidden]#modalCta{display:none !important;}
+    .modal-otra{display:block;text-align:center;font-size:14px;font-weight:700;color:var(--verde);margin-top:var(--s3);text-decoration:none;}
+    .meta-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s3) var(--s4);}
+    .meta-label{font-size:12px;font-weight:800;color:var(--text-hint);margin-bottom:2px;}
+    .meta-value{font-size:14px;font-weight:700;color:var(--text-primary);}
+
+    /* TESTIMONIOS */
+    #testimonios{background:var(--bg);padding:var(--s24) 5%;}
+    .testimonios-empty{max-width:560px;margin:0 auto;text-align:center;background:var(--bg-surface);border:1.5px dashed var(--border-strong);border-radius:var(--r-lg);padding:var(--s10) var(--s6);}
+    .testimonios-empty-text{font-size:16px;font-weight:500;color:var(--text-secondary);line-height:1.7;margin-bottom:var(--s6);}
+
+    /* PATI */
+    #pati{padding:var(--s24) 5%;background:var(--bg-surface);}
+    .pati-layout{max-width:980px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:var(--s16);align-items:start;}
+    .pati-photo-frame{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--border) 0%,#d4a87a 100%);border-radius:var(--r-lg);margin-bottom:var(--s6);overflow:hidden;}
+    .pati-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+    .pati-creds{display:flex;flex-direction:column;gap:var(--s2);}
+    .cred-item{display:flex;align-items:center;gap:var(--s2);font-size:13px;font-weight:700;color:var(--text-secondary);background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s2) var(--s4);}
+    .pati-title{font-size:clamp(28px,3.5vw,40px);font-family:var(--font-display);font-weight:900;color:var(--text-primary);margin-bottom:var(--s2);line-height:1.15;}
+    .pati-lead{font-size:16px;font-weight:600;color:var(--text-secondary);font-style:italic;margin-bottom:var(--s6);}
+    .pati-text p{font-size:16px;font-weight:500;color:var(--text-primary);line-height:1.88;margin-bottom:var(--s5);max-width:62ch;}
+    .pati-text p:last-child{margin-bottom:0;}
+    .pati-text p.pati-intro{font-size:17px;font-weight:700;}
+    .pati-text p.pati-closing{font-style:italic;font-weight:600;color:var(--text-secondary);border-left:3px solid var(--primary);padding-left:var(--s5);}
+    .pati-more{display:none;}
+    @media(max-width:720px){.pati-layout{grid-template-columns:1fr;gap:var(--s10);}.pati-left{max-width:320px;width:100%;margin:0 auto;}.pati-photo-frame{aspect-ratio:4/5;}}
+
+    /* CTA */
+    #cta{background:var(--bg);padding:var(--s24) 5%;text-align:center;}
+    .cta-inner{max-width:560px;margin:0 auto;}
+    .cta-hearts{display:flex;justify-content:center;gap:6px;margin-bottom:var(--s6);}
+    .cta-hearts img{width:26px;height:26px;object-fit:contain;}
+    .cta-title{font-family:var(--font-display);font-size:clamp(30px,5vw,48px);font-weight:900;color:var(--text-primary);line-height:1.12;margin-bottom:var(--s4);}
+    .cta-sub{font-size:17px;font-weight:500;color:var(--text-secondary);line-height:1.7;max-width:440px;margin:0 auto var(--s8);}
+    .cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s4);}
+
+    /* CONTACTO */
+    #contacto{background:var(--bg-surface);padding:var(--s24) 5%;}
+    .contacto-inner{max-width:480px;margin:0 auto;}
+    .contacto-header{text-align:center;margin-bottom:var(--s8);}
+    .form-group{margin-bottom:var(--s5);}
+    .form-label{display:block;font-size:13px;font-weight:800;color:var(--text-secondary);margin-bottom:6px;}
+    .form-input,.form-textarea{width:100%;background:#fff;border:1.5px solid var(--border);border-radius:var(--r-md);padding:12px 16px;font-family:var(--font-body);font-size:16px;font-weight:500;color:var(--text-primary);outline:none;-webkit-appearance:none;transition:border-color 150ms,box-shadow 150ms;}
+    .form-input::placeholder,.form-textarea::placeholder{color:#C9A988;}
+    .form-input:focus,.form-textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(46,144,112,0.12);}
+    .form-textarea{min-height:120px;resize:vertical;}
+    .form-submit{width:100%;margin-top:var(--s3);}
+    .form-msg{margin-top:var(--s4);font-size:14px;font-weight:700;text-align:center;padding:12px 16px;border-radius:var(--r-md);display:none;}
+    .form-msg--ok{display:block;background:rgba(46,144,112,0.10);color:var(--primary-dark);}
+    .form-msg--err{display:block;background:rgba(201,106,16,0.10);color:#7A4000;}
+
+    /* FOOTER */
+    footer{background:var(--bg-footer);padding:var(--s12) 5% var(--s8);}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:var(--s10);max-width:900px;margin:0 auto var(--s10);}
+    .footer-logo{width:min(120px,40vw);margin-bottom:var(--s3);opacity:0.9;filter:brightness(0) invert(1);}
+    .footer-tagline{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;max-width:220px;}
+    .footer-col-title{font-size:13px;font-weight:800;color:rgba(255,255,255,0.5);margin-bottom:var(--s4);}
+    .footer-links{list-style:none;}
+    .footer-links li{margin-bottom:8px;}
+    .footer-links a,.footer-contact-email{font-size:14px;font-weight:600;color:rgba(255,255,255,0.7);text-decoration:none;}
+    .footer-links a:hover,.footer-contact-email:hover{color:#fff;}
+    .footer-contact-email{display:block;margin-bottom:var(--s4);}
+    .footer-social{display:flex;gap:10px;}
+    .footer-social a{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
+    .footer-social a:hover{border-color:rgba(255,255,255,0.6);color:#fff;}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:var(--s5);text-align:center;max-width:900px;margin:0 auto;}
+    .footer-copy{font-size:12px;font-weight:600;color:rgba(255,255,255,0.4);}
+    @media(max-width:660px){.footer-grid{grid-template-columns:1fr;gap:var(--s8);}}
+
+    .wave{display:block;width:100%;}
+
+    /* ── MÓVIL ── */
+    @media(max-width:860px){
+      .hero-grid{grid-template-columns:1fr;gap:var(--s6);}
+      .prints{max-width:300px;}
+    }
+    @media(max-width:640px){
+      #hero{padding-top:calc(var(--s8) + 64px);padding-bottom:var(--s10);}
+      .hero-sub{margin-bottom:var(--s6);}
+      .wave{height:28px;}
+      #origen,#servicios,#testimonios,#pati,#contacto{padding:var(--s12) 5%;}
+      .section-header{margin-bottom:var(--s6);}
+      .services-grid{gap:var(--s3);}
+      .service-card{padding:var(--s4) var(--s2) var(--s3);}
+      .service-card:hover{transform:none;}
+      .heart-img{width:52px;height:52px;margin-bottom:var(--s2);}
+      .service-name{font-size:14px;margin-bottom:4px;}
+      .service-tagline{font-size:12px;margin-bottom:var(--s2);}
+      .testimonios-empty{padding:var(--s6) var(--s4);}
+      .pati-text:not(.open) p:not(.pati-intro){display:none;}
+      .pati-more{display:inline-block;margin-top:var(--s3);font-family:var(--font-body);font-size:14px;font-weight:800;color:var(--primary);background:var(--primary-light);border:none;border-radius:var(--r-pill);padding:10px 18px;cursor:pointer;}
+      #cta{display:none;}
+      .modal-box{padding:var(--s8) var(--s5);}
+      .modal-meta{grid-template-columns:1fr;}
+      .tag-title{font-size:15px;} .tag-sub{font-size:10px;}
+    }
+
+
+    /* Entradas al hacer scroll (como la v1) */
+    .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out;transition-delay:var(--rv,0ms);}
+    .js .reveal.from-left{transform:translateX(-28px);}
+    .js .reveal.from-right{transform:translateX(28px);}
+    .js .reveal.from-top{transform:translateY(-16px);}
+    .js .reveal.in{opacity:1;transform:none;}
+
+    /* Movimiento reducido: estado final directo */
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation:none !important;transition:none !important;}
+      .w>span,.hero-fade{transform:none;opacity:1;}
+      .print,.tag-g,.prints-caption,.prints-controls{opacity:1 !important;transform:none !important;}
+      .print .shadow{opacity:0 !important;}
+      .ridge{stroke-dashoffset:0 !important;}
+      .hero-blob{display:none;}
+      .js .reveal{opacity:1 !important;transform:none !important;}
+    }
+  
+    /* Reseñas de Google: carrusel horizontal */
+    .resenas{max-width:1100px;margin:0 auto;min-width:0;}
+    .resenas-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 16px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;min-width:0;}
+    .resena-card{flex:0 0 calc((100% - 36px)/3);min-width:0;scroll-snap-align:start;background:var(--bg-surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:22px 22px 18px;display:flex;flex-direction:column;gap:12px;}
+    @media(max-width:900px){.resena-card{flex-basis:calc((100% - 18px)/2);}}
+    @media(max-width:600px){.resena-card{flex-basis:82%;}}
+    .resena-stars{color:#E9A23B;letter-spacing:2px;font-size:16px;}
+    .resena-texto{margin:0;font-size:15px;line-height:1.65;color:var(--text-primary);overflow-wrap:anywhere;white-space:pre-line;}
+    .resena-texto.corto{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;}
+    .resena-mas{align-self:flex-start;background:none;border:0;padding:0;color:var(--primary-dark);font:700 14px var(--font-body);cursor:pointer;text-decoration:underline;}
+    .resena-autor{margin-top:auto;font-size:13px;color:var(--text-secondary);border-top:1px solid var(--border);padding-top:10px;}
+    .resena-autor strong{color:var(--text-primary);}
+    .resenas-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px;flex-wrap:wrap;}
+    .resenas-dots{display:flex;gap:8px;}
+    .resenas-dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:var(--border);cursor:pointer;}
+    .resenas-dots button[aria-current="true"]{background:var(--primary);}
+    .resenas-nav{display:flex;gap:8px;}
+    .resenas-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg-surface);color:var(--text-primary);font-size:20px;cursor:pointer;}
+    .resenas-btn:focus-visible,.resenas-dots button:focus-visible,.resena-mas:focus-visible,.resenas-google:focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+    .resenas-links{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:22px;}
+    .resenas-google{color:var(--primary-dark);font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;}
+    @media (prefers-reduced-motion:reduce){.resenas-track{scroll-behavior:auto;}}
+</style>
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png">
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<nav id="mainNav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="#hero" style="display:flex;align-items:center;" aria-label="Latidoo, home">
+      <img src="/Latidoo_transparent.png" alt="Latidoo" class="nav-logo" width="120" height="32" />
+    </a>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#taller">Next workshop</a></li>
+      <li><a href="#origen">The heart</a></li>
+      <li><a href="#servicios">Experiences</a></li>
+      <li><a href="#formaciones">Training</a></li>
+      <li><a href="#pati">Meet Pati</a></li>
+      <li class="lang"><a href="/" hreflang="es" lang="es" aria-label="Versión en español">ES</a><span aria-hidden="true">·</span><span class="cur" aria-current="true">EN</span></li>
+      <li><a href="#contacto" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-grid">
+    <div class="hero-content">
+      <p class="hero-eyebrow hero-fade" style="--d:0">by Pati, child neurodevelopment</p>
+      <h1 class="hero-title" aria-label="Learning with a heartbeat.">
+        <span class="line" aria-hidden="true"><span class="w"><span style="--d:120">Learning</span></span></span>
+        <span class="line line-2" aria-hidden="true"><span class="w"><span style="--d:300">with</span></span> <span class="w"><span style="--d:360">a</span></span> <span class="w"><span style="--d:420">heartbeat.</span></span></span>
+      </h1>
+      <p class="hero-sub hero-fade" style="--d:800">Experiences grounded in child neurodevelopment, so every child grows up happy, confident and full of curiosity.</p>
+      <div class="hero-btns hero-fade" style="--d:950">
+        <a href="#servicios" class="btn btn-primary">Discover our experiences</a>
+        <a href="#formaciones" class="btn btn-secondary">Training for families</a>
+      </div>
+    </div>
+
+    <!-- Dos huellas que forman un corazón -->
+    <figure class="prints" id="prints" aria-labelledby="printsCap">
+      <svg viewBox="-100 -90 200 176" role="img" aria-label="Two different fingerprints, leaning towards each other to form a heart.">
+        <defs>
+          <filter id="paint" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="edge" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="3" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="soft"><feGaussianBlur stdDeviation="7"/></filter>
+          <clipPath id="eggClip"><path class="egg"/></clipPath>
+        </defs>
+        <g class="heart-group">
+          <g transform="translate(0,74) rotate(-31) translate(0,-56)">
+            <g class="print a">
+              <path class="shadow egg egg-big" fill="#3D2010" filter="url(#soft)"/>
+              <g class="print-art" filter="url(#edge)">
+                <path class="pad egg" opacity=".22"/>
+                <g clip-path="url(#eggClip)" filter="url(#paint)" id="ridgesA"></g>
+              </g>
+            </g>
+          </g>
+          <g transform="translate(0,74) rotate(31) translate(0,-47) scale(.84)">
+            <g class="print b">
+              <path class="shadow egg egg-big" fill="#3D2010" filter="url(#soft)"/>
+              <g class="print-art" filter="url(#edge)">
+                <path class="pad egg" opacity=".22"/>
+                <g clip-path="url(#eggClip)" filter="url(#paint)" id="ridgesB"></g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <figcaption class="prints-caption" id="printsCap">
+        <strong>Two prints, one heartbeat.</strong>
+        <span>This is how every Latidoo heart is made.</span>
+      </figcaption>
+      <div class="prints-controls" role="group" aria-label="Choose the heart colour">
+        <button class="swatch" data-ink="#9d4c22" data-soft="#c3784f" aria-pressed="true" aria-label="Brown"><img src="/corazon_marron_transparent.png" alt="" width="30" height="30"></button>
+        <button class="swatch" data-ink="#308717" data-soft="#79b64a" aria-pressed="false" aria-label="Green"><img src="/corazonverde_transparent.png" alt="" width="30" height="30"></button>
+        <button class="swatch" data-ink="#aa2a78" data-soft="#ce5e9e" aria-pressed="false" aria-label="Wine"><img src="/corazon_vino_tinto_transparent.png" alt="" width="30" height="30"></button>
+        <button class="swatch" data-ink="#e04a07" data-soft="#fa8236" aria-pressed="false" aria-label="Orange"><img src="/corazon_naranja_transparent.png" alt="" width="30" height="30"></button>
+        <button class="swatch" data-ink="#5d1eb7" data-soft="#8a4fd0" aria-pressed="false" aria-label="Purple"><img src="/corazon_morado_transparent.png" alt="" width="30" height="30"></button>
+        <button class="replay" id="replay">Watch again</button>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" style="background:#FAF3EE;" aria-hidden="true">
+  <path d="M0,0 Q360,60 720,30 Q1080,0 1440,45 L1440,60 L0,60 Z" fill="#FFF8F3"/>
+</svg>
+
+<!-- ══ NEXT WORKSHOP: Christmas Camp + past workshops ══ -->
+<section id="taller" aria-labelledby="tallerTitle">
+  <div class="taller-card reveal">
+    <div class="taller-img">
+      <img src="/taller-macrame-en.jpg" alt="Latidoo macramé workshop at Ludoteca La Carmela: macramé rainbows, feathers and suns on a pink background with bunting." width="1122" height="1402" loading="lazy" style="object-fit:contain;aspect-ratio:auto" />
+    </div>
+    <div class="taller-info">
+      <span class="t-tag">Next workshop</span>
+      <h2 class="taller-title">Macramé workshop</h2>
+      <p class="taller-desc">Create, knot and enjoy macramé. An afternoon to make your own hanging piece and have fun together.</p>
+      <ul class="taller-meta">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Friday 27 November</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5:00 – 6:00 pm</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Ludoteca La Carmela · Torre de Benagalbón</li>
+      </ul>
+      <p class="taller-note">Create, knot and enjoy!</p>
+      <div class="taller-btns">
+        <a href="/macrame-en" target="_blank" rel="noopener" class="btn btn-taller">Reserve your spot!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="taller-card reveal">
+    <div class="taller-img">
+      <img src="/taller-navidad-en.jpg" alt="Latidoo Christmas Camp in English: children aged 3 to 12 painting and laughing in a forest setting, wearing Christmas hats, in Rincón de la Victoria." width="1000" height="1000" loading="lazy" />
+    </div>
+    <div class="taller-info">
+      <span class="t-tag">Coming up</span>
+      <h2 class="taller-title" id="tallerTitle">Christmas Camp in English</h2>
+      <p class="taller-desc">Christmas camp days in English with creative, outdoor activities and lots of surprises.</p>
+      <ul class="taller-meta">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>23, 24, 28, 29, 30 and 31 December</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9:00 am – 2:00 pm</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.6-4.5 4-4.5s3 1 3 2.5"/></svg>Ages 3 to 12</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Rincón de la Victoria, Málaga</li>
+      </ul>
+      <p class="taller-note">Lots of surprises!</p>
+      <div class="taller-btns">
+        <a href="/navidad-en" target="_blank" rel="noopener" class="btn btn-taller">Reserve your spot!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="taller-historico">
+    <h3 class="taller-historico-title">Past workshops</h3>
+    <div class="taller-card taller-card--pasado reveal">
+      <div class="taller-img">
+        <img src="/taller-halloween-cookies.jpg" alt="Latidoo Halloween Cookies workshop: small hands decorating pumpkin, ghost, black cat, witch hat and spider web cookies with a piping bag." width="1000" height="1000" loading="lazy" />
+        <span class="soldout">Sold out!</span>
+      </div>
+      <div class="taller-info">
+        <span class="t-tag">Past workshop</span>
+        <h3 class="taller-title">Halloween: spooky cookies</h3>
+        <p class="taller-desc">We bake cookies, decorate them with icing and toppings, and play with neon paint. An afternoon to create, get messy and have fun.</p>
+        <ul class="taller-meta">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Friday, 30 October</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5:00 – 6:00 pm</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Ludoteca La Carmela</li>
+        </ul>
+        <p class="taller-note">Fully booked! Thank you to all the families.</p>
+        <div class="taller-btns">
+          <span class="btn btn-agotado" aria-disabled="true">Fully booked</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══ END NEXT WORKSHOP ══ -->
+
+<!-- ORIGEN DEL CORAZÓN -->
+<section id="origen">
+  <div class="origen-inner reveal">
+    <span class="t-tag">Where the heart comes from</span>
+    <h2 class="origen-title">Our symbol isn't drawn. It's printed.</h2>
+    <p>Every Latidoo heart is made from two fingerprints on a sheet of paper. Two unique marks, different from each other, that create something new when they meet: a bond.</p>
+    <p>And bonds matter. In the first years of life, the brain forms <strong class="origen-dato">more than a million new neural connections every second</strong>. What a child experiences in those years, and who they share it with, leaves a lasting print.</p>
+    <p class="soft">That's why we design every experience around neurodevelopment: not to set out a path, but to create the conditions for each child to find their own.</p>
+    <p class="origen-close">Two different prints. One heartbeat. Endless ways to grow.</p>
+    <p class="origen-src">Source: <a href="https://developingchild.harvard.edu/resources/inbrief-science-of-ecd/" target="_blank" rel="noopener">Center on the Developing Child, Harvard University</a></p>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" style="background:#FFF8F3;" aria-hidden="true">
+  <path d="M0,0 Q360,60 720,30 Q1080,0 1440,45 L1440,60 L0,60 Z" fill="#FAF3EE"/>
+</svg>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-header reveal">
+    <span class="t-tag">Our programmes</span>
+    <h2 class="section-title">Latidoo experiences</h2>
+    <p class="section-sub">Every programme is designed with love, purpose and knowledge. Tap any experience to see the details.</p>
+  </div>
+  <div class="services-grid">
+    <button class="service-card card-verde reveal" style="--rv:0ms" onclick="openModal('campamentos')">
+      <img src="/corazonverde_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+      <span class="service-name">Camps</span>
+      <span class="service-tagline">The holidays they deserve</span>
+      <span class="card-more">See details</span>
+    </button>
+    <button class="service-card card-vino reveal" style="--rv:60ms" onclick="openModal('english')">
+      <img src="/corazon_vino_tinto_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+      <span class="service-name">English Club</span>
+      <span class="service-tagline">English where learning means playing and creating</span>
+      <span class="card-more">See details</span>
+    </button>
+    <button class="service-card card-naranja reveal" style="--rv:120ms" onclick="openModal('talleres')">
+      <img src="/corazon_naranja_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+      <span class="service-name">Workshops</span>
+      <span class="service-tagline">Experiences to enjoy, share and grow</span>
+      <span class="card-more">See details</span>
+    </button>
+    <button class="service-card card-morado reveal" style="--rv:180ms" onclick="openModal('fiestas')">
+      <img src="/corazon_morado_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+      <span class="service-name">Personalised parties</span>
+      <span class="service-tagline">Unique, special and made to measure</span>
+      <span class="card-more">See details</span>
+    </button>
+  </div>
+</section>
+
+
+
+<!-- FORMACIONES -->
+<section id="formaciones">
+  <div style="max-width:1150px;margin:0 auto;">
+    <div class="section-header reveal" style="margin-bottom:var(--s8);">
+      <span class="t-tag">For families and educators</span>
+      <h2 class="section-title">Training</h2>
+      <p class="section-sub">Specialised neurodevelopment training for everyone who cares for children.</p>
+    </div>
+    <div class="reveal" style="max-width:340px;margin:0 auto;--rv:80ms">
+      <button class="service-card card-marron" onclick="openModal('formaciones')">
+        <img src="/corazon_marron_transparent.png" alt="" class="heart-img" loading="lazy" width="88" height="88" />
+        <span class="service-name">Training</span>
+        <span class="service-tagline">Real tools to support children better</span>
+        <span class="card-more">See details</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="section-header reveal">
+    <span class="t-tag">What families say</span>
+    <h2 class="section-title">Voices with a heartbeat</h2>
+  </div>
+  <div class="resenas reveal" style="--rv:80ms">
+    <div class="resenas-track" id="resenasTrack" tabindex="0" aria-label="Google reviews, swipe to see more">
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="resena-texto corto">My son has been with Pati in workshops and camps and honestly he couldn&#x27;t be happier. He always wants to go to her activities, they are wonderful and the organisation is very good. They are always on social media so we can sign up for everything, and we always recommend them to his friends, who come out delighted.
+Thank you Pati, for your dedication to the children and the care you put into everything!</p>
+        <button type="button" class="resena-mas" aria-expanded="false">Read more</button>
+        <div class="resena-autor"><strong>Lidia</strong> · Local Guide</div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="resena-texto corto">An absolutely exceptional experience! My daughter went to the English Club and also to the summer camp.
+Everyone adores Pati, who runs it. She has a special light and connection with the children. She teaches without the children realising they are learning, speaks English the whole time, and they enjoy it.
+As for the camp, more of the same: an ideal setting, a relaxed atmosphere, a pool where there are always several staff members for bathroom breaks (which gives great peace of mind). Above all I value the affection with which they treat the children, their kindness and closeness.
+My daughter loves everything that comes with &#x27;this activity is with Pati&#x27;: pure joy and enthusiasm.
+I recommend it without a doubt.</p>
+        <button type="button" class="resena-mas" aria-expanded="false">Read more</button>
+        <div class="resena-autor"><strong>Marina S.</strong></div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="resena-texto">Very professional and attentive. Lots of experience with children. My daughter is delighted every time she does workshops and activities with them.</p>
+        <div class="resena-autor"><strong>Yolanda S.</strong></div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="resena-texto">We&#x27;ve done several workshops with Pati and we&#x27;ve loved every one! Our little one has a great time. Fun, creative workshops... and Pati is wonderful! We&#x27;re looking forward to coming back!</p>
+        <div class="resena-autor"><strong>María Jesús S.</strong> · Local Guide</div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="resena-texto">Very fun and entertaining for the little ones. It&#x27;s not easy to find activities for babies, and here there&#x27;s always a plan on offer. Looking forward to coming again 🥰</p>
+        <div class="resena-autor"><strong>Macarena T.</strong></div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="resena-texto corto">Latidoo and Pati have become allies in our son&#x27;s education: English plus conscious educational experiences that include play, experiments and art.
+My son enjoys the English Club as much as the camps, which on top of all this include contact with nature and animals. He loves every single activity! And so do I.
+I would recommend any of their services without a second thought. Thank you Pati!</p>
+        <button type="button" class="resena-mas" aria-expanded="false">Read more</button>
+        <div class="resena-autor"><strong>Clara B.</strong></div>
+      </article>
+      <article class="resena-card">
+        <div class="resena-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="resena-texto">A great professional who fully understands children&#x27;s needs. Very well trained. Highly recommended.</p>
+        <div class="resena-autor"><strong>Marta Z.</strong></div>
+      </article>
+    </div>
+    <div class="resenas-controls">
+      <div class="resenas-dots" id="resenasDots"></div>
+      <div class="resenas-nav">
+        <button type="button" class="resenas-btn" data-dir="-1" aria-label="Previous review">‹</button>
+        <button type="button" class="resenas-btn" data-dir="1" aria-label="Next review">›</button>
+      </div>
+    </div>
+    <div class="resenas-links">
+      <a class="btn btn-primary" href="/en/opiniones">Share your experience</a>
+      <a class="resenas-google" href="https://g.page/r/CViZaqfQ88tzEBM/review" target="_blank" rel="noopener">See all reviews on Google →</a>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var t=document.getElementById('resenasTrack'); if(!t) return;
+    var cards=[].slice.call(t.children), dots=document.getElementById('resenasDots');
+    cards.forEach(function(c,i){ var b=document.createElement('button'); b.type='button';
+      b.setAttribute('aria-label','Go to review '+(i+1));
+      b.addEventListener('click',function(){ t.scrollTo({left:c.offsetLeft-cards[0].offsetLeft,behavior:'smooth'}); });
+      dots.appendChild(b); });
+    function step(d){ var w=cards[1]?cards[1].offsetLeft-cards[0].offsetLeft:cards[0].offsetWidth; t.scrollBy({left:d*w,behavior:'smooth'}); }
+    [].forEach.call(document.querySelectorAll('.resenas-btn'),function(b){ b.addEventListener('click',function(){ step(+b.getAttribute('data-dir')); }); });
+    function upd(){ var x=t.scrollLeft,best=0,bd=1e9; cards.forEach(function(c,i){ var d=Math.abs(c.offsetLeft-cards[0].offsetLeft-x); if(d<bd){bd=d;best=i;} });
+      [].forEach.call(dots.children,function(b,i){ b.setAttribute('aria-current', i===best?'true':'false'); }); }
+    t.addEventListener('scroll',upd,{passive:true}); upd();
+    [].forEach.call(document.querySelectorAll('.resena-mas'),function(b){
+      b.addEventListener('click',function(){ var p=b.previousElementSibling; var open=p.classList.toggle('corto')===false;
+        b.setAttribute('aria-expanded',open?'true':'false'); b.textContent=open?'Read less':'Read more'; });
+    });
+  })();
+  </script>
+</section>
+
+<!-- PATI -->
+<section id="pati">
+  <div class="pati-layout">
+    <div class="pati-left reveal from-left">
+      <div class="pati-photo-frame"><img src="/pati.png" alt="Pati, founder of Latidoo" loading="lazy" /></div>
+      <div class="pati-creds">
+        <div class="cred-item"><span aria-hidden="true">🎓</span>Primary school teacher</div>
+        <div class="cred-item"><span aria-hidden="true">🧠</span>Neurodevelopment specialist</div>
+        <div class="cred-item"><span aria-hidden="true">🇬🇧</span>English and special educational needs</div>
+      </div>
+    </div>
+    <div class="pati-right reveal from-right" style="--rv:80ms">
+      <span class="t-tag">The person behind Latidoo</span>
+      <h2 class="pati-title">Meet Pati</h2>
+      <p class="pati-lead">Teacher, Montessori guide, mum and passionate about child neurodevelopment.</p>
+      <div class="pati-text">
+        <p class="pati-intro">I'm Pati. I specialise in child neurodevelopment, and I'm a primary school teacher with training in English and special educational needs.</p>
+        <p>After four years living abroad, I came back with a new perspective and started working as a Montessori guide. That time changed me. It taught me to observe, to accompany and to connect with children in a way I had never felt before.</p>
+        <p>At the end of the school year, several families asked me to stay close to their children. Latidoo was born from that request — with no name yet and no big plans, just the wish to create something beautiful.</p>
+        <p>Since then it has grown, changed and kept beating. I keep learning, I keep working in schools, and today my biggest motivation is at home.</p>
+        <p class="pati-closing">Because when you watch your own child grow, you understand even more deeply why what we do matters so much — and why staying committed to children and their families isn't an option, it's a calling.</p>
+      </div>
+      <button class="pati-more" id="patiMore" aria-expanded="false">Read more</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-hearts reveal from-top" aria-hidden="true">
+      <img src="/corazonverde_transparent.png" alt="" width="26" height="26" loading="lazy" />
+      <img src="/corazon_vino_tinto_transparent.png" alt="" width="26" height="26" loading="lazy" />
+      <img src="/corazon_naranja_transparent.png" alt="" width="26" height="26" loading="lazy" />
+      <img src="/corazon_morado_transparent.png" alt="" width="26" height="26" loading="lazy" />
+      <img src="/corazon_marron_transparent.png" alt="" width="26" height="26" loading="lazy" />
+    </div>
+    <h2 class="cta-title reveal" style="--rv:80ms">Shall we start together?</h2>
+    <p class="cta-sub reveal" style="--rv:160ms">Take the first step. Tell me what your little one needs and I'll suggest the perfect experience for them.</p>
+    <div class="cta-actions reveal" style="--rv:240ms">
+      <a href="#contacto" class="btn btn-primary">Write to me</a>
+      <a href="#servicios" class="btn btn-secondary">See experiences</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-inner">
+    <div class="contacto-header reveal">
+      <span class="t-tag">Let's talk</span>
+      <h2 class="section-title">Write to me</h2>
+      <p class="section-sub">Tell me what you're looking for and I'll suggest the perfect experience. I reply in Spanish or English.</p>
+    </div>
+    <form class="reveal" style="--rv:80ms" id="contactForm" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contacto" />
+      <p hidden><label>Do not fill in: <input name="bot-field" /></label></p>
+      <div class="form-group"><label class="form-label" for="nombre">Name</label><input class="form-input" type="text" id="nombre" name="nombre" placeholder="Your name" required autocomplete="name" /></div>
+      <div class="form-group"><label class="form-label" for="email">Email</label><input class="form-input" type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email" /></div>
+      <div class="form-group">
+        <label class="form-label" for="servicio">Which experience are you interested in?</label>
+        <select class="form-input" id="servicio" name="servicio">
+          <option value="">Choose an experience</option>
+          <option>Camps</option><option>English Club</option><option>Workshops</option><option>Personalised parties</option><option>Training</option><option>Not sure yet, I'd like some guidance</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label" for="mensaje">Message</label><textarea class="form-textarea" id="mensaje" name="mensaje" placeholder="Tell me what your little one needs..." required></textarea></div>
+      <button type="submit" class="btn btn-primary form-submit">Send message</button>
+      <div id="formMsg" class="form-msg" role="status"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <img id="modalHeart" src="/corazonverde_transparent.png" alt="" class="modal-heart" />
+    <h3 class="modal-title" id="modalTitle"></h3>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-meta" id="modalMeta" hidden></div><!-- detalles ocultos hasta que Pati los confirme -->
+    <div class="modal-lista" id="modalLista" hidden><a class="modal-taller" href="/macrame-en" target="_blank" rel="noopener"><img src="/taller-macrame-en.jpg" alt=""><span class="mt-info"><span class="mt-tag">Next workshop</span><span class="mt-t">Macramé workshop</span><span class="mt-d">Fri 27 Nov · 5:00–6:00 pm · Ludoteca La Carmela</span></span><span class="mt-cta">Reserve</span></a><a class="modal-taller" href="/navidad-en" target="_blank" rel="noopener"><img src="/taller-navidad-en.jpg" alt=""><span class="mt-info"><span class="mt-tag">Coming up</span><span class="mt-t">Christmas Camp in English</span><span class="mt-d">23, 24, 28, 29, 30 & 31 Dec · 9:00 am–2:00 pm</span></span><span class="mt-cta">Reserve</span></a></div>
+    <a href="#contacto" class="btn btn-primary" id="modalCta" onclick="closeModal()" style="width:100%;">Check availability</a>
+    <a href="#contacto" class="modal-otra" id="modalOtra" onclick="closeModal()" hidden>Another question? Write to me</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid reveal">
+    <div>
+      <img src="/Latidoo_transparent.png" alt="Latidoo" class="footer-logo" loading="lazy" width="120" height="32" />
+      <p class="footer-tagline">Educational experiences for children, grounded in neurodevelopment.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Explore</p>
+      <ul class="footer-links">
+        <li><a href="#origen">The heart</a></li>
+        <li><a href="#servicios">Experiences</a></li>
+        <li><a href="#pati">Meet Pati</a></li>
+        <li><a href="#contacto">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <a href="mailto:info@latidoo.com" class="footer-contact-email">info@latidoo.com</a>
+      <div class="footer-social">
+        <a href="https://wa.me/34627131251" aria-label="WhatsApp" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.121.554 4.11 1.523 5.835L.057 23.927l6.266-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.72.856.894-3.617-.234-.372A9.818 9.818 0 1112 21.818z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/latidoo_bypati?igsh=aWFlOHZzbHUwemE0" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom reveal" style="--rv:80ms"><p class="footer-copy">© 2026 Latidoo, by Pati</p></div>
+</footer>
+
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Huellas procedurales ── */
+  function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  const NS='http://www.w3.org/2000/svg';
+  function buildPrint(target, seed, width){
+    const r=rng(seed), cx=(r()-.5)*6, cy=-10+(r()-.5)*5;
+    const p1=r()*6.28, p2=r()*6.28, p3=r()*6.28;
+    const spacing=2.75, rot=(r()-.5)*.5;
+    let k=0, out=[];
+    for(let i=1; i*spacing<80; i++){
+      const base=i*spacing, pts=[];
+      for(let t=0; t<=Math.PI*2+0.001; t+=0.05){
+        const wob=1+0.07*Math.sin(2*t+p1)+0.035*Math.sin(5*t+p2+i*.15)+0.02*Math.sin(9*t+p3);
+        // núcleo tipo lazo: los anillos interiores se abren por abajo
+        let rr=base*wob;
+        let x=Math.cos(t+rot)*rr*0.8, y=Math.sin(t+rot)*rr*1.05;
+        // aplanar hacia la base (las crestas bajas son más horizontales)
+        if(y>0){ y=y*(1-0.2*Math.min(1,base/50)); x=x*(1-0.1*Math.min(1,base/50)); }
+        pts.push([cx+x, cy+y]);
+      }
+      // cortes aleatorios en la cresta (terminaciones y bifurcaciones)
+      const n=pts.length, cuts=[];
+      const nc = i<3 ? 1 : (r()<.5?1:2);
+      for(let c=0;c<nc;c++){ const s=Math.floor(r()*n); cuts.push([s, s+3+Math.floor(r()*5)]); }
+      let seg=[];
+      for(let j=0;j<n;j++){
+        const cut=cuts.some(([a,b])=> (j>=a && j<=b) || (b>=n && j<=b-n));
+        if(cut){ if(seg.length>2) out.push({pts:seg,i}); seg=[]; } else seg.push(pts[j]);
+      }
+      if(seg.length>2) out.push({pts:seg,i});
+      k++;
+    }
+    target.innerHTML='';
+    out.forEach(o=>{
+      const d='M'+o.pts.map(p=>p[0].toFixed(2)+','+p[1].toFixed(2)).join('L');
+      const el=document.createElementNS(NS,'path');
+      el.setAttribute('d',d); el.setAttribute('class','ridge');
+      el.setAttribute('stroke-width', (width*(0.85+r()*0.35)).toFixed(2));
+      el.setAttribute('opacity',(0.72+r()*0.28).toFixed(2));
+      target.appendChild(el);
+      const len=el.getTotalLength();
+      el.style.setProperty('--len', len.toFixed(1));
+      el.style.setProperty('--rd', (o.i*0.025).toFixed(3)+'s');
+    });
+  }
+  // silueta de yema: más ancha arriba, más estrecha hacia la punta del corazón
+  function egg(rx,ry){ let d=''; for(let t=0;t<=Math.PI*2+0.001;t+=0.08){ const sy=Math.sin(t); const x=rx*Math.cos(t)*(1-0.26*sy); const y=ry*sy; d+=(d?'L':'M')+x.toFixed(2)+','+y.toFixed(2);} return d+'Z'; }
+  document.querySelectorAll('.prints .egg').forEach(el=>el.setAttribute('d', el.classList.contains('egg-big')?egg(44,70):egg(40,66)));
+  buildPrint(document.getElementById('ridgesA'), 11, 1.35);
+  buildPrint(document.getElementById('ridgesB'), 29, 1.55);
+
+  const prints=document.getElementById('prints');
+  function play(){
+    prints.classList.remove('run');
+    void prints.getBoundingClientRect();
+    requestAnimationFrame(()=>requestAnimationFrame(()=>prints.classList.add('run')));
+  }
+  if(reduce){ prints.classList.add('run'); } else { setTimeout(play, 500); }
+  document.getElementById('replay').addEventListener('click', play);
+  document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.swatch').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    prints.style.setProperty('--ink', b.dataset.ink);
+    prints.style.setProperty('--ink-soft', b.dataset.soft);
+    if(!reduce) play();
+  }));
+
+})();
+
+
+/* ── Entradas al hacer scroll ── */
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  const ro=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } }),{rootMargin:'0px 0px -24px 0px',threshold:0});
+  els.forEach(e=>ro.observe(e));
+})();
+
+/* ── Modales ── */
+const LISTA_TALLERES = [{"href": "/macrame-en", "img": "/taller-macrame-en.jpg", "tag": "Next workshop", "t": "Macramé workshop", "d": "Fri 27 Nov · 5:00–6:00 pm · Ludoteca La Carmela", "cta": "Reserve"}, {"href": "/navidad-en", "img": "/taller-navidad-en.jpg", "tag": "Coming up", "t": "Christmas Camp in English", "d": "23, 24, 28, 29, 30 & 31 Dec · 9:00 am–2:00 pm", "cta": "Reserve"}];
+const servicios = {
+  campamentos:{ heart:'/corazonverde_transparent.png', title:'Camps', desc:'Day camps designed around neurodevelopment. A space where children learn through play, make friends and have experiences they will remember forever. Outdoor activities, creativity, movement and lots of heart.', meta:[{label:'Age',value:'3 to 12'},{label:'Season',value:'Summer, Christmas, Easter'},{label:'Groups',value:'Small (max. 10 children)'},{label:'Times',value:'9:00 am – 2:00 pm'}]},
+  english:{ heart:'/corazon_vino_tinto_transparent.png', title:'English Club', desc:'English for little ones, where learning means playing and creating. An approach based on immersion, movement and natural repetition of the language. No textbooks, no pressure. Just curiosity and the wish to communicate.', meta:[{label:'Age',value:'3 to 8'},{label:'Format',value:'Weekly sessions'},{label:'Groups',value:'Max. 6 children'},{label:'Length',value:'60 minutes per session'}]},
+  talleres:{ heart:'/corazon_naranja_transparent.png', title:'Workshops', desc:'One-off experiences to enjoy with family or friends. Art, nature, sensory science, creative cooking... Each workshop is a different adventure, designed to stimulate children\'s senses and natural curiosity.', lista:LISTA_TALLERES,meta:[{label:'Age',value:'2 to 10'},{label:'Format',value:'Single session (2–3 hours)'},{label:'Groups',value:'Open or private'},{label:'Dates',value:'Check availability'}]},
+  fiestas:{ heart:'/corazon_morado_transparent.png', title:'Personalised parties', desc:'A birthday party designed from scratch for your child, built around their personality, their interests and what makes them shine. Guided activities, group games and an experience families will remember.', meta:[{label:'Length',value:'2 hours'},{label:'Group',value:'Up to 15 children'},{label:'Includes',value:'Activities + leader + decoration'},{label:'Booking',value:'2 weeks in advance'}]},
+  formaciones:{ heart:'/corazon_marron_transparent.png', title:'Training', desc:'Workshops and training for families and educators who want to support children better through neurodevelopment. Learn to understand each child\'s behaviour, needs and potential with real, practical tools.', meta:[{label:'For',value:'Families and teachers'},{label:'Format',value:'In person or online'},{label:'Length',value:'2 to 4 hours'},{label:'Next date',value:'Check availability'}]}
+};
+let lastFocus=null;
+function openModal(id){
+  const s=servicios[id]; if(!s) return;
+  lastFocus=document.activeElement;
+  document.getElementById('modalHeart').src=s.heart;
+  document.getElementById('modalTitle').textContent=s.title;
+  document.getElementById('modalDesc').textContent=s.desc;
+  document.getElementById('modalMeta').innerHTML=s.meta.map(m=>`<div class="meta-item"><p class="meta-label">${m.label}</p><p class="meta-value">${m.value}</p></div>`).join('');
+  const esLista=!!s.lista;
+  const lista=document.getElementById('modalLista');
+  document.getElementById('modalMeta').hidden=esLista;
+  lista.hidden=!esLista;
+  document.getElementById('modalCta').hidden=esLista;
+  document.getElementById('modalOtra').hidden=!esLista;
+  if(esLista){
+    lista.innerHTML=s.lista.map(i=>`<a class="modal-taller" href="${i.href}" target="_blank" rel="noopener"><img src="${i.img}" alt=""><span class="mt-info"><span class="mt-tag">${i.tag}</span><span class="mt-t">${i.t}</span><span class="mt-d">${i.d}</span></span><span class="mt-cta">${i.cta}</span></a>`).join('');
+  }
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.querySelector('.modal-close').focus();
+}
+function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
+function closeModalOutside(e){ if(e.target===document.getElementById('modal')) closeModal(); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ── Formulario (Netlify Forms) ── */
+const contactForm=document.getElementById('contactForm');
+contactForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const btn=contactForm.querySelector('button[type="submit"]'), msg=document.getElementById('formMsg');
+  btn.disabled=true; btn.textContent='Sending...'; msg.className='form-msg';
+  try{
+    const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(contactForm)).toString()});
+    if(res.ok){ msg.textContent='Message sent. I\'ll reply within 24 hours.'; msg.className='form-msg form-msg--ok'; contactForm.reset(); } else throw new Error();
+  }catch{ msg.innerHTML='The message couldn\'t be sent. Write to me on <a href="https://wa.me/34627131251" target="_blank" rel="noopener">WhatsApp</a>.'; msg.className='form-msg form-msg--err'; }
+  btn.disabled=false; btn.textContent='Send message';
+});
+
+/* ── Nav ── */
+const nav=document.getElementById('mainNav'), burger=document.getElementById('navBurger'), links=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>10),{passive:true});
+burger.addEventListener('click',()=>{ const open=nav.classList.toggle('nav-open'); links.classList.toggle('open',open); burger.setAttribute('aria-expanded',open); });
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ nav.classList.remove('nav-open'); links.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }));
+const patiMore=document.getElementById('patiMore');
+patiMore.addEventListener('click',()=>{ const t=document.querySelector('.pati-text'); const open=t.classList.toggle('open'); patiMore.textContent=open?'Read less':'Read more'; patiMore.setAttribute('aria-expanded',open); });
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "892eff08cc484784b7fed9ac0b7cfa0c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
