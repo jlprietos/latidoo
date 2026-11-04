@@ -477,7 +477,7 @@
       <img src="/taller-navidad.jpg" alt="Campamento de Navidad en inglés de Latidoo: niños y niñas de 3 a 12 años pintando y riendo en un entorno de bosque, con gorros de Navidad, en Rincón de la Victoria." width="1000" height="1000" loading="lazy" />
     </div>
     <div class="taller-info">
-      <span class="t-tag">Siguiente taller</span>
+      <span class="t-tag">Siguiente campamento</span>
       <h2 class="taller-title" id="tallerTitle">Campamento de Navidad en inglés</h2>
       <p class="taller-desc">Días de campamento en inglés con actividades creativas, al aire libre y muchas sorpresas.</p>
       <ul class="taller-meta">
@@ -761,7 +761,7 @@ Recomendaría cualquiera de sus servicios sin pensarlo. ¡Gracias Pati!</p>
     <h3 class="modal-title" id="modalTitle"></h3>
     <p class="modal-desc" id="modalDesc"></p>
     <div class="modal-meta" id="modalMeta" hidden></div><!-- detalles ocultos hasta que Pati los confirme -->
-    <div class="modal-lista" id="modalLista" hidden><a class="modal-taller" href="/macrame" target="_blank" rel="noopener"><img src="/taller-macrame.jpg" alt=""><span class="mt-info"><span class="mt-tag">Próximo taller</span><span class="mt-t">Taller de macramé</span><span class="mt-d">Vie 27 nov · 17:00–18:00 · Ludoteca La Carmela</span></span><span class="mt-cta">Reservar</span></a><a class="modal-taller" href="/navidad" target="_blank" rel="noopener"><img src="/taller-navidad.jpg" alt=""><span class="mt-info"><span class="mt-tag">Siguiente taller</span><span class="mt-t">Campamento de Navidad en inglés</span><span class="mt-d">23, 24, 28, 29, 30 y 31 dic · 9:00–14:00 h</span></span><span class="mt-cta">Reservar</span></a></div>
+    <div class="modal-lista" id="modalLista" hidden><a class="modal-taller" href="/macrame" target="_blank" rel="noopener"><img src="/taller-macrame.jpg" alt=""><span class="mt-info"><span class="mt-tag">Próximo taller</span><span class="mt-t">Taller de macramé</span><span class="mt-d">Vie 27 nov · 17:00–18:00 · Ludoteca La Carmela</span></span><span class="mt-cta">Reservar</span></a><a class="modal-taller" href="/navidad" target="_blank" rel="noopener"><img src="/taller-navidad.jpg" alt=""><span class="mt-info"><span class="mt-tag">Siguiente campamento</span><span class="mt-t">Campamento de Navidad en inglés</span><span class="mt-d">23, 24, 28, 29, 30 y 31 dic · 9:00–14:00 h</span></span><span class="mt-cta">Reservar</span></a></div>
     <a href="#contacto" class="btn btn-primary" id="modalCta" onclick="closeModal()" style="width:100%;">Consultar disponibilidad</a>
     <a href="#contacto" class="modal-otra" id="modalOtra" onclick="closeModal()" hidden>¿Otra consulta? Escríbeme</a>
   </div>
@@ -880,7 +880,7 @@ Recomendaría cualquiera de sus servicios sin pensarlo. ¡Gracias Pati!</p>
 })();
 
 /* ── Modales ── */
-const LISTA_TALLERES = [{"href": "/macrame", "img": "/taller-macrame.jpg", "tag": "Próximo taller", "t": "Taller de macramé", "d": "Vie 27 nov · 17:00–18:00 · Ludoteca La Carmela", "cta": "Reservar"}, {"href": "/navidad", "img": "/taller-navidad.jpg", "tag": "Siguiente taller", "t": "Campamento de Navidad en inglés", "d": "23, 24, 28, 29, 30 y 31 dic · 9:00–14:00 h", "cta": "Reservar"}];
+const LISTA_TALLERES = [{"href": "/macrame", "img": "/taller-macrame.jpg", "tag": "Próximo taller", "t": "Taller de macramé", "d": "Vie 27 nov · 17:00–18:00 · Ludoteca La Carmela", "cta": "Reservar"}, {"href": "/navidad", "img": "/taller-navidad.jpg", "tag": "Siguiente campamento", "t": "Campamento de Navidad en inglés", "d": "23, 24, 28, 29, 30 y 31 dic · 9:00–14:00 h", "cta": "Reservar"}];
 const servicios = {
   campamentos:{ heart:'corazonverde_transparent.png', title:'Campamentos', desc:'Campamentos urbanos diseñados con base en el neurodesarrollo. Un espacio donde los peques aprenden jugando, hacen amigos y viven experiencias que recuerdan para siempre. Actividades al aire libre, creatividad, movimiento y mucho corazón.', meta:[{label:'Edad',value:'3 a 12 años'},{label:'Temporada',value:'Verano, Navidad, Semana Santa'},{label:'Grupos',value:'Reducidos (máx. 10 peques)'},{label:'Horario',value:'9:00 – 14:00 h'}]},
   english:{ heart:'corazon_vino_tinto_transparent.png', title:'English Club', desc:'Inglés para peques donde aprender es jugar y crear. Un método basado en la inmersión, el movimiento y la repetición natural del lenguaje. Sin libros, sin presión. Solo curiosidad y ganas de comunicarse.', meta:[{label:'Edad',value:'3 a 8 años'},{label:'Formato',value:'Sesiones semanales'},{label:'Grupos',value:'Máximo 6 peques'},{label:'Duración',value:'60 minutos por sesión'}]},

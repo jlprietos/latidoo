@@ -478,7 +478,7 @@
       <img src="/taller-navidad-en.jpg" alt="Latidoo Christmas Camp in English: children aged 3 to 12 painting and laughing in a forest setting, wearing Christmas hats, in Rincón de la Victoria." width="1000" height="1000" loading="lazy" />
     </div>
     <div class="taller-info">
-      <span class="t-tag">Coming up</span>
+      <span class="t-tag">Next camp</span>
       <h2 class="taller-title" id="tallerTitle">Christmas Camp in English</h2>
       <p class="taller-desc">Christmas camp days in English with creative, outdoor activities and lots of surprises.</p>
       <ul class="taller-meta">
@@ -762,7 +762,7 @@ I would recommend any of their services without a second thought. Thank you Pati
     <h3 class="modal-title" id="modalTitle"></h3>
     <p class="modal-desc" id="modalDesc"></p>
     <div class="modal-meta" id="modalMeta" hidden></div><!-- detalles ocultos hasta que Pati los confirme -->
-    <div class="modal-lista" id="modalLista" hidden><a class="modal-taller" href="/macrame-en" target="_blank" rel="noopener"><img src="/taller-macrame-en.jpg" alt=""><span class="mt-info"><span class="mt-tag">Next workshop</span><span class="mt-t">Macramé workshop</span><span class="mt-d">Fri 27 Nov · 5:00–6:00 pm · Ludoteca La Carmela</span></span><span class="mt-cta">Reserve</span></a><a class="modal-taller" href="/navidad-en" target="_blank" rel="noopener"><img src="/taller-navidad-en.jpg" alt=""><span class="mt-info"><span class="mt-tag">Coming up</span><span class="mt-t">Christmas Camp in English</span><span class="mt-d">23, 24, 28, 29, 30 & 31 Dec · 9:00 am–2:00 pm</span></span><span class="mt-cta">Reserve</span></a></div>
+    <div class="modal-lista" id="modalLista" hidden><a class="modal-taller" href="/macrame-en" target="_blank" rel="noopener"><img src="/taller-macrame-en.jpg" alt=""><span class="mt-info"><span class="mt-tag">Next workshop</span><span class="mt-t">Macramé workshop</span><span class="mt-d">Fri 27 Nov · 5:00–6:00 pm · Ludoteca La Carmela</span></span><span class="mt-cta">Reserve</span></a><a class="modal-taller" href="/navidad-en" target="_blank" rel="noopener"><img src="/taller-navidad-en.jpg" alt=""><span class="mt-info"><span class="mt-tag">Next camp</span><span class="mt-t">Christmas Camp in English</span><span class="mt-d">23, 24, 28, 29, 30 & 31 Dec · 9:00 am–2:00 pm</span></span><span class="mt-cta">Reserve</span></a></div>
     <a href="#contacto" class="btn btn-primary" id="modalCta" onclick="closeModal()" style="width:100%;">Check availability</a>
     <a href="#contacto" class="modal-otra" id="modalOtra" onclick="closeModal()" hidden>Another question? Write to me</a>
   </div>
@@ -881,7 +881,7 @@ I would recommend any of their services without a second thought. Thank you Pati
 })();
 
 /* ── Modales ── */
-const LISTA_TALLERES = [{"href": "/macrame-en", "img": "/taller-macrame-en.jpg", "tag": "Next workshop", "t": "Macramé workshop", "d": "Fri 27 Nov · 5:00–6:00 pm · Ludoteca La Carmela", "cta": "Reserve"}, {"href": "/navidad-en", "img": "/taller-navidad-en.jpg", "tag": "Coming up", "t": "Christmas Camp in English", "d": "23, 24, 28, 29, 30 & 31 Dec · 9:00 am–2:00 pm", "cta": "Reserve"}];
+const LISTA_TALLERES = [{"href": "/macrame-en", "img": "/taller-macrame-en.jpg", "tag": "Next workshop", "t": "Macramé workshop", "d": "Fri 27 Nov · 5:00–6:00 pm · Ludoteca La Carmela", "cta": "Reserve"}, {"href": "/navidad-en", "img": "/taller-navidad-en.jpg", "tag": "Next camp", "t": "Christmas Camp in English", "d": "23, 24, 28, 29, 30 & 31 Dec · 9:00 am–2:00 pm", "cta": "Reserve"}];
 const servicios = {
   campamentos:{ heart:'/corazonverde_transparent.png', title:'Camps', desc:'Day camps designed around neurodevelopment. A space where children learn through play, make friends and have experiences they will remember forever. Outdoor activities, creativity, movement and lots of heart.', meta:[{label:'Age',value:'3 to 12'},{label:'Season',value:'Summer, Christmas, Easter'},{label:'Groups',value:'Small (max. 10 children)'},{label:'Times',value:'9:00 am – 2:00 pm'}]},
   english:{ heart:'/corazon_vino_tinto_transparent.png', title:'English Club', desc:'English for little ones, where learning means playing and creating. An approach based on immersion, movement and natural repetition of the language. No textbooks, no pressure. Just curiosity and the wish to communicate.', meta:[{label:'Age',value:'3 to 8'},{label:'Format',value:'Weekly sessions'},{label:'Groups',value:'Max. 6 children'},{label:'Length',value:'60 minutes per session'}]},
